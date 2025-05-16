@@ -6,7 +6,7 @@ const Route: FC = () => {
     return(
         <div>
             <div className="flex justify-center items-center mx-70 gap-8">
-                <Image src="/images/cole.png" alt="Cole Image" className="my-10 w-75 rounded-2xl border-4 border-[#3F5757]"></img>
+                <Image src="/images/cole.png" alt="Cole Image" className="my-10 w-75 rounded-2xl border-4 border-[#3F5757]"/>
                 <p>Hello! I am Nicholas "Cole" Bennett!<br/><br/>
 
                 I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
