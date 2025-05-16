@@ -1,5 +1,4 @@
 "use client"
-import { NavBar } from "@/components/NavBar";
 import { FC } from "react";
 import { Project } from "@/components/Project";
 import { ProjectLabel } from "@/components/ProjectLabel";

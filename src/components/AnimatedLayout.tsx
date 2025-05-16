@@ -4,11 +4,9 @@
     import { Footer } from "@/components/Footer";
 
     // page animation stuff
-    import { usePathname } from "next/navigation";
-    import { animate, AnimatePresence, motion } from "framer-motion";
+    import { AnimatePresence, motion } from "framer-motion";
     import { useRouteContext } from "@/context/routecontext";
     import { PAGES } from "@/constants/routes";
-    import { dir } from "console";
 
 
     export default function AnimatedLayout({children}: {children: React.ReactNode}) {

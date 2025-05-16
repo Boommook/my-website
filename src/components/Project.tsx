@@ -1,12 +1,12 @@
 "use client"
-import { ProjectLabel } from "./ProjectLabel";
 import {ReactNode, useState} from "react";
 import {SquareArrowOutUpRight} from "lucide-react"
+import Image from 'next/image';
 
 type ProjectProps = {
     image: string;
     title: string;
-    labels: ProjectLabel[];
+    labels: ReactNode[];
     description: string;
     link?: string
   };
@@ -17,7 +17,7 @@ export const Project = ({ image, title, labels, description, link}: ProjectProps
         <div className="flex justify-center flex-col items-center w-fit rounded-2xl hover:scale-105 shadow-lg cursor-pointer" 
         onClick={() => setFlipped(!flipped)}>
             {!flipped ?
-            <img
+            <Image
             src={image}
             alt={title}
             className={"w-114 h-64 rounded-t-2xl"}

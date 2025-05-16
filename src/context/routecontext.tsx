@@ -2,7 +2,6 @@
 
 import {createContext, useContext, useLayoutEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation"
-import { Route } from "next";
 
 type RouteContextType = {
     prevPath: string | null;
