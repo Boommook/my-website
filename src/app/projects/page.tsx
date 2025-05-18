@@ -8,7 +8,7 @@ const Route: FC = () => {
         <h1 className="mt-6 mb-4">Projects</h1>
         <hr className="border-black border-3 mb-4 w-60 rounded-2xl mx-auto"/>
         <div className="m-4 flex justify-center">
-            <div className="justify-center items-center mx-6 grid grid-cols-1 md:grid-cols-3 gap-10 mb-4">
+            <div className="justify-center items-center mx-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-4">
                 <Project image="/images/projects/covidchasegame.jpg" title="Covid Chase" labels={[
                     <ProjectLabel title="Game Development" color="bg-label-skill"/>,
                     <ProjectLabel title="C#" color="bg-label-language"/>,

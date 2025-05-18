@@ -6,7 +6,7 @@ const Route: FC = () => {
     return(
         <div>
             <div className="flex justify-center items-center mx-70 gap-8">
-                <Image src="/images/cole.png" alt="Cole Image" className="my-10 w-75 rounded-2xl border-4 border-[#3F5757]"/>
+                <img src="/images/cole.png" alt="Cole Image" className="my-10 w-75 rounded-2xl border-4 border-[#3F5757]"/>
                 <p>Hello! I am Nicholas "Cole" Bennett!<br/><br/>
 
                 I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
@@ -22,19 +22,19 @@ const Route: FC = () => {
                 <h1 className="mt-6 mb-4 text-[#292833]">My Skills</h1>
                 <hr className="border-black border-3 mb-8 w-60 rounded-2xl mx-auto"/>
                 <div className="flex justify-center items-center gap-16 mb-2">
-                    <Image src="/images/skills/unrealenginelogo.png" alt="UE Logo" className="mb-4 w-75"/>
-                    <Image src="/images/skills/unitylogo.svg" alt="Unity Logo" className="mb-4 w-75"/>
-                    <Image src="/images/skills/reactlogo.svg" alt="React Logo" className="mb-4 w-75"/>
+                    <img src="/images/skills/unrealenginelogo.png" alt="UE Logo" className="mb-4 w-75"/>
+                    <img src="/images/skills/unitylogo.svg" alt="Unity Logo" className="mb-4 w-75"/>
+                    <img src="/images/skills/reactlogo.svg" alt="React Logo" className="mb-4 w-75"/>
                 </div>
                 <div className="flex justify-center items-center gap-12">
-                    <Image src="/images/skills/clogo.png" alt="C Logo" className="mb-4 w-15"/>
-                    <Image src="/images/skills/c++logo.png" alt="C++ Logo" className="mb-4 w-15"/>
-                    <Image src="/images/skills/csharplogo.png" alt="C# Logo" className="mb-4 w-15"/>
-                    <Image src="/images/skills/javalogo.png" alt="Java Logo" className="mb-4 w-25"/>
-                    <Image src="/images/skills/typescriptlogo.png" alt="TypeScript Logo" className="mb-4 w-15"/>
-                    <Image src="/images/skills/javascriptlogo.jpg" alt="JavaScript Logo" className="mb-4 w-15 rounded-md"/>
-                    <Image src="/images/skills/racketlogo.png" alt="Racket Logo" className="mb-4 w-15"/>
-                    <Image src="/images/skills/latexlogo.png" alt="LaTex Logo" className="mb-4 w-25"/>
+                    <img src="/images/skills/clogo.png" alt="C Logo" className="mb-4 w-15"/>
+                    <img src="/images/skills/c++logo.png" alt="C++ Logo" className="mb-4 w-15"/>
+                    <img src="/images/skills/csharplogo.png" alt="C# Logo" className="mb-4 w-15"/>
+                    <img src="/images/skills/javalogo.png" alt="Java Logo" className="mb-4 w-25"/>
+                    <img src="/images/skills/typescriptlogo.png" alt="TypeScript Logo" className="mb-4 w-15"/>
+                    <img src="/images/skills/javascriptlogo.jpg" alt="JavaScript Logo" className="mb-4 w-15 rounded-md"/>
+                    <img src="/images/skills/racketlogo.png" alt="Racket Logo" className="mb-4 w-15"/>
+                    <img src="/images/skills/latexlogo.png" alt="LaTex Logo" className="mb-4 w-25"/>
                 </div>
                 <h2 className="text-xl font-medium mt-3 mb-3">Other Technologies</h2>
                 <div className="flex justify-center items-center gap-4">

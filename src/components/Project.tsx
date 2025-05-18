@@ -17,7 +17,7 @@ export const Project = ({ image, title, labels, description, link}: ProjectProps
         <div className="flex justify-center flex-col items-center w-fit rounded-2xl hover:scale-105 shadow-lg cursor-pointer" 
         onClick={() => setFlipped(!flipped)}>
             {!flipped ?
-            <Image
+            <img
             src={image}
             alt={title}
             className={"w-114 h-64 rounded-t-2xl"}
