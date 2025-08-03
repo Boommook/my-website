@@ -5,7 +5,7 @@ const Route: FC = () => {
     return(
         <div className="flex flex-col items-center bg-pink-200 h-full">
             <h1 className="text-center text-4xl font-bold my-10">HAPPY 2 YEAR ANNIVERSARY MY LOVE</h1>
-            <div className="text-left mx-30 text-2xl">
+            <div className="text-left mx-10 text-2xl">
                 Good job solving the rubik's cube!, you've found my secret page mwahahhaha. 
                 I love you so so so so much baby. I'm so glad you're in my life, thank you for the best 2 years of my life.
                 I look forward to spending the rest of my life with you, and I can't wait to see what the future holds for us.

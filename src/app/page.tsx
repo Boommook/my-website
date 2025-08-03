@@ -7,7 +7,7 @@ import Link from "next/link";
 const Route: FC = () => {
   return (
     <div className="h-full flex flex-col">
-      <div className="!text-left ml-8 my-16 flex flex-col gap-2 mr-75">
+      <div className="!text-left ml-8 my-16 flex flex-col gap-2 mr-8">
         <h1 className="!text-left !text-6xl font-semibold">Cole Bennett</h1>
         <h2 className="!text-left !text-2xl">Computer Science and Interactive Media and Game Development Student</h2>
         <p className=" mt-8 text-lg !text-dark-turquoie/150">Welcome to my portfolio website!<br/>
