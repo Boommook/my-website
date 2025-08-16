@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from "react";
 export const NavBar = () => {
     const [visible, setVisible] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activePage, setActivePage] = useState("HOME");
 
     useEffect(() => {
       const timeout = setTimeout(() => {
@@ -32,7 +33,7 @@ export const NavBar = () => {
 
     return (
         <NavigationMenu className="bg-green/65 backdrop-blur-md fixed top-0 left-0 right-0 z-50 w-screen max-w-none justify-start">
-          <NavigationMenuList className="flex justify-between items-center w-screen px-4 py-2">
+          <NavigationMenuList className="flex justify-between items-center w-screen px-4">
             <NavigationMenuItem className={`transition-all duration-400 text-lg sm:text-xl md:text-2xl font-semibold text-black ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
             }`}>
@@ -42,17 +43,20 @@ export const NavBar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex gap-2 lg:gap-4">
               <NavigationMenuItem>
-                <Link href="/" className={navigationMenuTriggerStyle()}>
+                <Link href="/" onClick={() => setActivePage("HOME")} className={`${navigationMenuTriggerStyle()} 
+                ${activePage === "HOME" ? "bg-green/55 shadow-[inset_2px_0_4px_rgba(0,0,0,0.3),inset_-2px_0_4px_rgba(0,0,0,0.3)]" : ""}`}>
                   Home
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/about" className={navigationMenuTriggerStyle()}>
+                <Link href="/about" onClick={() => setActivePage("ABOUT")} className={`${navigationMenuTriggerStyle()} 
+                ${activePage === "ABOUT" ? "bg-green/55 shadow-[inset_2px_0_4px_rgba(0,0,0,0.3),inset_-2px_0_4px_rgba(0,0,0,0.3)]" : ""}`}>
                   About
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/projects" className={navigationMenuTriggerStyle()}>
+                <Link href="/projects" onClick={() => setActivePage("PROJECTS")} className={`${navigationMenuTriggerStyle()} 
+                ${activePage === "PROJECTS" ? "bg-green/55 shadow-[inset_2px_0_4px_rgba(0,0,0,0.3),inset_-2px_0_4px_rgba(0,0,0,0.3)]" : ""}`}>
                   Projects
                 </Link>
               </NavigationMenuItem>

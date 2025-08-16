@@ -11,6 +11,11 @@ const Route: FC = () => {
 
                 I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
                 <br/><br/>
+                This past summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern. 
+                In this role, I used React and Websockets to create a robot fleet dashboard that tracks the status and location of Black-I's robotic arms.
+                The dashboard features authorization control for administrators. 
+                I also utilized MongoDB Atlas to track activity, errors, and other such data from not only the dashboard, but also the robotic arm control panels.
+                <br/><br/>
                 I have created this website as an online portfolio to showcase my projects and share important details about me for potential employers. If you are interested in further details regarding my work experience and academics, I suggest you take a look at my resume!
                 <br/><br/>
                 In my free time I enjoy playing ultimate frisbee, playing and creating videogames, brewing mead, rock climbing, hiking, and much more!
@@ -75,6 +80,22 @@ const Route: FC = () => {
                     <h1 className="mt-6 mb-4">Experience</h1>
                     <hr className="border-black border-3 mb-8 w-60 rounded-2xl mx-auto"/>
                     <div className="shadow-lg w-[80%] md:w-140 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80">
+                        <div className="flex">
+                            <img src="/images/blacki.png" alt="Black-I Logo" className="w-20 my-4 mr-4"/>
+                            <div>
+                                <h2 className="text-md md:text-xl font-semibold">Black-I Robotics</h2>
+                                <h3 className="text-sm md:text-lg font-semibold">Software Engineer Intern</h3>
+                                <h4 className="text-black/50 text-sm mb-4">June - August 2025 | Boston, MA</h4>
+                            </div>
+                        </div>
+                            
+                            <p className="mb-4 text-sm md:text-[16px]"> 
+                                • Worked in a fast-paced environment to develop a dashboard to track the status and location of robots<br/>
+                                • Revamped the control panel for Black-I's robotic arms<br/>
+                                • Implemented data tracking with MongoDB Atlas and added logging for errors and activity
+                            </p>
+                    </div>
+                    <div className="shadow-lg w-[80%] md:w-140 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80 mt-8">
                         <div className="flex">
                             <img src="/images/indiecadelogo.png" alt="IndieCade Logo" className="w-20 my-4 mr-4"/>
                             <div>
