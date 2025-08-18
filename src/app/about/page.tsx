@@ -66,7 +66,7 @@ const Route: FC = () => {
                     <div className="shadow-lg w-[80%] md:w-140 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80">
                         <h2 className="text-md md:text-xl font-semibold">Worcester Polytechnic Institute</h2>
                         <h3 className="text-black/50 text-sm mb-4">BS, Computer Science and Interactive Media & Game Development</h3>
-                        <p className="mb-4">GPA: 3.92/4.0</p>
+                        <p className="mb-4">GPA: 3.93/4.0</p>
                         <ul className="text-dark-turquoise text-sm md:text-[16px]">
                             • PR Chair, Ultimate Frisbee Men's Team<br/>
                             • Member, Upsilon Pi Epsilon the Computer Science Honors Society<br/>

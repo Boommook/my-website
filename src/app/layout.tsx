@@ -4,6 +4,7 @@ import "./globals.css";
 
 import ClientLayout from "@/components/ClientLayout";
 import { RouteProvider } from "@/context/routecontext";
+import ParticleBG from "@/components/ParticleBG";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
+        <ParticleBG
+          density={22000}
+          color="#658265"
+          linkDist={110}
+          mouseDist={150}
+          speed={0.25}
+        />
         <RouteProvider>
           <ClientLayout>{children}</ClientLayout>
         </RouteProvider>
