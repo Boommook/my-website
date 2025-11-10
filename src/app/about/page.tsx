@@ -1,6 +1,7 @@
 import { TechLabel } from "@/components/TechnologyLabel";
 import { FC } from "react"
 import Image from 'next/image';
+import WPIEducationCard from "@/components/WPIEducationCard";
 
 const Route: FC = () => {
     return(
@@ -14,7 +15,7 @@ const Route: FC = () => {
                 This past summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern. 
                 In this role, I used React and Websockets to create a robot fleet dashboard that tracks the status and location of Black-I's robotic arms.
                 The dashboard features authorization control for administrators. 
-                I also utilized MongoDB Atlas to track activity, errors, and other such data from not only the dashboard, but also the robotic arm control panels.
+                I utilized MongoDB Atlas to track activity, errors, and other such data from not only the dashboard, but also the robotic arm control panels.
                 <br/><br/>
                 I have created this website as an online portfolio to showcase my projects and share important details about me for potential employers. If you are interested in further details regarding my work experience and academics, I suggest you take a look at my resume!
                 <br/><br/>
@@ -37,6 +38,7 @@ const Route: FC = () => {
                         <img src="/images/skills/c++logo.png" alt="C++ Logo" className="mb-4 w-[5%]"/>
                         <img src="/images/skills/csharplogo.png" alt="C# Logo" className="mb-4 w-[5%]"/>
                         <img src="/images/skills/javalogo.png" alt="Java Logo" className="mb-4 w-[10%]"/>
+                        <img src="/images/skills/pythonlogo.png" alt="python Logo" className="mb-4 w-[5%]"/>
                     </div>
                     <div className="flex flex-row gap-12 w-fit justify-center md:justify-start">
                         <img src="/images/skills/typescriptlogo.png" alt="TypeScript Logo" className="mb-4 w-[5%]"/>
@@ -59,29 +61,18 @@ const Route: FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center flex-col md:flex-row py-4 gap-[8%] mb-8">
+            <div className="flex justify-center flex-col md:flex-row py-4 gap-[6%] mb-8">
                 <div className="flex flex-col justify-start items-center">
                     <h1 className="mt-6 mb-4 text-dark-navy">Education</h1>
                     <hr className="border-black border-3 mb-8 w-60 rounded-2xl mx-auto"/>
-                    <div className="shadow-lg w-[80%] md:w-140 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80">
-                        <h2 className="text-md md:text-xl font-semibold">Worcester Polytechnic Institute</h2>
-                        <h3 className="text-black/50 text-sm mb-4">BS, Computer Science and Interactive Media & Game Development</h3>
-                        <p className="mb-4">GPA: 3.93/4.0</p>
-                        <ul className="text-dark-turquoise text-sm md:text-[16px]">
-                            • PR Chair, Ultimate Frisbee Men's Team<br/>
-                            • Member, Upsilon Pi Epsilon the Computer Science Honors Society<br/>
-                            • Member, Outing Club<br/>
-                            • Member, IMGD Colloquiums
-                            • Dean's List (all semesters)
-                        </ul>
-                    </div>
+                    <WPIEducationCard />
                 </div>
                 <div className="flex flex-col justify-start items-center">
                     <h1 className="mt-6 mb-4">Experience</h1>
                     <hr className="border-black border-3 mb-8 w-60 rounded-2xl mx-auto"/>
-                    <div className="shadow-lg w-[80%] md:w-140 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80">
-                        <div className="flex">
-                            <img src="/images/blacki.png" alt="Black-I Logo" className="w-20 my-4 mr-4"/>
+                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80">
+                        <div className="flex items-start">
+                            <img src="/images/blacki.png" alt="Black-I Logo" className="w-20 mt-2 mb-4 mr-4"/>
                             <div>
                                 <h2 className="text-md md:text-xl font-semibold">Black-I Robotics</h2>
                                 <h3 className="text-sm md:text-lg font-semibold">Software Engineer Intern</h3>
@@ -95,9 +86,9 @@ const Route: FC = () => {
                                 • Implemented data tracking with MongoDB Atlas and added logging for errors and activity
                             </p>
                     </div>
-                    <div className="shadow-lg w-[80%] md:w-140 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80 mt-8">
-                        <div className="flex">
-                            <img src="/images/indiecadelogo.png" alt="IndieCade Logo" className="w-20 my-4 mr-4"/>
+                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80 mt-8">
+                        <div className="flex items-start">
+                            <img src="/images/indiecadelogo.png" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-4"/>
                             <div>
                                 <h2 className="text-md md:text-xl font-semibold">IndieCade</h2>
                                 <h3 className="text-sm md:text-lg font-semibold">Game Design Intern</h3>
@@ -111,9 +102,9 @@ const Route: FC = () => {
                                 • Playtested and reviewed other jam submissions regularly
                             </p>
                     </div>
-                    <div className="shadow-lg w-[80%] md:w-140 h-fit border-2 rounded-xl border-[#ADAD8B]/30 bg-white/80 p-4 mt-8">
-                        <div className="flex">
-                            <div><img src="/images/brueggerslogo.svg" alt="IndieCade Logo" className="w-20 mb-4 mr-8"/></div>
+                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-[#ADAD8B]/30 bg-white/80 p-4 mt-8">
+                        <div className="flex items-start">
+                            <div><img src="/images/brueggerslogo.svg" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-8"/></div>
                             <div>
                                 <h2 className="text-md md:text-xl font-semibold">Bruegger's Bagels & Jamba Juice</h2>
                                 <h3 className="text-sm md:text-lg font-semibold">Team Member</h3>
