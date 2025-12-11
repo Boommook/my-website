@@ -47,7 +47,8 @@ const Route: FC = () => {
                         <img src="/images/skills/latexlogo.png" alt="LaTex Logo" className="mb-4 w-[10%]"/>
                     </div>
                 </div>
-                <h2 className="text-xl font-medium mt-3 mb-3">Other Technologies</h2>
+                <h2 className="text-xl font-semibold mt-3 mb-2">Other Technologies</h2>
+                <hr className="border-cyan border-3 mb-5 w-60 rounded-2xl mx-auto"/>
                 <div className="flex justify-center items-center gap-4">
                     <div className="flex flex-col md:flex-row gap-2 justify-center items-center md:items-end md:justify-end">
                     <TechLabel title="Git"/>

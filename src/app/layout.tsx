@@ -35,7 +35,7 @@ export default function RootLayout({
       >
         <ParticleBG
           density={22000}
-          color="#FF5722"
+          color="#dcc681"
           linkDist={110}
           mouseDist={150}
           speed={0.25}
