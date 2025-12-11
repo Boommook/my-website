@@ -124,6 +124,22 @@
   --color-dark-turquoise: #3F5757;
   --color-dark-navy: #292833;
   --color-lightblue: #D8EFF0;
+/*
+  --color-tan: #dbd6bf;
+  --color-gold: #bd9443;
+  --color-truegold: #ffc30e;
+  --color-cyan: #2a5370;
+  --color-navy: #323758;
+  --color-gray: #494c5b;
+  --color-lightgray: #78727e;
+  --color-silver: #b0aca4;
+  --color-mysalmon: #ac8181;
+*/
+  --color-silver: #eeeeee;
+  --color-lightgray: #e8e8e8;
+  --color-tangerine: #FF5722;
+  --color-cyan: #00ADB5;
+  --color-gray: #303841;
 
   --color-label-language: #5678a3;
   --color-label-skill: #c4524f;
@@ -155,6 +171,22 @@
   hr {
     @apply text-dark-navy;
   }
+
+  .dashed-grid-paper {
+
+    --grid-size: 24px;
+    --grid-strength: 1px;
+    --grid-dash: 5px;
+    --grid-gap: 12px;
+    --grid-color: #ccc;
+    --paper-color: #eee;
+
+  background-color: var(--paper-color);
+  background-size: var(--grid-gap) var(--grid-gap), var(--grid-size) var(--grid-size);
+  background-image:
+    linear-gradient(to top, transparent var(--grid-dash), var(--paper-color) var(--grid-dash)), 
+    linear-gradient(to top, var(--grid-color) var(--grid-strength), transparent var(--grid-strength));
+}
 }
 
 @keyframes pulse-scale {

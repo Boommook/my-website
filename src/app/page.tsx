@@ -7,13 +7,13 @@ import Link from "next/link";
 const Route: FC = () => {
   return (
     <div className="h-full flex flex-col">
-      <div className="!text-left ml-8 my-16 flex flex-col gap-2 mr-8">
-        <h1 className="!text-left !text-6xl font-semibold">Cole Bennett</h1>
-        <h2 className="!text-left !text-2xl">Computer Science and Interactive Media and Game Development Student</h2>
-        <p className=" mt-8 text-lg !text-dark-turquoie/150">Welcome to my portfolio website!<br/>
+      <div className="!text-left ml-8 mt-12 mb-8 flex flex-col gap-2 mr-8">
+        <h1 className="!text-left !text-6xl font-semibold text-gray">Cole Bennett</h1>
+        <h2 className="!text-left !text-2xl text-gray/90">Computer Science and Interactive Media and Game Development Student</h2>
+        <p className=" mt-8 text-lg text-gray/80">Welcome to my portfolio website!<br/>
             I'm Cole Bennett, a CS+IMGD major at WPI who dreams of applying my skills in computer science to design. Whether you're a potential employer, friend, family member, or a total stranger, please feel free to explore my site!</p>
       </div>
-      <div className="flex flex-col justify-center items-center !bg-[#ada38b]/10 py-16 pb-12">
+      <div className="flex flex-col justify-center items-center !bg-gray/5 py-12">
         <div className="m-4 flex justify-center">
           <div className="justify-center items-center mx-6 grid grid-cols-1 md:grid-cols-3 gap-10 mb-4">
             <Project image="/images/projects/covidchasegame.jpg" title="Covid Chase" labels={[
@@ -33,8 +33,8 @@ const Route: FC = () => {
                 description="For Technical Game Development I at WPI, I followed the professor’s textbook to create his 2D game engine, Dragonfly, with C++ and SFML. Afterwards, I worked with a partner to use the engine to develop a tower defense game based on the mouse infestation of an apartment. The game features sprites made from text, a variety of traps, currency, and ramping intensity. To play the game, follow the button below, navigate to the 23 Dover Street game, and follow the instructions at the top of the site."/>
           </div>
         </div>
-        <Link href={"/projects"} className=" mt-4 text-[#e9f2f2] animate-pulse-scale bg-dark-turquoise/75 text-3xl p-3 px-4 rounded-3xl
-         hover:bg-dark-turquoise/90 hover:text-lightblue shadow-lg font-ubuntu">View More Projects</Link>
+        <Link href={"/projects"} className=" mt-4 text-silver animate-pulse-scale bg-cyan text-3xl p-3 px-4 rounded-3xl
+         hover:bg-cyan/60 hover:text-tangerine hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition-colors">View More Projects</Link>
       </div>
     </div>
   );

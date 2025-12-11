@@ -7,7 +7,7 @@ const Route: FC = () => {
     return(
         <div>
             <div className="flex justify-center items-center flex-col md:flex-row mx-10 md:mx-30 gap-2 md:gap-8">
-                <img src="/images/cole.png" alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-[#3F5757]"/>
+                <img src="/images/cole.png" alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-cyan"/>
                 <p className="mb-4 md:mb-0">Hello! I am Nicholas "Cole" Bennett!<br/><br/>
 
                 I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
@@ -23,10 +23,10 @@ const Route: FC = () => {
                 <br/><br/>
                 If you have any further questions, feel free to reach out!</p>
             </div>
-            <div className="flex flex-col justify-center items-center !bg-[#ada38b]/10 py-4 pb-8">
+            <div className="flex flex-col justify-center items-center !bg-gray/5 py-4 pb-8">
 
-                <h1 className="mt-6 mb-4 text-[#292833]">My Skills</h1>
-                <hr className="border-black border-3 mb-8 w-60 rounded-2xl mx-auto"/>
+                <h1 className="mt-6 mb-4 text-gray">My Skills</h1>
+                <hr className="border-cyan border-3 mb-8 w-60 rounded-2xl mx-auto"/>
                 <div className="flex justify-center items-center gap-4 mb-2 md:gap-8">
                     <img src="/images/skills/unrealenginelogo.png" alt="UE Logo" className="mb-4 w-[25%]"/>
                     <img src="/images/skills/unitylogo.svg" alt="Unity Logo" className="mb-4 w-[25%]"/>
@@ -63,20 +63,20 @@ const Route: FC = () => {
             </div>
             <div className="flex justify-center flex-col md:flex-row py-4 gap-[6%] mb-8">
                 <div className="flex flex-col justify-start items-center">
-                    <h1 className="mt-6 mb-4 text-dark-navy">Education</h1>
-                    <hr className="border-black border-3 mb-8 w-60 rounded-2xl mx-auto"/>
+                    <h1 className="mt-6 mb-4 text-gray">Education</h1>
+                    <hr className="border-cyan border-3 mb-8 w-60 rounded-2xl mx-auto"/>
                     <WPIEducationCard />
                 </div>
                 <div className="flex flex-col justify-start items-center">
-                    <h1 className="mt-6 mb-4">Experience</h1>
-                    <hr className="border-black border-3 mb-8 w-60 rounded-2xl mx-auto"/>
-                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80">
+                    <h1 className="mt-6 mb-4 text-gray">Experience</h1>
+                    <hr className="border-cyan border-3 mb-8 w-60 rounded-2xl mx-auto"/>
+                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray">
                         <div className="flex items-start">
                             <img src="/images/blacki.png" alt="Black-I Logo" className="w-20 mt-2 mb-4 mr-4"/>
                             <div>
-                                <h2 className="text-md md:text-xl font-semibold">Black-I Robotics</h2>
-                                <h3 className="text-sm md:text-lg font-semibold">Software Engineer Intern</h3>
-                                <h4 className="text-black/50 text-sm mb-4">June - August 2025 | Boston, MA</h4>
+                                <h2 className="text-md md:text-xl font-semibold text-gray">Black-I Robotics</h2>
+                                <h3 className="text-sm md:text-lg font-semibold text-gray/90">Software Engineer Intern</h3>
+                                <h4 className="text-gray/50 text-sm mb-4">June - August 2025 | Boston, MA</h4>
                             </div>
                         </div>
                             
@@ -86,13 +86,13 @@ const Route: FC = () => {
                                 • Implemented data tracking with MongoDB Atlas and added logging for errors and activity
                             </p>
                     </div>
-                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-[#ADAD8B]/30 p-4 bg-white/80 mt-8">
+                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray mt-8">
                         <div className="flex items-start">
                             <img src="/images/indiecadelogo.png" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-4"/>
                             <div>
-                                <h2 className="text-md md:text-xl font-semibold">IndieCade</h2>
-                                <h3 className="text-sm md:text-lg font-semibold">Game Design Intern</h3>
-                                <h4 className="text-black/50 text-sm mb-4">June - July 2024 | Remote</h4>
+                                <h2 className="text-md md:text-xl font-semibold text-gray">IndieCade</h2>
+                                <h3 className="text-sm md:text-lg font-semibold text-gray/90">Game Design Intern</h3>
+                                <h4 className="text-gray/50 text-sm mb-4">June - July 2024 | Remote</h4>
                             </div>
                         </div>
                             
@@ -102,13 +102,13 @@ const Route: FC = () => {
                                 • Playtested and reviewed other jam submissions regularly
                             </p>
                     </div>
-                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-[#ADAD8B]/30 bg-white/80 p-4 mt-8">
+                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 bg-lightgray p-4 mt-8">
                         <div className="flex items-start">
                             <div><img src="/images/brueggerslogo.svg" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-8"/></div>
                             <div>
-                                <h2 className="text-md md:text-xl font-semibold">Bruegger's Bagels & Jamba Juice</h2>
-                                <h3 className="text-sm md:text-lg font-semibold">Team Member</h3>
-                                <h4 className="text-black/50 text-sm mb-4">July - September 2021 | Bedford, MA</h4>
+                                <h2 className="text-md md:text-xl font-semibold text-gray">Bruegger's Bagels & Jamba Juice</h2>
+                                <h3 className="text-sm md:text-lg font-semibold text-gray/90">Team Member</h3>
+                                <h4 className="text-gray/50 text-sm mb-4">July - September 2021 | Bedford, MA</h4>
                             </div>
                         </div>
                         <p className="mb-4 text-sm md:text-[16px]"> 

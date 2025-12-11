@@ -5,8 +5,8 @@ import { ProjectLabel } from "@/components/ProjectLabel";
 const Route: FC = () => {
     return(
     <div className="flex flex-col mb-4">
-        <h1 className="mt-6 mb-4">Projects</h1>
-        <hr className="border-black border-3 mb-4 w-60 rounded-2xl mx-auto"/>
+        <h1 className="mt-6 mb-4 text-gray">Projects</h1>
+        <hr className="border-cyan border-3 mb-4 w-60 rounded-2xl mx-auto"/>
         <div className="m-4 flex justify-center">
             <div className="justify-center items-center mx-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-4">
                 <Project image="/images/projects/covidchasegame.jpg" title="Covid Chase" labels={[
