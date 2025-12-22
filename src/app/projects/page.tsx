@@ -40,8 +40,8 @@ const Route: FC = () => {
 
     return(
     <div className="flex flex-col mb-4 items-center justify-center">
-        <div className="flex items-center justify-center gap-x-8">
-            <h1 className="mt-6 mb-4 text-gray items-center justify-center">Projects</h1>
+        <div className="flex items-center justify-center gap-x-8 mt-6 mb-4">
+            <h1 className=" text-gray items-center justify-center">Projects</h1>
             <DropdownMenu>
             <DropdownMenuTrigger><Funnel className="w-8 h-8 text-cyan items-center justify-center hover:cursor-pointer"/></DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -97,6 +97,8 @@ const Route: FC = () => {
                 </DropdownMenuSubContent>
                 </DropdownMenuPortal>
             </DropdownMenuSub>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => setSingleFilter("")} className="!p-1 hover:cursor-pointer">Clear Filters</DropdownMenuItem>
             </DropdownMenuContent>
             </DropdownMenu>
         </div>

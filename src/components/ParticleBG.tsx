@@ -12,6 +12,8 @@ type Props = {
   mouseDist?: number;         // default 150
   /** Max speed in px/frame */
   speed?: number;             // default 0.25
+  /** Opacity of the particles */
+  alpha?: number;             // default 0.2
 };
 
 export default function ParticleBG({
@@ -20,6 +22,7 @@ export default function ParticleBG({
   linkDist = 110,
   mouseDist = 150,
   speed = 0.25,
+  alpha = 0.2,
 }: Props) {
   // reference to the canvas element to draw on
   const ref = useRef<HTMLCanvasElement>(null);
@@ -92,7 +95,7 @@ export default function ParticleBG({
       ctx.clearRect(0, 0, w, h);
 
       // set opacity for particles (30% opacity)
-      ctx.globalAlpha = 0.2;
+      ctx.globalAlpha = alpha;
       
       // loop through all particles to move and draw them
       for (const p of particles) {
