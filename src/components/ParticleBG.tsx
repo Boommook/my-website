@@ -113,7 +113,7 @@ export default function ParticleBG({
       }
 
       // set details for the lines
-      ctx.globalAlpha = 0.1; 
+      ctx.globalAlpha = 0.4; 
       ctx.strokeStyle = color;
       
         // link particles to each other

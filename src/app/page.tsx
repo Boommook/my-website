@@ -16,17 +16,20 @@ const Route: FC = () => {
       <div className="flex flex-col justify-center items-center !bg-gray/5 py-12">
         <div className="m-4 flex justify-center">
           <div className="justify-center items-center mx-6 grid grid-cols-1 md:grid-cols-3 gap-10 mb-4">
-            <Project image="/images/projects/covidchasegame.jpg" title="Covid Chase" labels={[
+            <Project image="/images/projects/covidchasegame.jpg" title="Covid Chase" 
+                filters={["Game Development", "C#", "Unity"]} labels={[
                 <ProjectLabel title="Game Development" color="bg-label-skill"/>,
                 <ProjectLabel title="C#" color="bg-label-language"/>,
                 <ProjectLabel title="Unity" color="bg-label-software"/>]} link="https://github.com/Boommook/Covid-Chase" description="Covid Chase is a 2D, local-multiplayer, Covid-themed tag game that I created on Unity. The project began as a way for me to learn Unity and game development, as well as improve my programming skills, but evolved into much more. I began the game in May of 2024, and though it is playable, I am still working on it. Feel free to click the button below to check out the repository and play my game by following the instructions in the README file!"/>
-            <Project image="/images/projects/mgbsite.jpg" title="Mass General Brigham Application" labels={[
+            <Project image="/images/projects/mgbsite.jpg" title="Mass General Brigham Application" 
+                filters={["Leadership", "TypeScript", "React", "PostgreSQL", "Node.js", "Git"]} labels={[
                 <ProjectLabel title="Leadership" color="bg-label-skill"/>,
                 <ProjectLabel title="TypeScript" color="bg-label-language"/>,
                 <ProjectLabel title="React" color="bg-label-software"/>,
                 <ProjectLabel title="PostgreSQL" color="bg-label-software"/>]} link="https://www.massgeneralbrigham.co/"
                 description="I worked as the senior front-End software lead engineer and project manager in a group of 10 to develop an application for the Mass General Brigham Hospital. The application featured hospital pathfinding, service request components, an employee forum, and calendar. The application was created with React, Express, PostgreSQL."/>
-            <Project image="/images/projects/23DoverHome.jpg" title="23 Dover Street" labels={[
+            <Project image="/images/projects/23DoverHome.jpg" title="23 Dover Street" 
+                filters={["Game Development", "C++", "SFML", "Git"]} labels={[
                 <ProjectLabel title="Game Development" color="bg-label-skill"/>,
                 <ProjectLabel title="C++" color="bg-label-language"/>,
                 <ProjectLabel title="SFML" color="bg-label-software"/>]} link="https://www.massgeneralbrigham.co/"

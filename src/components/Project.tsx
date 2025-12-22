@@ -8,14 +8,15 @@ type ProjectProps = {
     title: string;
     labels: ReactNode[];
     description: string;
+    filters: string[];
     link?: string
   };
 
-export const Project = ({ image, title, labels, description, link}: ProjectProps) => {
+export const Project = ({ image, title, labels, description, filters, link}: ProjectProps) => {
     const [flipped, setFlipped] = useState(false);
     return (
         <div className="flex justify-center flex-col items-center w-fit rounded-2xl hover:scale-105
-         hover:shadow-lg shadow-gray-600 cursor-pointer shadow-md " 
+         hover:shadow-lg shadow-gray-600 cursor-pointer shadow-md border-2 border-gray"
         onClick={() => setFlipped(!flipped)}>
             {!flipped ?
             <img
@@ -23,15 +24,15 @@ export const Project = ({ image, title, labels, description, link}: ProjectProps
             alt={title}
             className={"w-114 h-64 rounded-t-2xl"}
             onClick={() => setFlipped(!flipped)}
-                        /> : <div onClick={() => setFlipped(!flipped)} className="w-114 h-64 text start rounded-t-2xl !bg-silver/80 p-6 text-gray pt-3">
+                        /> : <div onClick={() => setFlipped(!flipped)} className="w-114 h-64 text start rounded-t-xl !bg-silver/80 p-6 text-gray pt-3">
                             {description.split('\n').map((line, index) => (
                                 <div key={index}>
                                     {index > 0 && <hr className="border-gray/30 my-2" />}
                                     <p className="mb-0">{line}</p>
                                 </div>
                             ))}</div>}
-            <div className=" p-2 w-full flex flex-col rounded-b-2xl border-t-2 border-tangerine
-            bg-gradient-to-r from-gray via-gray/90 to-gray">
+            <div className=" p-2 w-full flex flex-col rounded-b-xl border-t-2 border-tangerine
+            bg-gradient-to-r from-gray/85 via-gray to-gray/85">
                 <h2 className="text-2xl font-semibold py-2 pb-2 justfiy-center text-center text-silver">{title}</h2>
 
                 <div className="flex justify-center">

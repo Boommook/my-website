@@ -144,6 +144,8 @@
   --color-label-language: #5678a3;
   --color-label-skill: #c4524f;
   --color-label-software: #629967;
+  --color-label-framework: #d08f20;
+  --color-label-database: #916bbc;
 }
 
 @layer base {
