@@ -106,7 +106,7 @@ const Route: FC = () => {
         <div className="m-4 flex justify-center">
             <div className="w-full justify-center items-center mx-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-4">
                 {filteredProjects.length > 0 && filteredProjects.map((project) => (
-                    <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description}/>
+                    <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason}/>
                 ))}
                 {filteredProjects.length === 0 && <h2 className="flex col-span-3 mx-auto text-gray text-lg text-center justify-center items-center">No projects with that filter have been added to my portfolio yet.</h2>}
             </div>

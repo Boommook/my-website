@@ -24,7 +24,8 @@ export const Footer = () => {
         }
     }, [])
     return (
-        <div className="w-full flex flex-col justify-center items-center bg-gray backdrop-blur-md py-6">
+        <div style={{boxShadow: "0px -4px 4px #999"}}
+        className="w-full flex flex-col justify-center items-center bg-gray backdrop-blur-md py-6">
             <h1 className="pt-2 mb-3 text-cyan">Contact</h1>
             <hr className="border-tangerine border-3 mb-4 w-60 rounded-2xl mx-auto"/>
             <p className="text-xl mb-8 text-silver">Want to get in touch with me?</p>

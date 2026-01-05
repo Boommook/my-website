@@ -39,7 +39,7 @@ export default function RootLayout({
           linkDist={110}
           mouseDist={150}
           speed={0.25}
-          alpha={0.4}
+          alpha={0.6}
         />
         <RouteProvider>
           <ClientLayout>{children}</ClientLayout>

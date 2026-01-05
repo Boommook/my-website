@@ -3,16 +3,20 @@ import {ReactNode, useState} from "react";
 import {SquareArrowOutUpRight} from "lucide-react"
 import Image from 'next/image';
 
-type ProjectProps = {
+export type ProjectProps = {
     image: string;
     title: string;
     labels: ReactNode[];
     description: string;
     filters: string[];
     link?: string
+    role?: string
+    teamSize?: number
+    duration?: string
+    reason?: string
   };
 
-export const Project = ({ image, title, labels, description, filters, link}: ProjectProps) => {
+export const Project = ({ image, title, labels, description, filters, link, role, teamSize, duration, reason}: ProjectProps) => {
     const [flipped, setFlipped] = useState(false);
     return (
         <div className="flex justify-center flex-col items-center w-fit rounded-2xl hover:scale-105
@@ -24,13 +28,14 @@ export const Project = ({ image, title, labels, description, filters, link}: Pro
             alt={title}
             className={"w-114 h-64 rounded-t-2xl"}
             onClick={() => setFlipped(!flipped)}
-                        /> : <div onClick={() => setFlipped(!flipped)} className="w-114 h-64 text start rounded-t-xl !bg-silver/80 p-6 text-gray pt-3">
-                            {description.split('\n').map((line, index) => (
-                                <div key={index}>
-                                    {index > 0 && <hr className="border-gray/30 my-2" />}
-                                    <p className="mb-0">{line}</p>
-                                </div>
-                            ))}</div>}
+                        /> : <div onClick={() => setFlipped(!flipped)} className="w-114 h-64 text-xs lg:text-base text start rounded-t-xl !bg-silver/80 p-4 text-gray pt-3">
+                            <div className="flex gap-x-1"><h3 className="font-semibold">Role: </h3> <p>{role}</p></div>
+                            <div className="flex gap-x-1"><h3 className="font-semibold">Team Size: </h3> <p>{teamSize}</p></div>
+                            <div className="flex gap-x-1"><h3 className="font-semibold">Duration: </h3> <p>{duration}</p></div>
+                            <div className="flex gap-x-1"><h3 className="font-semibold">Reason: </h3> <p>{reason}</p></div>
+                            <hr className="border-gray/50 my-1" />
+                            <p className="text-sm">{description}</p>
+                        </div>}
             <div className=" p-2 w-full flex flex-col rounded-b-xl border-t-2 border-tangerine
             bg-gradient-to-r from-gray/85 via-gray to-gray/85">
                 <h2 className="text-2xl font-semibold py-2 pb-2 justfiy-center text-center text-silver">{title}</h2>
