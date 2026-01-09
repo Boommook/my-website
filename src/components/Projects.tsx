@@ -35,7 +35,7 @@ export const Projects: ProjectsType = {
         teamSize: 1,
         duration: "1.5 years ongoing",
         reason: "Personal Project",
-        description: "Covid Chase is a 2D, local-multiplayer, Covid-themed tag game that I created on Unity. The project began as a way for me to learn Unity and game development, as well as improve my programming skills, but evolved into much more. I began the game in May of 2024, and though it is playable, I am still working on it. Try it out by clicking the button below and following the instructions in the README file!"
+        description: "Covid Chase is a 2D, local-multiplayer, Covid-themed tag game created on Unity. The project began as a way for me to learn Unity and game development, as well as improve my programming skills, but evolved into much more. I began the game in May of 2024, and though it is playable, I am still working on it. Try it out by clicking the button below and following the instructions in the README!"
     },
     "Mass General Brigham Application": {
         image: "/images/projects/mgbsite.jpg",
@@ -98,7 +98,7 @@ export const Projects: ProjectsType = {
         teamSize: 1,
         duration: "2 months",
         reason: "High School Project",
-        description: "The images to the right are taken from the rendered animation of my 3D modeled low-poly castle that circles the castle, zooming in and out. I used Blender to model everything, and made multiple features animated. This was created during my senior year of high school, during which I taught myself Blender. The button below will bring you to the file to watch the video itself, check it out!"
+        description: "Rendered animation of my 3D modeled low-poly castle that circles the castle, zooming in and out. I used Blender to model everything, and made multiple features animated. This was created during my senior year of high school, during which I taught myself Blender. The button below will bring you to the file to watch the video itself, check it out!"
     },
     "Thorkell 3D Model": {
         image: "/images/projects/thorkellproject.png",

@@ -26,15 +26,15 @@ export const Project = ({ image, title, labels, description, filters, link, role
             <img
             src={image}
             alt={title}
-            className={"w-114 h-64 rounded-t-2xl"}
+            className={"rounded-t-xl h-fit lg:h-64"}
             onClick={() => setFlipped(!flipped)}
-                        /> : <div onClick={() => setFlipped(!flipped)} className="w-114 h-64 text-xs lg:text-base text start rounded-t-xl !bg-silver/80 p-4 text-gray pt-3">
+                        /> : <div onClick={() => setFlipped(!flipped)} className="h-fit lg:h-64 text-xs lg:text-sm text-start rounded-t-xl !bg-silver/80 p-4 text-gray pt-3">
                             <div className="flex gap-x-1"><h3 className="font-semibold">Role: </h3> <p>{role}</p></div>
                             <div className="flex gap-x-1"><h3 className="font-semibold">Team Size: </h3> <p>{teamSize}</p></div>
                             <div className="flex gap-x-1"><h3 className="font-semibold">Duration: </h3> <p>{duration}</p></div>
                             <div className="flex gap-x-1"><h3 className="font-semibold">Reason: </h3> <p>{reason}</p></div>
                             <hr className="border-gray/50 my-1" />
-                            <p className="text-sm">{description}</p>
+                            <p className="text-xs lg:text-sm">{description}</p>
                         </div>}
             <div className=" p-2 w-full flex flex-col rounded-b-xl border-t-2 border-tangerine
             bg-gradient-to-r from-gray/85 via-gray to-gray/85">
