@@ -63,9 +63,12 @@ export default function ParticleBG({
      * Sets up canvas dimensions and creates new particles
      */
     function resize() {
-      // get the actual display size of the canvas
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
+      // get the full document dimensions to cover entire scrollable area
+      w = window.innerWidth;
+      h = Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight, window.innerHeight);
+      
+      // set the canvas element's CSS height to match document height
+      canvas.style.height = `${h}px`;
       
       // set the internal canvas resolution (handles high-DPI displays)
       canvas.width = Math.max(1, Math.floor(w * DPR));
@@ -237,7 +240,7 @@ export default function ParticleBG({
   return (
     <canvas
       ref={ref}
-      className="pointer-events-none fixed inset-0 -z-10 h-full w-full"
+      className="pointer-events-none absolute inset-0 -z-10 min-h-full w-full"
       aria-hidden
     />
   );

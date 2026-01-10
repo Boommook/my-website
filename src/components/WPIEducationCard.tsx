@@ -3,7 +3,7 @@ function WPIEducationCard(){
     return (
         <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray">
              <div className="flex items-start">
-                <img src="/images/wpilogo.png" alt="WPI Logo" className="w-20 mt-2 mr-4"/>
+                <img src="/images/wpilogo.png" alt="WPI Logo" className="w-20 mt-2 mr-4 rounded-lg p-2 bg-white hover:cursor-pointer" onClick={() => window.open("https://www.wpi.edu/", "_blank")}/>
                 <div>
                     <h2 className="text-md md:text-xl font-semibold text-gray">Worcester Polytechnic Institute</h2>
                     <h3 className="text-sm md:text-md font-semibold text-gray/85">BS, Computer Science and Interactive Media & Game Development</h3>

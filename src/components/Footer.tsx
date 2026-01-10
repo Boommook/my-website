@@ -1,5 +1,6 @@
 "use client";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Github, Linkedin } from "lucide-react";
+
 import { useEffect, useRef, useState } from "react";
 
 export const Footer = () => {

@@ -20,7 +20,7 @@ export const Project = ({ image, title, labels, description, filters, link, role
     const [flipped, setFlipped] = useState(false);
     return (
         <div className="flex justify-center flex-col items-center w-fit rounded-2xl hover:scale-105
-         hover:shadow-lg shadow-gray-600 cursor-pointer shadow-md border-2 border-gray"
+         hover:shadow-lg shadow-gray-600 cursor-pointer shadow-md border-2 border-gray px-auto w-full"
         onClick={() => setFlipped(!flipped)}>
             {!flipped ?
             <img

@@ -1,3 +1,4 @@
+"use client"
 import { TechLabel } from "@/components/TechnologyLabel";
 import { FC } from "react"
 import Image from 'next/image';
@@ -28,37 +29,38 @@ const Route: FC = () => {
                 <h1 className="mt-6 mb-4 text-gray">My Skills</h1>
                 <hr className="border-cyan border-3 mb-8 w-60 rounded-2xl mx-auto"/>
                 <div className="flex justify-center items-center gap-4 mb-2 md:gap-8">
-                    <img src="/images/skills/unrealenginelogo.png" alt="UE Logo" className="mb-4 w-[25%]"/>
-                    <img src="/images/skills/unitylogo.svg" alt="Unity Logo" className="mb-4 w-[25%]"/>
-                    <img src="/images/skills/reactlogo.svg" alt="React Logo" className="mb-4 w-[25%]"/>
+                    <img src="/images/skills/unrealenginelogo.png" alt="UE Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://www.unrealengine.com/en-US", "_blank")}/>
+                    <img src="/images/skills/unitylogo.svg" alt="Unity Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://unity.com/", "_blank")}/>
+                    <img src="/images/skills/reactlogo.svg" alt="React Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://react.dev/", "_blank")}/>
                 </div>
                 <div className="flex justify-center items-center flex-col md:flex-row gap-8">
                     <div className="flex flex-row gap-12 w-fit justify-center md:justify-end">
-                        <img src="/images/skills/clogo.png" alt="C Logo" className="mb-4 w-[5%]"/>
-                        <img src="/images/skills/c++logo.png" alt="C++ Logo" className="mb-4 w-[5%]"/>
-                        <img src="/images/skills/csharplogo.png" alt="C# Logo" className="mb-4 w-[5%]"/>
-                        <img src="/images/skills/javalogo.png" alt="Java Logo" className="mb-4 w-[10%]"/>
-                        <img src="/images/skills/pythonlogo.png" alt="python Logo" className="mb-4 w-[5%]"/>
+                        <img src="/images/skills/clogo.png" alt="C Logo" className="mb-4 w-[5%] hover:cursor-pointer" onClick={() => window.open("https://en.wikipedia.org/wiki/C_(programming_language)", "_blank")}/>
+                        <img src="/images/skills/c++logo.png" alt="C++ Logo" className="mb-4 w-[5%] hover:cursor-pointer" onClick={() => window.open("https://en.wikipedia.org/wiki/C%2B%2B", "_blank")}/>
+                        <img src="/images/skills/csharplogo.png" alt="C# Logo" className="mb-4 w-[5%] hover:cursor-pointer" onClick={() => window.open("https://en.wikipedia.org/wiki/C_Sharp_(programming_language)", "_blank")}/>
+                        <img src="/images/skills/javalogo.png" alt="Java Logo" className="mb-4 w-[10%] hover:cursor-pointer" onClick={() => window.open("https://www.java.com/en/", "_blank")}/>
+                        <img src="/images/skills/pythonlogo.png" alt="python Logo" className="mb-4 w-[5%] hover:cursor-pointer" onClick={() => window.open("https://www.python.org/", "_blank")}/>
                     </div>
                     <div className="flex flex-row gap-12 w-fit justify-center md:justify-start">
-                        <img src="/images/skills/typescriptlogo.png" alt="TypeScript Logo" className="mb-4 w-[5%]"/>
-                        <img src="/images/skills/javascriptlogo.jpg" alt="JavaScript Logo" className="mb-4 w-[5%] rounded-md"/>
-                        <img src="/images/skills/racketlogo.png" alt="Racket Logo" className="mb-4 w-[5%]"/>
-                        <img src="/images/skills/latexlogo.png" alt="LaTex Logo" className="mb-4 w-[10%]"/>
+                        <img src="/images/skills/typescriptlogo.png" alt="TypeScript Logo" className="mb-4 w-[5%] hover:cursor-pointer" onClick={() => window.open("https://www.typescriptlang.org/", "_blank")}/>
+                        <img src="/images/skills/javascriptlogo.jpg" alt="JavaScript Logo" className="mb-4 w-[5%] rounded-md hover:cursor-pointer" onClick={() => window.open("https://www.javascript.com/", "_blank")}/>
+                        <img src="/images/skills/racketlogo.png" alt="Racket Logo" className="mb-4 w-[5%] hover:cursor-pointer" onClick={() => window.open("https://racket-lang.org/", "_blank")}/>
+                        <img src="/images/skills/latexlogo.png" alt="LaTex Logo" className="mb-4 w-[10%] hover:cursor-pointer" onClick={() => window.open("https://www.latex-project.org/", "_blank")}/>
                     </div>
                 </div>
                 <h2 className="text-xl font-semibold mt-3 mb-2">Other Technologies</h2>
                 <hr className="border-cyan border-3 mb-5 w-60 rounded-2xl mx-auto"/>
                 <div className="flex justify-center items-center gap-4">
                     <div className="flex flex-col md:flex-row gap-2 justify-center items-center md:items-end md:justify-end">
-                    <TechLabel title="Git"/>
-                    <TechLabel title="Next.js"/>
-                    <TechLabel title="Node.js"/>
+                    <TechLabel title="Git" link="https://en.wikipedia.org/wiki/Git"/>
+                    <TechLabel title="Next.js" link="https://nextjs.org/"/>
+                    <TechLabel title="Node.js" link="https://nodejs.org/en/"/>
                     </div>
                     <div className="flex flex-col md:flex-row gap-2 justify-center items-center md:items-start">
-                    <TechLabel title="Express"/>
-                    <TechLabel title="SQL"/>
-                    <TechLabel title="Linux"/>
+                    <TechLabel title="Express" link="https://expressjs.com/"/>
+                    <TechLabel title="PostgreSQL" link="https://www.postgresql.org/"/>
+                    <TechLabel title="MySQL" link="https://www.mysql.com/"/>
+                    <TechLabel title="Linux" link="https://www.linux.org/"/>
                     </div>
                 </div>
             </div>
@@ -73,7 +75,7 @@ const Route: FC = () => {
                     <hr className="border-cyan border-3 mb-8 w-60 rounded-2xl mx-auto"/>
                     <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray">
                         <div className="flex items-start">
-                            <img src="/images/blacki.png" alt="Black-I Logo" className="w-20 mt-2 mb-4 mr-4"/>
+                            <img src="/images/blacki.png" alt="Black-I Logo" className="w-20 mt-2 mb-4 mr-4 rounded-lg hover:cursor-pointer" onClick={() => window.open("https://www.blackirobotics.com/", "_blank")}/>
                             <div>
                                 <h2 className="text-md md:text-xl font-semibold text-gray">Black-I Robotics</h2>
                                 <h3 className="text-sm md:text-lg font-semibold text-gray/90">Software Engineer Intern</h3>
@@ -89,7 +91,7 @@ const Route: FC = () => {
                     </div>
                     <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray mt-8">
                         <div className="flex items-start">
-                            <img src="/images/indiecadelogo.png" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-4"/>
+                            <img src="/images/indiecadelogo.png" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-4 rounded-lg hover:cursor-pointer" onClick={() => window.open("https://www.indiecade.com/", "_blank")}/>
                             <div>
                                 <h2 className="text-md md:text-xl font-semibold text-gray">IndieCade</h2>
                                 <h3 className="text-sm md:text-lg font-semibold text-gray/90">Game Design Intern</h3>
@@ -105,7 +107,7 @@ const Route: FC = () => {
                     </div>
                     <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 bg-lightgray p-4 mt-8">
                         <div className="flex items-start">
-                            <div><img src="/images/brueggerslogo.svg" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-8"/></div>
+                            <div><img src="/images/brueggerslogo.svg" alt="Bruegger's Logo" className="w-20 mt-2 mb-4 mr-8 rounded-lg hover:cursor-pointer" onClick={() => window.open("https://www.brueggers.com/", "_blank")}/></div>
                             <div>
                                 <h2 className="text-md md:text-xl font-semibold text-gray">Bruegger's Bagels & Jamba Juice</h2>
                                 <h3 className="text-sm md:text-lg font-semibold text-gray/90">Team Member</h3>
