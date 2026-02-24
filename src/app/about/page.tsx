@@ -1,14 +1,16 @@
 "use client"
 import { TechLabel } from "@/components/TechnologyLabel";
-import { FC } from "react"
+import { FC, useLayoutEffect, useRef, useState } from "react"
 import Image from 'next/image';
 import WPIEducationCard from "@/components/WPIEducationCard";
+import { ExperienceCard } from "@/components/ExperienceCard";
+import { OtherTechLabels } from "@/components/OtherTechLabels";
 
 const Route: FC = () => {
     return(
         <div>
             <div className="flex justify-center items-center flex-col md:flex-row mx-10 md:mx-30 gap-2 md:gap-8">
-                <img src="/images/cole.png" alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-cyan"/>
+                <img src="/images/cole_portrait.jpg" alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-cyan"/>
                 <p className="mb-4 md:mb-0">Hello! I am Nicholas "Cole" Bennett!<br/><br/>
 
                 I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
@@ -50,19 +52,7 @@ const Route: FC = () => {
                 </div>
                 <h2 className="text-xl font-semibold mt-3 mb-2">Other Technologies</h2>
                 <hr className="border-cyan border-3 mb-5 w-60 rounded-2xl mx-auto"/>
-                <div className="flex justify-center items-center gap-4">
-                    <div className="flex flex-col md:flex-row gap-2 justify-center items-center md:items-end md:justify-end">
-                    <TechLabel title="Git" link="https://en.wikipedia.org/wiki/Git"/>
-                    <TechLabel title="Next.js" link="https://nextjs.org/"/>
-                    <TechLabel title="Node.js" link="https://nodejs.org/en/"/>
-                    </div>
-                    <div className="flex flex-col md:flex-row gap-2 justify-center items-center md:items-start">
-                    <TechLabel title="Express" link="https://expressjs.com/"/>
-                    <TechLabel title="PostgreSQL" link="https://www.postgresql.org/"/>
-                    <TechLabel title="MySQL" link="https://www.mysql.com/"/>
-                    <TechLabel title="Linux" link="https://www.linux.org/"/>
-                    </div>
-                </div>
+                <OtherTechLabels />
             </div>
             <div className="flex justify-center flex-col md:flex-row py-4 gap-[6%] mb-8">
                 <div className="flex flex-col justify-start items-center">
@@ -73,51 +63,34 @@ const Route: FC = () => {
                 <div className="flex flex-col justify-start items-center">
                     <h1 className="mt-6 mb-4 text-gray">Experience</h1>
                     <hr className="border-cyan border-3 mb-8 w-60 rounded-2xl mx-auto"/>
-                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray">
-                        <div className="flex items-start">
-                            <img src="/images/blacki.png" alt="Black-I Logo" className="w-20 mt-2 mb-4 mr-4 rounded-lg hover:cursor-pointer" onClick={() => window.open("https://www.blackirobotics.com/", "_blank")}/>
-                            <div>
-                                <h2 className="text-md md:text-xl font-semibold text-gray">Black-I Robotics</h2>
-                                <h3 className="text-sm md:text-lg font-semibold text-gray/90">Software Engineer Intern</h3>
-                                <h4 className="text-gray/50 text-sm mb-4">June - August 2025 | Boston, MA</h4>
-                            </div>
-                        </div>
-                            
-                            <p className="mb-4 text-sm md:text-[16px]"> 
-                                • Worked in a fast-paced environment to develop a dashboard to track the status and location of robots<br/>
-                                • Revamped the control panel for Black-I's robotic arms<br/>
-                                • Implemented data tracking with MongoDB Atlas and added logging for errors and activity
-                            </p>
-                    </div>
-                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray mt-8">
-                        <div className="flex items-start">
-                            <img src="/images/indiecadelogo.png" alt="IndieCade Logo" className="w-20 mt-2 mb-4 mr-4 rounded-lg hover:cursor-pointer" onClick={() => window.open("https://www.indiecade.com/", "_blank")}/>
-                            <div>
-                                <h2 className="text-md md:text-xl font-semibold text-gray">IndieCade</h2>
-                                <h3 className="text-sm md:text-lg font-semibold text-gray/90">Game Design Intern</h3>
-                                <h4 className="text-gray/50 text-sm mb-4">June - July 2024 | Remote</h4>
-                            </div>
-                        </div>
-                            
-                            <p className="mb-4 text-sm md:text-[16px]"> 
-                                • Worked with a group of 8 as a programmer to create Daydreams of Change in Unreal Engine 5
-                                for IndieCade’s Climate Jam 2024<br/>
-                                • Playtested and reviewed other jam submissions regularly
-                            </p>
-                    </div>
-                    <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 bg-lightgray p-4 mt-8">
-                        <div className="flex items-start">
-                            <div><img src="/images/brueggerslogo.svg" alt="Bruegger's Logo" className="w-20 mt-2 mb-4 mr-8 rounded-lg hover:cursor-pointer" onClick={() => window.open("https://www.brueggers.com/", "_blank")}/></div>
-                            <div>
-                                <h2 className="text-md md:text-xl font-semibold text-gray">Bruegger's Bagels & Jamba Juice</h2>
-                                <h3 className="text-sm md:text-lg font-semibold text-gray/90">Team Member</h3>
-                                <h4 className="text-gray/50 text-sm mb-4">July - September 2021 | Bedford, MA</h4>
-                            </div>
-                        </div>
-                        <p className="mb-4 text-sm md:text-[16px]"> 
-                            • Worked on the line with my coworkers to create smoothies and bagel sandwiches<br/>
-                            • Resolved and handled customer interactions, inquiries, and issues<br/>
-                        </p>
+                    <div className="flex flex-col justify-center items-center gap-4">
+                    <ExperienceCard
+                        company="Black-I Robotics"
+                        position="Software Engineer Intern"
+                        location="Boston, MA"
+                        duration="June - August 2025"
+                        responsibilities={["Worked in a fast-paced environment to develop a dashboard to track the status and location of robots", "Revamped the control panel for Black-I's robotic arms", "Implemented data tracking with MongoDB Atlas and added logging for errors and activity"]}
+                        image="/images/blacki.png"
+                        link="https://www.blackirobotics.com/"
+                    />
+                    <ExperienceCard
+                        company="IndieCade"
+                        position="Game Design Intern"
+                        location="Remote"
+                        duration="June - July 2024"
+                        responsibilities={["Worked with a group of 8 as a programmer to create Daydreams of Change in Unreal Engine 5 for IndieCade's Climate Jam 2024", "Playtested and reviewed other jam submissions regularly"]}
+                        image="/images/indiecadelogo.png"
+                        link="https://www.indiecade.com/"
+                    />
+                    <ExperienceCard
+                        company="Bruegger's Bagels & Jamba Juice"
+                        position="Team Member"
+                        location="Bedford, MA"
+                        duration="July - September 2021"
+                        responsibilities={["Worked on the line with my coworkers to create smoothies and bagel sandwiches", "Resolved and handled customer interactions, inquiries, and issues"]}
+                        image="/images/brueggerslogo.svg"
+                        link="https://www.brueggers.com/"
+                    />
                     </div>
                 </div>
             </div>

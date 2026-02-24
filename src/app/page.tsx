@@ -24,7 +24,7 @@ const Route: FC = () => {
           </div>
         </div>
         <Link href={"/projects"} className=" mt-4 text-silver animate-pulse-scale bg-cyan text-3xl p-3 px-4 rounded-3xl
-         hover:bg-cyan/60 hover:text-tangerine hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition-colors">View More Projects</Link>
+         hover:bg-cyan/90 hover:text-tangerine hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition-colors">View More Projects</Link>
       </div>
     </div>
   );

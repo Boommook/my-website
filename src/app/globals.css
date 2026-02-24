@@ -152,8 +152,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply bg-[#ada38b]/15 m-0 p-0;
+  }
   body {
-    @apply bg-[#ada38b]/15 text-foreground;
+    @apply bg-[#ada38b]/15 text-foreground m-0 p-0;
   }
 
   h1 {

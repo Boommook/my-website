@@ -22,7 +22,7 @@ export default function ParticleBG({
   linkDist = 110,
   mouseDist = 150,
   speed = 0.25,
-  alpha = 0.2,
+  alpha = 0.3,
 }: Props) {
   // reference to the canvas element to draw on
   const ref = useRef<HTMLCanvasElement>(null);

@@ -36,7 +36,7 @@
         console.log("direction:", direction);
 
         return (
-            <>
+            < >
                 <NavBar/>
                 <AnimatePresence mode="wait">
                     <motion.main

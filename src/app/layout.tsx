@@ -29,21 +29,22 @@ export default function RootLayout({
 
   return (
     
-    <html lang="en" className="flex flex-col h-screen">
+    <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col mb-0 pb-0 h-fit`}
       >
-        <ParticleBG
-          density={22000}
-          color="#dcc681"
-          linkDist={110}
-          mouseDist={150}
-          speed={0.25}
-          alpha={0.8}
-        />
-        <RouteProvider>
-          <ClientLayout>{children}</ClientLayout>
-        </RouteProvider>
+        <div > <ParticleBG
+            density={22000}
+            color="#dcc681"
+            linkDist={110}
+            mouseDist={150}
+            speed={0.25}
+            alpha={0.8}
+          />
+          <RouteProvider>
+            <ClientLayout>{children}</ClientLayout>
+          </RouteProvider></div>
+        
       </body>
     </html>
   );
