@@ -2,6 +2,7 @@
 import { Mail, Github, Linkedin } from "lucide-react";
 
 import { useEffect, useRef, useState } from "react";
+import FooterHexagonBG from "./FooterHexagonBG";
 
 export const Footer = () => {
     const [visible, setVisible] = useState(false);
@@ -25,8 +26,9 @@ export const Footer = () => {
         }
     }, [])
     return (
-        <div style={{boxShadow: "0px -4px 4px #999"}}
-        className="w-full flex flex-col justify-center items-center bg-gray backdrop-blur-md py-6">
+        <footer style={{boxShadow: "0px -4px 4px #999"}}
+        className="relative w-full flex flex-col justify-center items-center bg-gray backdrop-blur-md py-6 h-full overflow-hidden">
+            <FooterHexagonBG />
             <h1 className="pt-2 mb-3 text-cyan">Contact</h1>
             <hr className="border-tangerine border-3 mb-4 w-60 rounded-2xl mx-auto"/>
             <p className="text-xl mb-8 text-silver">Want to get in touch with me?</p>
@@ -52,6 +54,6 @@ export const Footer = () => {
                     <Github className="w-10 scale-200"/>
                 </button>
             </div>
-        </div>
+        </footer>
     );
 }

@@ -29,6 +29,7 @@ const DATABASES = ["MySQL", "PostgreSQL"]
 const Route: FC = () => {
     const [singleFilter, setSingleFilter] = useState<string>("");
     const [filteredProjects, setFilteredProjects] = useState<string[]>(Object.keys(Projects))
+    const [mx, setMx] = useState<string>("4vw")
 
     useEffect(() => {
         if (singleFilter === "") {
@@ -38,12 +39,19 @@ const Route: FC = () => {
         }
     }, [singleFilter])
 
+    useEffect(() => {
+        const documentWidth = typeof document !== "undefined" ? document.documentElement.clientWidth : 1024
+        setMx(documentWidth < 2000 ? documentWidth < 1000 ? "2vw" : "4vw" : "20vw")
+    }, [])
+
     return(
     <div className="flex flex-col mb-4 items-center justify-center">
-        <div className="flex items-center justify-center gap-x-8 mt-6 mb-4">
+        <div className="flex items-center justify-center gap-x-2 mt-6 mb-4">
             <h1 className=" text-gray items-center justify-center">Projects</h1>
             <DropdownMenu>
-            <DropdownMenuTrigger><Funnel className="w-8 h-8 text-cyan items-center justify-center hover:cursor-pointer"/></DropdownMenuTrigger>
+            <DropdownMenuTrigger className="w-12 h-12 rounded-full hover:bg-cyan/5 focus:outline-none hover:scale-105 flex items-center justify-center p-3 hover:cursor-pointer">
+                <Funnel className="w-8 h-8 text-cyan shrink-0" />
+            </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuLabel className="font-semibold !py-1">Filter by: {singleFilter}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -104,11 +112,9 @@ const Route: FC = () => {
         </div>
         <hr className="border-cyan border-3 mb-4 w-60 rounded-2xl mx-auto"/>
         <div className="m-4 flex justify-center items-center">
-            <div className="w-full flex-1 justify-center items-center mx-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div className="w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
                 {filteredProjects.length > 0 && filteredProjects.map((project) => (
-                    <div key={project} className="w-full flex justify-center items-center">
-                        <Project image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} />
-                    </div>
+                        <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
                 ))}
                 {filteredProjects.length === 0 && <h2 className="flex col-span-3 mx-auto text-gray text-lg text-center justify-center items-center">No projects with that filter have been added to my portfolio yet.</h2>}
             </div>

@@ -1,61 +1,135 @@
-"use client"
-import {ReactNode, useState} from "react";
-import {SquareArrowOutUpRight} from "lucide-react"
-import Image from 'next/image';
+"use client";
+import { ReactNode, useState } from "react";
+import { SquareArrowOutUpRight } from "lucide-react";
+import { ProjectInfo } from "./projects/ProjectInfo";
 
 export type ProjectProps = {
-    image: string;
-    title: string;
-    labels: ReactNode[];
-    description: string;
-    filters: string[];
-    link?: string
-    role?: string
-    teamSize?: number
-    duration?: string
-    reason?: string
-  };
+  image: string;
+  title: string;
+  labels: ReactNode[];
+  description: string;
+  filters: string[];
+  link?: string;
+  role?: string;
+  teamSize?: number;
+  duration?: string;
+  reason?: string;
+  video?: string;
+  fill?: boolean;
+};
 
-export const Project = ({ image, title, labels, description, filters, link, role, teamSize, duration, reason}: ProjectProps) => {
-    const [flipped, setFlipped] = useState(false);
-    return (
-        <div className="flex justify-center flex-col items-center w-fit rounded-2xl hover:scale-105
-         hover:shadow-lg shadow-gray-600 cursor-pointer shadow-md border-2 border-gray px-auto w-full"
-        onClick={() => setFlipped(!flipped)}>
-            {!flipped ?
+export const Project = ({
+  image,
+  title,
+  labels,
+  description,
+  filters,
+  link,
+  role,
+  teamSize,
+  duration,
+  reason,
+  video,
+  fill,
+}: ProjectProps) => {
+  const [flipped, setFlipped] = useState(false);
+  const [hovering, setHovering] = useState(false);
+
+  const hasVideo = video !== undefined;
+
+  return (
+    <div
+      className="flex w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-gray shadow-md shadow-gray-600 transition-transform hover:scale-105 hover:shadow-lg"
+      onClick={() => setFlipped(!flipped)}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+    >
+      {!flipped ? (
+        <div className="relative h-48 w-full overflow-hidden rounded-t-xl bg-gray/30 sm:h-56 lg:h-64">
+          {hasVideo && (
+            <video
+              src={video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              title={title}
+              className="absolute inset-0 h-full w-full object-cover rounded-t-2xl"
+              onClick={(e) => {
+                e.stopPropagation();
+                setFlipped(!flipped);
+              }}
+            />
+          )}
+          {fill ? (
             <img
-            src={image}
-            alt={title}
-            className={"rounded-t-xl h-fit lg:h-64"}
-            onClick={() => setFlipped(!flipped)}
-                        /> : <div onClick={() => setFlipped(!flipped)} className="h-fit lg:h-64 text-xs lg:text-sm text-start rounded-t-xl !bg-silver/80 p-4 text-gray pt-3">
-                            <div className="flex gap-x-1"><h3 className="font-semibold">Role: </h3> <p>{role}</p></div>
-                            <div className="flex gap-x-1"><h3 className="font-semibold">Team Size: </h3> <p>{teamSize}</p></div>
-                            <div className="flex gap-x-1"><h3 className="font-semibold">Duration: </h3> <p>{duration}</p></div>
-                            <div className="flex gap-x-1"><h3 className="font-semibold">Reason: </h3> <p>{reason}</p></div>
-                            <hr className="border-gray/50 my-1" />
-                            <p className="text-xs lg:text-sm">{description}</p>
-                        </div>}
-            <div className=" p-2 w-full flex flex-col rounded-b-xl border-t-2 border-tangerine
-            bg-gradient-to-r from-gray/85 via-gray to-gray/85">
-                <h2 className="text-2xl font-semibold py-2 pb-2 justfiy-center text-center text-silver">{title}</h2>
-
-                <div className="flex justify-center">
-                    {!flipped ? 
-                        labels.map((label, index) => (
-                            <div key={index}>{label}</div>
-                        )) :
-                        <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer" className="w-fit px-2 bg-cyan rounded-md flex justify-center items-center
-                        py-1 text-lg font-semibold mx-1.5 gap-2 hover:bg-tangerine text-silver transition-colors">
-                            <SquareArrowOutUpRight className=" w-5 text-gray"/> 
-                            <p className="text-silver text-center flex justify-center items-center mb-0.5">Project</p>
-                        </a>
-                    }
-                </div>
-            </div>
+              src={image}
+              alt={title}
+              className="absolute inset-0 h-full w-full object-cover rounded-t-2xl"
+              onClick={(e) => {
+                e.stopPropagation();
+                setFlipped(!flipped);
+              }}
+            />
+          ) : (
+            <>
+              <img
+                src={image}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full scale-110 object-cover opacity-60 blur-sm"
+              />
+              <div className="relative z-10 flex h-full w-full items-center justify-center">
+                <img
+                  src={image}
+                  alt={title}
+                  className="max-h-full max-w-full object-contain rounded-t-2xl"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFlipped(!flipped);
+                  }}
+                />
+              </div>
+            </>
+          )}
         </div>
-    )
-}
+      ) : (
+        <div className="h-48 w-full min-w-0 overflow-hidden rounded-t-xl sm:h-56 lg:h-64">
+          <ProjectInfo
+            role={role}
+            teamSize={teamSize}
+            duration={duration}
+            reason={reason}
+            description={description}
+            flipped={flipped}
+            setFlipped={setFlipped}
+          />
+        </div>
+      )}
+
+      <div className="w-full rounded-b-xl border-t-2 border-tangerine bg-gradient-to-r from-gray/85 via-gray to-gray/85 p-2">
+        <h2 className="justfiy-center py-2 pb-2 text-center text-2xl font-semibold text-silver">
+          {title}
+        </h2>
+
+        <div className="flex justify-center">
+          {!flipped ? (
+            labels.map((label, index) => <div key={index}>{label}</div>)
+          ) : (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-1.5 flex w-fit items-center justify-center gap-2 rounded-md bg-cyan px-2 py-1 text-lg font-semibold text-silver transition-colors hover:bg-tangerine"
+            >
+              <SquareArrowOutUpRight className="w-5 text-gray" />
+              <p className="mb-0.5 flex items-center justify-center text-center text-silver">
+                Project
+              </p>
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};

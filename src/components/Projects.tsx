@@ -52,7 +52,8 @@ export const Projects: ProjectsType = {
         teamSize: 10,
         duration: "2 months",
         reason: "Software Engineering Course",
-        description: "Developed an application for the Mass General Brigham Hospital. The application featured hospital pathfinding, service request components, an employee forum, and calendar. The application was created with React, Express, PostgreSQL."
+        description: "Developed an application for the Mass General Brigham Hospital. The application featured hospital pathfinding, service request components, an employee forum, and calendar. The application was created with React, Express, PostgreSQL.",
+        fill: true
     },
     "23 Dover Street": {
         image: "/images/projects/23DoverHome.jpg",
@@ -68,7 +69,8 @@ export const Projects: ProjectsType = {
         teamSize: 2,
         duration: "2 months",
         reason: "Technical Game Development Course",
-        description: "Followed the professor’s textbook to create his 2D game engine, Dragonfly, with C++ and SFML. Afterwards, worked with a partner to use the engine to develop a tower defense game based on the mouse infestation of an apartment. The game features sprites made from text, a variety of traps, currency, and ramping intensity."
+        description: "Followed the professor’s textbook to create his 2D game engine, Dragonfly, with C++ and SFML. Afterwards, worked with a partner to use the engine to develop a tower defense game based on the mouse infestation of an apartment. The game features sprites made from text, a variety of traps, currency, and ramping intensity.",
+        fill: true
     },
     "Daydreams of Change": {
         image: "/images/projects/daydreamsofchange.png",
@@ -98,7 +100,8 @@ export const Projects: ProjectsType = {
         teamSize: 1,
         duration: "2 months",
         reason: "High School Project",
-        description: "Rendered animation of my 3D modeled low-poly castle that circles the castle, zooming in and out. I used Blender to model everything, and made multiple features animated. This was created during my senior year of high school, during which I taught myself Blender. The button below will bring you to the file to watch the video itself, check it out!"
+        description: "Rendered animation of my 3D modeled low-poly castle that circles the castle, zooming in and out. I used Blender to model everything, and made multiple features animated. This was created during my senior year of high school, during which I taught myself Blender. The button below will bring you to the file to watch the video itself, check it out!",
+        fill: true
     },
     "Thorkell 3D Model": {
         image: "/images/projects/thorkellproject.png",

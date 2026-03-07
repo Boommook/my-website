@@ -65,7 +65,7 @@ export default function ParticleBG({
     function resize() {
       // get the full document dimensions to cover entire scrollable area
       w = window.innerWidth;
-      h = Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight, window.innerHeight);
+      h = Math.max(document.documentElement.clientHeight);
       
       // set the canvas element's CSS height to match document height
       canvas.style.height = `${h}px`;
@@ -86,7 +86,7 @@ export default function ParticleBG({
         y: rand(0, h),           // Random Y position
         vx: rand(-speed, speed), // Random X velocity (speed)
         vy: rand(-speed, speed), // Random Y velocity (speed)
-        r: rand(1, 2),           // Random radius (size)
+        r: 2,
       }));
     }
 

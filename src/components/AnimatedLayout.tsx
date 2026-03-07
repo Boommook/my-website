@@ -41,7 +41,7 @@
                 <AnimatePresence mode="wait">
                     <motion.main
                         key={currPath}
-                        className="flex-grow mt-14"
+                        className="flex-grow mt-14 flex-1"
                         initial="initial"
                         animate="animate"
                         variants={variants}

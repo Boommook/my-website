@@ -37,7 +37,8 @@ function WPIEducationCard(){
                             <hr className="border-cyan border-2 mb-2 w-[110%] rounded-2xl"/>
                         </div>
                         <ul className="list-disc pl-5 text-gray/80 text-sm md:text-[16px]">
-                            <li>PR Chair, Ultimate Frisbee Men's Team</li>
+                            <li>PR Chair, Ultimate Frisbee Team</li>
+                            <li>Event Coordinator, Upsilon Pi Epsilon</li>
                             <li>Member, Outing Club</li>
                             <li>Member, IMGD Colloquiums</li>
                         </ul>

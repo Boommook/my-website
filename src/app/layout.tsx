@@ -31,7 +31,7 @@ export default function RootLayout({
     
     <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col mb-0 pb-0 h-fit`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col `}
       >
         <div > <ParticleBG
             density={22000}
