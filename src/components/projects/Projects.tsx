@@ -19,6 +19,7 @@ export const Projects: ProjectsType = {
         teamSize: 4,
         duration: "2 months",
         reason: "Third Year Capstone Project (IQP)",
+        fill: true,
         description: "Developed an interactive map that improves engagement and connection with historical testimonies from the 20th and 21st centuries outside of the Czech Republic, collected and preserved by Post Bellum. The map will be integrated into the Memory of Nations website once Post Bellum addresses internal technical issues."
     },
     "Covid Chase": {
@@ -35,6 +36,7 @@ export const Projects: ProjectsType = {
         teamSize: 1,
         duration: "1.5 years ongoing",
         reason: "Personal Project",
+        fill: true,
         description: "Covid Chase is a 2D, local-multiplayer, Covid-themed tag game created on Unity. The project began as a way for me to learn Unity and game development, as well as improve my programming skills, but evolved into much more. I began the game in May of 2024, and though it is playable, I am still working on it. Try it out by clicking the button below and following the instructions in the README!"
     },
     "Mass General Brigham Application": {
@@ -64,12 +66,12 @@ export const Projects: ProjectsType = {
             <ProjectLabel title="SFML" color="bg-label-software"/>
         ],
         filters: ["Game Development", "C++", "SFML", "Git"],
-        link: "https://www.massgeneralbrigham.co/",
+        link: "https://github.com/jpisano05/23Dover",
         role: "Co-Developer",
         teamSize: 2,
         duration: "2 months",
         reason: "Technical Game Development Course",
-        description: "Followed the professor’s textbook to create his 2D game engine, Dragonfly, with C++ and SFML. Afterwards, worked with a partner to use the engine to develop a tower defense game based on the mouse infestation of an apartment. The game features sprites made from text, a variety of traps, currency, and ramping intensity.",
+        description: "Followed the professor’s textbook to create his 2D game engine, Dragonfly, with C++ and SFML. Afterwards, I worked with a partner to use the engine to develop a tower defense game based on the mouse infestation of an apartment. The game features sprites made from text, a variety of traps, currency, and ramping intensity.",
         fill: true
     },
     "Daydreams of Change": {
@@ -100,8 +102,41 @@ export const Projects: ProjectsType = {
         teamSize: 1,
         duration: "2 months",
         reason: "High School Project",
+        video: "https://drive.google.com/file/d/1crgepynquZvkS3EfK7MlNZ7AdyQLc1qc/preview",
         description: "Rendered animation of my 3D modeled low-poly castle that circles the castle, zooming in and out. I used Blender to model everything, and made multiple features animated. This was created during my senior year of high school, during which I taught myself Blender. The button below will bring you to the file to watch the video itself, check it out!",
         fill: true
+    },
+    "Osprey App": {
+        image: "/images/projects/osprey.jpg",
+        title: "School Benchmarking Application",
+        labels: [
+            <ProjectLabel title="PostgreSQL" color="bg-label-database"/>,
+            <ProjectLabel title="TypeScript" color="bg-label-language"/>,
+            <ProjectLabel title="React" color="bg-label-framework"/>,
+        ],
+        filters: ["TypeScript", "React", "PostgreSQL", "Node.js", "Git"],
+        link: "https://github.com/romdotdog/cs4241-team-a",
+        role: "Software Engineer",
+        teamSize: 6,
+        duration: "2 months",
+        reason: "Webware Course Project for Osprey Software",
+        description: "Worked for Osprey Software to develop a school benchmarking application. Our extensive application features both analytical and comparative dashboards to view KPIs, as well as benchmark forms to submit yearly data. The app is accompanied by multiple AI agents to enhance user experience and navigation."
+    },
+    "Spreadsheet App": {
+        image: "/images/projects/spreadsheet.jpg",
+        title: "Spreadsheet",
+        labels: [
+            <ProjectLabel title="Java" color="bg-label-language"/>,
+            <ProjectLabel title="React" color="bg-label-framework"/>,
+        ],
+        filters: ["Java"],
+        link: "https://github.com/WPI-CS4233-2026C/termproject-Boommook",
+        role: "Object-Oriented Designer",
+        teamSize: 1,
+        duration: "2 months",
+        reason: "Object-Oriented Analysis & Design Course",
+        fill: true,
+        description: "Built upon provided code to develop a functional spreadsheet application with a focus on object-oriented design. The spreadsheet implements design patterns such as composition, observer, and factory. Explore my Github repository for the spreadsheet to learn more!"
     },
     "Thorkell 3D Model": {
         image: "/images/projects/thorkellproject.png",
@@ -117,6 +152,7 @@ export const Projects: ProjectsType = {
         teamSize: 1,
         duration: "1 months",
         reason: "3D Modeling Course",
+        fill: true,
         description: "I used ZBrush to 3D model and paint the character, 'Thorkell', from Vinland Saga in an A-pose for 3D Modeling I or AR/IMGD 2101 at WPI. This was a fairly simple project that took just a few weeks, but it was a good benchmark of my growth in 3D modeling. If you'd like to see more views of my model, click the button below!"
     },
     "The Other Side": {

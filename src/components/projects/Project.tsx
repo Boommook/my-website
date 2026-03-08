@@ -1,7 +1,8 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { SquareArrowOutUpRight } from "lucide-react";
-import { ProjectInfo } from "./projects/ProjectInfo";
+import { ProjectInfo } from "./ProjectInfo";
+import VideoEmbed from "./VideoEmbed";
 
 export type ProjectProps = {
   image: string;
@@ -46,22 +47,12 @@ export const Project = ({
     >
       {!flipped ? (
         <div className="relative h-48 w-full overflow-hidden rounded-t-xl bg-gray/30 sm:h-56 lg:h-64">
-          {hasVideo && (
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              title={title}
+          {hasVideo ? (
+            <VideoEmbed
+              url={video}
               className="absolute inset-0 h-full w-full object-cover rounded-t-2xl"
-              onClick={(e) => {
-                e.stopPropagation();
-                setFlipped(!flipped);
-              }}
             />
-          )}
-          {fill ? (
+          ) : ( fill ? (
             <img
               src={image}
               alt={title}
@@ -91,7 +82,7 @@ export const Project = ({
                 />
               </div>
             </>
-          )}
+          ))}
         </div>
       ) : (
         <div className="h-48 w-full min-w-0 overflow-hidden rounded-t-xl sm:h-56 lg:h-64">

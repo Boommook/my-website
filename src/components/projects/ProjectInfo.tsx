@@ -25,8 +25,8 @@ export const ProjectInfo = ({ role, teamSize, duration, reason, description, fli
                         transparent,
                         transparent 0,
                         transparent calc(1.7em - 1px),
-                        rgba(0,0,0,0.15) calc(1.7em - 1px),
-                        rgba(0,0,0,0.15) 1.7em
+                        rgba(0,0,0,0.1) calc(1.7em - 1px),
+                        rgba(0,0,0,0.1) 1.7em
                     )`,
                 }}
             >

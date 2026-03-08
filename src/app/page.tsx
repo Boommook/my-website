@@ -1,9 +1,9 @@
 "use client"
 import { FC, useState, useEffect } from "react";
-import { Project } from "@/components/Project";
+import { Project } from "@/components/projects/Project";
 import Link from "next/link";
 
-import { Projects } from "@/components/Projects";
+import { Projects } from "@/components/projects/Projects";
 
 const Route: FC = () => {
   const [mx, setMx] = useState<string>("6vw");
@@ -30,7 +30,7 @@ const Route: FC = () => {
           </div>
         </div>
         <Link href={"/projects"} className=" mt-4 text-silver animate-pulse-scale bg-cyan text-3xl p-3 px-4 rounded-3xl
-         hover:bg-tangerine/50 font-semibold hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition-colors">View More Projects</Link>
+         hover:bg-tangerine/75 font-semibold hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition-colors">View More Projects</Link>
       </div>
     </div>
   );

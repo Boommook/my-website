@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 // length of a side of the hexagon
-const HEX_SIDE = 50;
+const HEX_SIDE = 80;
 // radius of the hexagon (center to vertex)
 const HEX_R = HEX_SIDE / (2 * Math.sin(Math.PI / 3));
 
@@ -67,7 +67,7 @@ export default function FooterHexagonBG() {
     container.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
-    group.position.set(-width / 2 + 80, -height / 2 + 70, 0);
+    group.position.set(-width / 2 + 40, -height / 2 + 70, 0);
 
     const hexColor = 0x00adb5;
     const hexColorAlt = 0xff5722;

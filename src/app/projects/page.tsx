@@ -1,7 +1,7 @@
 "use client"
 import { FC, useState, useEffect } from "react"
-import {Project} from "@/components/Project"
-import { ProjectLabel } from "@/components/ProjectLabel";
+import {Project} from "@/components/projects/Project"
+import { ProjectLabel } from "@/components/projects/ProjectLabel";
 import {Funnel} from "lucide-react"
 import {
     DropdownMenu,
@@ -18,7 +18,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
 
-import { Projects } from "@/components/Projects"
+import { Projects } from "@/components/projects/Projects"
 
 const LANGUAGES = ["C#", "C++", "C", "TypeScript", "JavaScript", "Python", "Java", "SQL", "HTML", "CSS", "Git"]
 const SKILLS = ["Game Development", "Leadership", "3D Modeling", "3D Painting"]
