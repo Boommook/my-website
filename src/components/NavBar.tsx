@@ -63,6 +63,13 @@ export const NavBar = () => {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
+                <Link href="/imgd_4300" className={`${navigationMenuTriggerStyle()} 
+                ${pathname === "/imgd_4300" ? "bg-cyan/40 shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)] !font-semibold text-tangerine"
+                 : "text-cyan/90 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
+                  IMGD 4300
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                 <button 
                   onClick={() => {window.open("/pdf/bennett_cole_resume.pdf", '_blank')}} 
                   className={`${navigationMenuTriggerStyle()} hover:cursor-pointer`}

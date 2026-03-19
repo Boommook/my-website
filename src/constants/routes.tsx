@@ -1,1 +1,1 @@
-export const PAGES = ["/", "/about", "/projects"];
+export const PAGES = ["/", "/about", "/projects", "/imgd_4300"];

@@ -6,7 +6,8 @@ function WPIEducationCard(){
                 <img src="/images/wpilogo.png" alt="WPI Logo" className="w-20 mt-2 mr-4 rounded-lg p-2 bg-white hover:cursor-pointer" onClick={() => window.open("https://www.wpi.edu/", "_blank")}/>
                 <div>
                     <h2 className="text-md md:text-xl font-semibold text-gray">Worcester Polytechnic Institute</h2>
-                    <h3 className="text-sm md:text-md font-semibold text-gray/85">BS, Computer Science and Interactive Media & Game Development</h3>
+                    <h3 className="text-sm md:text-md font-semibold text-gray/85">BS, Computer Science and Interactive Media & Game Development 2027/</h3>
+                    <h3 className="text-sm md:text-md font-semibold text-gray/85">MS, Computer Science 2028</h3>
                     <h4 className="text-gray/70 text-sm mb-4">GPA: 3.94/4.0</h4>
                 </div>
             </div>
