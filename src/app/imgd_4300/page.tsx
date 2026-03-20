@@ -20,7 +20,7 @@ const Route: FC = () => {
             <div className="m-4 flex justify-center items-center">
                 <div className="w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
                     {Object.keys(Assignments).map((assignment) => (
-                        <AssignmentCard key={assignment} title={Assignments[assignment].title} description={Assignments[assignment].description} link={Assignments[assignment].link} date={Assignments[assignment].date} image={Assignments[assignment].image} enlarged={Assignments[assignment].enlarged} />
+                        <AssignmentCard key={assignment} title={Assignments[assignment].title} documentation={Assignments[assignment].documentation} code={Assignments[assignment].code} video={Assignments[assignment].video} date={Assignments[assignment].date} image={Assignments[assignment].image} enlarged={Assignments[assignment].enlarged} />
                     ))}
                 </div>
             </div>

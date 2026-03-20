@@ -1,14 +1,13 @@
 import { AssignmentCardProps } from "./AssignmentCard";
-import { AssignmentEnlarged } from "./AssignmentEnlarged";
 export type AssignmentsType = Record<string, AssignmentCardProps>
 
 export const Assignments: AssignmentsType = {
-    "Assignment 1": {
-        title: "Assignment 1",
-        description: "Assignment 1 description",
-        link: "https://www.google.com",
-        date: "2026-01-01",
-        image: "/images/projects/theotherside.png",
-        enlarged: <AssignmentEnlarged title="Assignment 1" description="Assignment 1 description" link="https://www.google.com" date="2026-01-01" image="/images/imgd_4300/assignment1.png" documentation="Assignment 1 documentation" />
+    "A1": {
+        title: "A1: Shader Live Coding",
+        documentation: "/docs/a1.md",
+        code: "/code/assignment1.wgsl",
+        video: "/videos/a1.mp4",
+        date: "2026-03-20",
+        image: "/images/imgd_4300/a1.jpg",
     }
 }
