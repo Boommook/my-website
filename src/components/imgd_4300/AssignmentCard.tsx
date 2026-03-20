@@ -22,15 +22,16 @@ export const AssignmentCard = ({ title, documentation, code, video, date, image 
                 className="relative h-full w-full object-cover rounded-t-2xl"
                 />
             </div>
-            <div className="w-full rounded-b-xl border-t-2 border-tangerine bg-gradient-to-r from-gray/85 via-gray to-gray/85 p-2
+            <div className="w-full rounded-b-xl border-t-3 border-tangerine bg-gradient-to-r from-gray/85 via-gray to-gray/85 p-2
             flex flex-col items-center justify-center pb-3">
                 <h2 className="justify-center py-2 pb-2 text-center text-2xl font-semibold text-silver">
                 {title}
                 </h2>
                 <div className="flex flex-row items-center justify-center gap-x-2">
                     <div className="flex flex-row items-center justify-center gap-x-4">
-                        <button onClick={() => window.open(documentation, '_blank')} className="text-silver bg-tangerine px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine-700 rounded-xl hover:cursor-pointer">Docs</button>
+                        <button onClick={() => window.open(documentation, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-cyan-700 rounded-xl hover:cursor-pointer">Docs</button>
                     </div>
+                    <button onClick={() => window.open(video, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-cyan-700 rounded-xl hover:cursor-pointer">Video</button>
                     <button onClick={() => window.open(code, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-cyan-700 rounded-xl hover:cursor-pointer">Code</button>
                 </div>
                 </div>
