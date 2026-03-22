@@ -6,7 +6,7 @@ export const Assignments: AssignmentsType = {
         title: "A1: Shader Live Coding",
         documentation: "/docs/a1.md",
         code: "/code/assignment1.wgsl",
-        video: "/videos/a1.mp4",
+        video: "https://www.youtube.com/watch?v=f6gliVzHz7E",
         date: "2026-03-20",
         image: "/images/imgd_4300/a1.jpg",
     }

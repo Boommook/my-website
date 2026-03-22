@@ -29,10 +29,10 @@ export const AssignmentCard = ({ title, documentation, code, video, date, image 
                 </h2>
                 <div className="flex flex-row items-center justify-center gap-x-2">
                     <div className="flex flex-row items-center justify-center gap-x-4">
-                        <button onClick={() => window.open(documentation, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-cyan-700 rounded-xl hover:cursor-pointer">Docs</button>
+                        <button onClick={() => window.open(documentation, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Docs</button>
                     </div>
-                    <button onClick={() => window.open(video, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-cyan-700 rounded-xl hover:cursor-pointer">Video</button>
-                    <button onClick={() => window.open(code, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-cyan-700 rounded-xl hover:cursor-pointer">Code</button>
+                    <button onClick={() => window.open(video, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Video</button>
+                    <button onClick={() => window.open(code, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Code</button>
                 </div>
                 </div>
         </div>

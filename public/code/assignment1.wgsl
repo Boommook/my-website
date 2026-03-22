@@ -64,7 +64,8 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
   let v1 = vline_segment(v1_x, 0., h3_y, thickness, p, ar);
   let v2 = vline_segment(v2_x, 0., h1_y, thickness, p, ar);
   let v3 = vline_segment(v3_x, 0., h1_y, thickness, p, ar);
-	let v4 = vline(v4_x, thickness, p, ar);
+	let v4 = vline_segment(v4_x, 0., h2_y + ntime * (h3_y - h2_y), thickness, p, ar);
+	let v4_bot = vline_segment(v4_x, h3_y, 1., thickness, p, ar);
 	let v5 = vline_segment(v5_x, h3_y, 1., thickness, p, ar);
 	let v6 = vline_segment(v2_x_still , h2_y, 1., thickness, p, ar);
 
@@ -76,7 +77,7 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
 	let s1 = vline_segment((v4_x - v2_x_still / 2), h2_y, h3_y, thickness / 2, p, ar);
 
 	//let hM = hline(mouse.y, thickness, p);
-  let lines = clamp(v1 + v2 + v3 + v4 + v5 + v6 + h1 + h2 + h3, 0.0, 1.0);
+  let lines = clamp(v1 + v2 + v3 + v4 + v4_bot + v5 + v6 + h1 + h2 + h3, 0.0, 1.0);
 
   var color = vec3f(
     0.93 + 0.015 * sin(time * 0.10),
