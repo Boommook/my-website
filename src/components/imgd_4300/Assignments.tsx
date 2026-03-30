@@ -9,5 +9,13 @@ export const Assignments: AssignmentsType = {
         video: "https://www.youtube.com/watch?v=f6gliVzHz7E",
         date: "2026-03-20",
         image: "/images/imgd_4300/a1.jpg",
+    },
+    "A3": {
+        title: "A3: Gulls / Video WebGPU",
+        documentation: "/docs/a3.md",
+        code: "/imgd_4300/a3/main.js",
+        demo: "/imgd_4300/a3",
+        date: "2026-03-30",
+        image: "/images/imgd_4300/a3.png",
     }
 }

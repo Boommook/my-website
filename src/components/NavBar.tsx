@@ -123,6 +123,13 @@ export const NavBar = () => {
                 >
                   Resume
                 </button>
+                <Link
+                  href="/imgd_4300"
+                  className="text-lg text-gray hover:text-tangerine hover:font-semibold hover:bg-cyan/70 py-2 px-3 rounded transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  IMGD 4300
+                </Link>
               </div>
             </div>
           )}

@@ -6,6 +6,7 @@ import { AssignmentDocs } from "@/components/imgd_4300/AssignmentDocs";
 const Route: FC = () => {
     const [mx, setMx] = useState<string>("4vw")
     const [openDocTitle, setOpenDocTitle] = useState<string | null>(null);
+    const [openDocDate, setOpenDocDate] = useState<string | null>(null);
     const [openDocText, setOpenDocText] = useState<string>("");
     const [isDocLoading, setIsDocLoading] = useState<boolean>(false);
 
@@ -25,8 +26,9 @@ const Route: FC = () => {
         return () => window.removeEventListener("keydown", onEsc);
     }, [openDocTitle]);
 
-    const openDocumentation = async (title: string, documentationPath: string) => {
+    const openDocumentation = async (title: string, date: string, documentationPath: string) => {
         setOpenDocTitle(title);
+        setOpenDocDate(date);
         setIsDocLoading(true);
         try {
             const response = await fetch(documentationPath);
@@ -44,6 +46,7 @@ const Route: FC = () => {
 
     const closeDocumentation = () => {
         setOpenDocTitle(null);
+        setOpenDocDate(null);
     };
 
     return(
@@ -56,12 +59,12 @@ const Route: FC = () => {
             <div className="m-4 flex justify-center items-center">
                 <div className="w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
                     {Object.keys(Assignments).map((assignment) => (
-                        <AssignmentCard key={assignment} title={Assignments[assignment].title} documentation={Assignments[assignment].documentation} code={Assignments[assignment].code} video={Assignments[assignment].video} date={Assignments[assignment].date} image={Assignments[assignment].image} onOpenDocumentation={openDocumentation} />
+                        <AssignmentCard key={assignment} title={Assignments[assignment].title} documentation={Assignments[assignment].documentation} demo={Assignments[assignment].demo} code={Assignments[assignment].code} video={Assignments[assignment].video} date={Assignments[assignment].date} image={Assignments[assignment].image} onOpenDocumentation={openDocumentation} />
                     ))}
                 </div>
             </div>
             {openDocTitle && (
-                <AssignmentDocs openDocTitle={openDocTitle} openDocText={openDocText} isDocLoading={isDocLoading} closeDocumentation={closeDocumentation} />
+                <AssignmentDocs openDocTitle={openDocTitle} openDocDate={openDocDate} openDocText={openDocText} isDocLoading={isDocLoading} closeDocumentation={closeDocumentation} />
             )}
         </div>
     )

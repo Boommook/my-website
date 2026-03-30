@@ -5,12 +5,13 @@ export type AssignmentCardProps = {
     title: string;
     documentation: string;
     code: string;
-    video: string;
+    demo?: string;
+    video?: string;
     date: string;
     image: string;
-    onOpenDocumentation?: (title: string, documentation: string) => void;
+    onOpenDocumentation?: (title: string, date: string, documentation: string) => void;
 }
-export const AssignmentCard = ({ title, documentation, code, video, date, image, onOpenDocumentation }: AssignmentCardProps) => {
+export const AssignmentCard = ({ title, documentation, code, demo, video, date, image, onOpenDocumentation }: AssignmentCardProps) => {
 
     return (
         <div className="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-gray shadow-md shadow-gray-600">
@@ -28,9 +29,13 @@ export const AssignmentCard = ({ title, documentation, code, video, date, image,
                 </h2>
                 <div className="flex flex-row items-center justify-center gap-x-2">
                     <div className="flex flex-row items-center justify-center gap-x-4">
-                        <button onClick={() => onOpenDocumentation ? onOpenDocumentation(title, documentation) : window.open(documentation, "_blank")} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Docs</button>
+                        <button onClick={() => onOpenDocumentation ? onOpenDocumentation(title, date, documentation) : window.open(documentation, "_blank")} 
+                        className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">
+                            Docs
+                        </button>
                     </div>
-                    <button onClick={() => window.open(video, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Video</button>
+                    {demo && <button onClick={() => window.open(demo, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Demo</button>}
+                    {video && <button onClick={() => window.open(video, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Video</button>}
                     <button onClick={() => window.open(code, '_blank')} className="text-silver bg-cyan px-2 py-1 hover:scale-105 shadow-md hover:bg-tangerine rounded-xl hover:cursor-pointer">Code</button>
                 </div>
                 </div>
