@@ -1,7 +1,7 @@
 import { Pane } from "https://esm.sh/tweakpane@4.0.5";
 
 import Video from "./video.js";
-import gulls from "./gulls.js";
+import gulls from "../gulls.js";
 
 const sg = await gulls.init();
 const quadVertexShader = gulls.constants.vertex;

@@ -17,5 +17,13 @@ export const Assignments: AssignmentsType = {
         demo: "/imgd_4300/a3",
         date: "2026-03-30",
         image: "/images/imgd_4300/a3.png",
+    },
+    "A4": {
+        title: "A4: Reaction Diffusion",
+        documentation: "/docs/a4.md",
+        code: "/imgd_4300/a4/main.js",
+        demo: "/imgd_4300/a4",
+        date: "2026-04-04",
+        image: "/images/imgd_4300/a4.png",
     }
 }
