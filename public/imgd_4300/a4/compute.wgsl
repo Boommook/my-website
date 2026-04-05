@@ -17,6 +17,10 @@ fn index( x:i32, y:i32 ) -> u32 {
   return u32( (y % _res.y) * _res.x + ( x % _res.x ) );
 }
 
+fn laplaceA(x: i32, y: i32) -> {
+    
+}
+
 @compute
 @workgroup_size(8,8)
 fn cs( @builtin(global_invocation_id) _cell:vec3u ) {

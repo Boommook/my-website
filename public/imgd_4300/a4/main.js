@@ -17,8 +17,8 @@ const pane = new Pane({
 
 const dA_u = pane.addBinding(PARAMS, "dA", { min: 0, max: 2, step: 0.01 });
 const dB_u = pane.addBinding(PARAMS, "dB", { min: 0, max: 2, step: 0.01 });
-const feed_u = pane.addBinding(PARAMS, "feed", { min: 0, max: 1, step: 0.01 });
-const kill_u = pane.addBinding(PARAMS, "kill", { min: 0, max: 1, step: 0.01 });
+const feed_u = pane.addBinding(PARAMS, "feed", { min: 0, max: 0.1, step: 0.01 });
+const kill_u = pane.addBinding(PARAMS, "kill", { min: 0, max: 0.1, step: 0.01 });
 const dt_u = pane.addBinding(PARAMS, "dt", { min: 0, max: 1, step: 0.01 });
 
 const sg      = await seagulls.init(),
@@ -28,6 +28,33 @@ const sg      = await seagulls.init(),
       size    = (window.innerWidth * window.innerHeight),
       state   = new Float32Array( size )
 
+const width = sg.width;
+const height = sg.height;
+
+// a typed array that represents a contiguous buffer of 32-bit floating-point numbers
+// each value in rgba is 8 bytes or 32 bits
+// so each array needs to be scaled by 4 to get the correct number of bytes
+const state1 = new Float32Array( width * height * 4);
+const state2 = new Float32Array( width * height * 4);
+
+for(let y = 0; y < height; y++){
+  for(let x = 0; x < width; x++){
+    // convert 2d coordinates to 1d index
+    const cell = (y * width + x) * 4;
+    state1[cell] = 1.0; // red channel for is 1 for A
+    state1[cell + 1] = 0.0; // green channel is 0 for B
+    state1[cell + 2] = 0.0;
+    state1[cell + 3] = 1.0; // alpha channel
+
+    state2[cell] = 1.0; 
+    state2[cell + 1] = 0.0;
+    state2[cell + 2] = 0.0;
+    state2[cell + 3] = 1.0; // alpha channel
+  }
+}
+
+state1[width * height * 2] = 0.0; // set the center cell to 0 for A
+state2[width * height * 2 + 1] = 1.0; // set the center cell to 1 for B
 
 // initialize all cells to random values
 for( let i = 0; i < size; i++ ) {
