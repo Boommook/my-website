@@ -15,75 +15,95 @@ const pane = new Pane({
   expanded: true,
 });
 
-const dA_u = pane.addBinding(PARAMS, "dA", { min: 0, max: 2, step: 0.01 });
-const dB_u = pane.addBinding(PARAMS, "dB", { min: 0, max: 2, step: 0.01 });
-const feed_u = pane.addBinding(PARAMS, "feed", { min: 0, max: 0.1, step: 0.01 });
-const kill_u = pane.addBinding(PARAMS, "kill", { min: 0, max: 0.1, step: 0.01 });
-const dt_u = pane.addBinding(PARAMS, "dt", { min: 0, max: 1, step: 0.01 });
-
 const sg      = await seagulls.init(),
       frag    = await seagulls.import( './frag.wgsl' ),
       compute = await seagulls.import( './compute.wgsl' ),
       render  = seagulls.constants.vertex + frag,
-      size    = (window.innerWidth * window.innerHeight),
-      state   = new Float32Array( size )
+      width   = sg.width,
+      height  = sg.height,
+      size    = width * height;
 
-const width = sg.width;
-const height = sg.height;
+const u_dA = sg.uniform(PARAMS.dA),
+      u_dB = sg.uniform(PARAMS.dB),
+      u_feed = sg.uniform(PARAMS.feed),
+      u_kill = sg.uniform(PARAMS.kill),
+      u_dt = sg.uniform(PARAMS.dt);
 
-// a typed array that represents a contiguous buffer of 32-bit floating-point numbers
-// each value in rgba is 8 bytes or 32 bits
-// so each array needs to be scaled by 4 to get the correct number of bytes
-const state1 = new Float32Array( width * height * 4);
-const state2 = new Float32Array( width * height * 4);
+pane.addBinding(PARAMS, "dA", { min: 0, max: 2, step: 0.01 });
+pane.addBinding(PARAMS, "dB", { min: 0, max: 2, step: 0.01 });
+pane.addBinding(PARAMS, "feed", { min: 0, max: 0.1, step: 0.01 });
+pane.addBinding(PARAMS, "kill", { min: 0, max: 0.1, step: 0.01 });
+pane.addBinding(PARAMS, "dt", { min: 0, max: 2, step: 0.01 });
+pane.on("change", () => {
+  u_dA.value = PARAMS.dA;
+  u_dB.value = PARAMS.dB;
+  u_feed.value = PARAMS.feed;
+  u_kill.value = PARAMS.kill;
+  u_dt.value = PARAMS.dt;
+});
 
-for(let y = 0; y < height; y++){
-  for(let x = 0; x < width; x++){
-    // convert 2d coordinates to 1d index
-    const cell = (y * width + x) * 4;
-    state1[cell] = 1.0; // red channel for is 1 for A
-    state1[cell + 1] = 0.0; // green channel is 0 for B
-    state1[cell + 2] = 0.0;
-    state1[cell + 3] = 1.0; // alpha channel
+function initializeState(){
+    // size is double to store both A and B
+    const state = new Float32Array( size * 2);
+    // initialize all cells to 1.0 for A and 0.0 for B
+    for(let i = 0; i < size; i++){
+        state[i * 2] = 1.0 // A is 1.0
+        state[i * 2 + 1] = 0.0 // B is 0.0
+    }
+    
+    // choose the number of starting blobs
+    const numBlobs = Math.floor( Math.random() * 10) + 10; // between 10 and 20
 
-    state2[cell] = 1.0; 
-    state2[cell + 1] = 0.0;
-    state2[cell + 2] = 0.0;
-    state2[cell + 3] = 1.0; // alpha channel
-  }
+    for(let i = 0; i < numBlobs; i++){
+        // choose a random position for the blob
+        const x = Math.floor( Math.random() * width );
+        const y = Math.floor( Math.random() * height );
+        // choose a random radius for the blob
+        const radius = Math.floor( Math.random() * 10) + 5; // between 5 and 15
+
+        // set the cells inside the radius to 0.0 for A and 1.0 for B
+        for(let h = 0; h < height; h++){
+            for(let w = 0; w < width; w++){
+                const dx = w - x;
+                const dy = h - y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if(dist < radius){
+                    const cell = (h * width + w) * 2;
+                    state[cell] = 0.0; // A is 0.0
+                    state[cell + 1] = 1.0; // B is 1.0
+                }
+            }
+        }
+    }
+    return state;
 }
 
-state1[width * height * 2] = 0.0; // set the center cell to 0 for A
-state2[width * height * 2 + 1] = 1.0; // set the center cell to 1 for B
 
-// initialize all cells to random values
-for( let i = 0; i < size; i++ ) {
-  state[ i ] = Math.round( Math.random() )
-}
 
 // create two state buffers
-const statebuffer1 = sg.buffer( state )
-const statebuffer2 = sg.buffer( state )
-const res = sg.uniform([ window.innerWidth, window.innerHeight ])
-
+const initialState = initializeState();
+const statebuffer1 = sg.buffer( initialState )
+const statebuffer2 = sg.buffer( initialState )
+const res = sg.uniform([ width, height ])
 
 const renderPass = await sg.render({
   shader: render,
   data: [
     res,
-    dA_u,
-    dB_u,
-    feed_u,
-    kill_u,
-    dt_u,
+    //dA_u,
+    //dB_u,
+    //feed_u,
+    //kill_u,
+    //dt_u,
     sg.pingpong( statebuffer1, statebuffer2 )
   ]
 })
 
 const computePass = sg.compute({
   shader: compute,
-  data: [ res, dA_u, dB_u, feed_u, kill_u, dt_u, sg.pingpong( statebuffer1, statebuffer2 ) ],
-  dispatchCount:  [Math.round(seagulls.width / 8), Math.round(seagulls.height/8), 1],
+  data: [ res, u_dA, u_dB, u_feed, u_kill, u_dt, sg.pingpong( statebuffer1, statebuffer2 ) ],
+  dispatchCount:  [Math.round(width / 8), Math.round(height/8), 1],
 })
 
 sg.run( computePass, renderPass )
