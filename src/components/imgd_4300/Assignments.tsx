@@ -24,6 +24,6 @@ export const Assignments: AssignmentsType = {
         code: "/imgd_4300/a4/main.js",
         demo: "/imgd_4300/a4",
         date: "2026-04-04",
-        image: "/images/imgd_4300/a4.png",
+        image: "/images/imgd_4300/a4.jpg",
     }
 }

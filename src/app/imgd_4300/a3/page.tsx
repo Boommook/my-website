@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import {ArrowBigLeft} from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "IMGD 4300 - A3",
@@ -8,7 +10,13 @@ export default function A3Page() {
   return (
     <div className="w-full">
       <div className="mx-auto w-full max-w-6xl px-4 pt-8">
-        <h1 className="text-gray">A3: WebGPU Intro</h1>
+        <div className="grid grid-cols-3">
+          <Link href="/imgd_4300" className="col-span-1">
+            <ArrowBigLeft className="w-12 h-12 text-gray hover:scale-105 hover:text-tangerine/80 transition-all duration-300" />
+          </Link>
+          <h1 className="text-gray col-span-1 self-center">A3: WebGPU Intro</h1>
+        </div>
+        
         <p className="mt-3 text-dark-turquoise">
           Embedded interactive assignment. If it doesn't load, your browser
           may not support WebGPU (try Chrome/Edge), or the required local files

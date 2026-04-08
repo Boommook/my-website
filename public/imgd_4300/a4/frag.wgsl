@@ -12,7 +12,7 @@ fn fs( @builtin(position) pos : vec4f ) -> @location(0) vec4f {
   let i = index(x, y);
 
   let a = state[i];
-  let b = state[i + 1];
+  let b = state[i + 1u];
   
   let v = clamp(a - b, 0.0, 1.0);
   return vec4f( v,v,v, 1.);

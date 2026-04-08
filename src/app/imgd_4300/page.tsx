@@ -53,8 +53,7 @@ const Route: FC = () => {
         <div className="flex flex-col mb-4 items-center justify-center">
             <div className="mt-6 mb-4 flex flex-col items-center justify-center gap-x-2 gap-y-2">
                 <h1 className=" text-gray items-center justify-center">Computer Graphics, Aesthetics, and Simulation</h1>
-                <h3 className=" text-gray/80 items-center justify-center text-center mx-40 lg:mx-50 md:mx-60 sm:mx-0">This page was created for my CS/IMGD 4300 course at WPI, with the above title, taught by Professor Charlie Roberts
-                    . The purpose is to track my progress in the course and showcase the projects I have worked on.</h3>
+                <h3 className=" text-gray/80 items-center justify-center text-center mx-40 lg:mx-50 md:mx-60 sm:mx-0">This page was created for my CS/IMGD 4300 course at WPI, with the above title, taught by Professor Charlie Roberts. The purpose is to track my progress in the course and showcase the projects I have worked on.</h3>
             </div>
             <div className="m-4 flex justify-center items-center">
                 <div className="w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
