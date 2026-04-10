@@ -25,5 +25,13 @@ export const Assignments: AssignmentsType = {
         demo: "/imgd_4300/a4",
         date: "2026-04-04",
         image: "/images/imgd_4300/a4.jpg",
+    },
+    "A5": {
+        title: "A5: WebGPU App",
+        documentation: "/docs/a5.md",
+        code: "/imgd_4300/a5/main.js",
+        demo: "/imgd_4300/a5",
+        date: "2026-04-10",
+        image: "/images/imgd_4300/a5.jpg",
     }
 }
