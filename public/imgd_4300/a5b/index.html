@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volatile Mosskin Explosion Starter</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #05070b;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .ui {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 12px 14px;
+      border-radius: 10px;
+      min-width: 260px;
+      backdrop-filter: blur(6px);
+    }
+
+    .ui h2 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+
+    .ui label {
+      display: block;
+      font-size: 13px;
+      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+
+    .ui input[type="range"] {
+      width: 100%;
+    }
+
+    .ui button {
+      margin-top: 10px;
+      margin-right: 8px;
+      padding: 7px 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .hint {
+      font-size: 12px;
+      opacity: 0.85;
+      margin-top: 10px;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+  <div class="ui">
+    <h2>Volatile Mosskin Explosion</h2>
+  </div>
+
+  <canvas id="gfx"></canvas>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

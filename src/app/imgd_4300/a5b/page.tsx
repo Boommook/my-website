@@ -29,8 +29,8 @@ export default function A5Page() {
           style={{ height: "min(80vh, 900px)" }}
         >
           <iframe
-            title="IMGD 4300 A5a"
-            src="/imgd_4300/a5/index.html"
+            title="IMGD 4300 A5b"
+            src="/imgd_4300/a5b/index.html"
             className="h-full w-full"
             allow="camera; microphone; autoplay; fullscreen"
           />

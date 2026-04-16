@@ -26,12 +26,21 @@ export const Assignments: AssignmentsType = {
         date: "2026-04-04",
         image: "/images/imgd_4300/a4.jpg",
     },
-    "A5": {
-        title: "A5: WebGPU App",
+    "A5a": {
+        title: "A5a: WebGPU App",
         documentation: "/docs/a5.md",
-        code: "/imgd_4300/a5/main.js",
+        code: "/imgd_4300/a5/index.html",
         demo: "/imgd_4300/a5",
         date: "2026-04-10",
         image: "/images/imgd_4300/a5.jpg",
+    },
+    "A5b": {
+        title: "A5b: Particles",
+        documentation: "/docs/a5b.md",
+        code: "/imgd_4300/a5b/index.html",
+        demo: "/imgd_4300/a5b",
+        date: "2026-04-15",
+        image: "/images/imgd_4300/a5b.jpg",
     }
+
 }
