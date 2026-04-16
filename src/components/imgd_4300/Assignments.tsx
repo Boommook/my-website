@@ -37,7 +37,7 @@ export const Assignments: AssignmentsType = {
     "A5b": {
         title: "A5b: Particles",
         documentation: "/docs/a5b.md",
-        code: "/imgd_4300/a5b/index.html",
+        code: "https://github.com/Boommook/my-website/tree/main/public/imgd_4300/a5b",
         demo: "/imgd_4300/a5b",
         date: "2026-04-15",
         image: "/images/imgd_4300/a5b.jpg",

@@ -6,6 +6,8 @@ The compute shader manages particle states with a ping-pong buffer. Each particl
 
 Users are able to personalize the settings of the explosion with a tweakpane. The pane has sliders for: the number of particles (count), the speed of the particles (speed), the size of the particles (size), and the length of time that the particles linger for (lifetime). 
 
+This project is kept in my website repository, within the folder at https://github.com/Boommook/my-website/tree/main/public/imgd_4300/a5b.
+
 Effect references:
 Hollowknight wiki page on Volatile Mosskin: https://hollowknight.fandom.com/wiki/Volatile_Mosskin
 image: https://hollowknight.fandom.com/wiki/File:Screenshot_HK_Volatile_Mosskin_02.png
