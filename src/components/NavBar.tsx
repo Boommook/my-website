@@ -13,6 +13,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { useEffect, useRef, useState } from "react";
+import Image from 'next/image'
 
 
 export const NavBar = () => {
@@ -36,7 +37,18 @@ export const NavBar = () => {
             <NavigationMenuItem className={`hover:cursor-default transition-all duration-400 text-lg sm:text-xl md:text-2xl font-bold text-cyan ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
             }`}>
-                Cole Bennett
+              <div className="flex flex-row gap-4 items-center py-1">
+              <Image
+                  src="/images/boommook-cyan.png"
+                  width={80}
+                  height={80}
+                  alt="Picture of the author"
+                  className="hidden md:flex"
+                />
+                <h1 className="text-cyan">Cole Bennett</h1>
+                
+              </div>
+                
             </NavigationMenuItem>
             
             {/* Desktop Navigation */}
