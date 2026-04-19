@@ -41,6 +41,14 @@ export const Assignments: AssignmentsType = {
         demo: "/imgd_4300/a5b",
         date: "2026-04-15",
         image: "/images/imgd_4300/a5b.jpg",
+    },
+    "A6": {
+        title: "A6: Vants",
+        documentation: "/docs/a6.md",
+        code: "https://github.com/Boommook/my-website/tree/main/public/imgd_4300/a6",
+        demo: "/imgd_4300/a6",
+        date: "2026-04-18",
+        image: "/images/imgd_4300/a6.jpg",
     }
 
 }
