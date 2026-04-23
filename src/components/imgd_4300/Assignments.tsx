@@ -49,6 +49,14 @@ export const Assignments: AssignmentsType = {
         demo: "/imgd_4300/a6",
         date: "2026-04-18",
         image: "/images/imgd_4300/a6.jpg",
+    },
+    "Final": {
+        title: "Final: XXXX",
+        documentation: "/docs/final.md",
+        code: "/imgd_4300/final/main.js",
+        demo: "/imgd_4300/final",
+        date: "2026-04-23",
+        image: "/images/imgd_4300/final.png",
     }
 
 }

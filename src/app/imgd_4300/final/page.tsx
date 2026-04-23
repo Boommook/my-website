@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import AssignmentPage from "@/components/imgd_4300/AssignmentPage";
 
 export const metadata: Metadata = {
-  title: "IMGD 4300 - A6",
+  title: "IMGD 4300 - Final",
 };
 
-export default function A6Page() {
+export default function FinalPage() {
   return (
-    <AssignmentPage title="A6: Vants" src="/imgd_4300/a6/index.html" />
+    <AssignmentPage title="Final: XXXX" src="/imgd_4300/final/index.html" />
   )
 }
