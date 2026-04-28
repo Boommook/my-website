@@ -13,18 +13,30 @@ expanded: true,
 
 pane.addBinding(PARAMS, "startingArea", {min: 0, max: 1, step: 0.1});
 pane.addBinding(PARAMS, "numAgents", {min: 10, max: 1024, step: 10});
+const respawnBtn = pane.addButton({
+    title: 'Respawn Vants',
+    label: 'respawn',
+  });
+respawnBtn.on('click', () => {
+    respawnVants();
+});
+const clearBtn = pane.addButton({
+    title: 'Clear Foods',
+    label: 'clear',
+  });
+clearBtn.on('click', async () => {
+  foodData.fill(-9999.0);
+  foodCount = 0;
+  foodData[0] = 0.0;
 
-const btn = pane.addButton({
-    title: 'Spawn Vants',
-    label: 'spawn',
-  });
-  
-btn.on('click', () => {
-    runSimulation();
-  });
+
+  if (targetFoods_b?.write) {
+    targetFoods_b.write(foodData);
+  }
+});
 
 const WORKGROUP_SIZE = 64,
-        DISPATH_COUNT = [PARAMS.numAgents / WORKGROUP_SIZE, 1, 1],
+    DISPATCH_COUNT = [Math.ceil(PARAMS.numAgents / WORKGROUP_SIZE), 1, 1],
         GRID_SIZE = 2;
 
 const WIDTH = Math.round(window.innerWidth / GRID_SIZE),
@@ -34,6 +46,8 @@ const render_shader = gulls.constants.vertex + `
 @group(0) @binding(0) var<storage> pheromones: array<f32>;
 @group(0) @binding(1) var<storage> render: array<f32>;
 
+@group(0) @binding(2) var<storage> targetFoods: array<vec2f>;
+
 @fragment
 fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
     let gridPos = floor(pos.xy / ${GRID_SIZE});
@@ -41,6 +55,14 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
     let pidx = gridPos.y * ${WIDTH} + gridPos.x; // convert 2d grid position to 1d index
     let p = pheromones[u32(pidx)]; // get the pheromone value at the grid position
     let v = render[u32(pidx)]; // get the render value at the grid position 
+    let foodCount = u32(clamp(targetFoods[0].x, 0.0, 64.0));
+
+    for (var i: u32 = 1u; i <= foodCount; i = i + 1u) {
+      let food = targetFoods[i];
+      if (distance(food, gridPos) < 2.5) {
+        return vec4f(1., 1., 0., 1.);
+      }
+    }
 
     // vant color based on type
     if(v == 0.){
@@ -56,7 +78,7 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
         return vec4f(vec3(0., 0.,1.), 1.); // blue
     }
     else{
-        return vec4f(vec3(1., 1.,0.), 1.); // yellow
+        return vec4f(vec3(1., 0.,1.), 1.); // purple  
     }
 
 }`;
@@ -71,6 +93,8 @@ struct Vant {
 @group(0) @binding(0) var<storage, read_write> vants: array<Vant>;
 @group(0) @binding(1) var<storage, read_write> pheromones: array<f32>;
 @group(0) @binding(2) var<storage, read_write> render: array<f32>;
+@group(0) @binding(3) var<storage, read_write> targetFoods: array<vec2f>;
+@group(0) @binding(4) var<uniform> frame: f32;
 
 // function to convert 2d position to 1d index for pheromone array
 fn pheromoneIndex(pos: vec2f) -> u32 {
@@ -91,33 +115,87 @@ fn random_float(seed: u32) -> f32 {
     return f32(h) / 4294967295.0;
 }
 
+fn closestFood(pos: vec2f, foodCount: u32) -> vec2f {
+  var closest = vec2f(-9999., -9999.);
+  var closestDist = 9999999.;
+
+  for (var i: u32 = 1u; i <= foodCount; i = i + 1u) {
+    let curr = targetFoods[i];
+
+    if (curr.x > -1000.0) {
+      let dist = distance(pos, curr);
+
+      if (dist < closestDist) {
+        closest = curr;
+        closestDist = dist;
+      }
+    }
+  }
+
+  return closest;
+}
+
+fn removeFood(pos: vec2f, foodCount: u32) {
+  for (var i: u32 = 1u; i <= foodCount; i = i + 1u) {
+    let curr = targetFoods[i];
+    if (curr.x > -1000.0 && distance(pos, curr) < 2.5) {
+      targetFoods[i] = vec2f(-9999., -9999.);
+      return;
+    }
+  }
+}
+
+
 @compute @workgroup_size(${WORKGROUP_SIZE}, 1, 1)
 fn cs(@builtin(global_invocation_id) cell: vec3u) {
+    if (cell.x >= arrayLength(&vants)) {
+      return;
+    }
     let pi2 = ${Math.PI * 2.};
     var vant: Vant = vants[cell.x];
 
     let pIndex = pheromoneIndex(vant.pos);
     let pheromone = pheromones[pIndex];
     let turnAmt = 0.125;
+    let foodCount = u32(clamp(targetFoods[0].x, 0.0, 64.0));
 
-    if(pheromone > 0.2){
-      if(random_float(cell.x + pIndex) < 0.95){
-        vant.dir += 0.0;
-      } else {
+    let shouldChaseFood = random_float(cell.x + pIndex + u32(frame)) > 0.35; // 65% chance to chase food
+
+    let closest = closestFood(vant.pos, foodCount);
+    let hasFood = closest.x > -1000.0;
+    if (foodCount > 0u && hasFood && shouldChaseFood) { // if there is food available, move towards it
+      let toClosest = closest - vant.pos;
+
+      if(pheromone > 0.2){
+          vant.dir += select(turnAmt, -turnAmt, vant.flag == 1.);
+          pheromones[pIndex] = 0.;
+      }
+
+      else if (length(toClosest) > 0.001) {
+        
+        let toFood = normalize(toClosest);
+        let targetDir = atan2(toFood.x, toFood.y) / pi2;
+
+        // stronger = more direct targeting
+        vant.dir = mix(vant.dir, targetDir, 0.2);
+        pheromones[pIndex] = min(1., pheromone + 0.75);
+      }
+      
+    }
+    else { // if there is no food available, move randomly
+      if(pheromone > 0.2){
         vant.dir += select(turnAmt, -turnAmt, vant.flag == 1.);
+        pheromones[pIndex] = 0.;
       }
-      pheromones[pIndex] = 0.;
-    }
-    else{
-      if(vant.flag == 2. && random_float(cell.x + pIndex) < 0.85){
-        vant.dir += 0.0;
-      } else {
+      else{
+        if(vant.flag == 2. && random_float(cell.x + pIndex) > 0.5){
+          vant.dir += 0.0;
+        } else {
           vant.dir += select(-turnAmt, turnAmt, vant.flag == 1.);
+        }
+        pheromones[pIndex] = min(1., pheromone + 0.75);
       }
-      pheromones[pIndex] = 1.;
-    }
-
-    pheromones[pIndex] = min(1., pheromone + 0.75);
+   }
 
     let move_speed = select(1., 2., vant.flag == 3.); // move speed based on vant type
 
@@ -127,20 +205,22 @@ fn cs(@builtin(global_invocation_id) cell: vec3u) {
 
     if(vant.pos.x <= 0.){ 
       vant.pos.x = 0. + 1.; 
-      vant.dir = random_float(cell.x + pIndex) * ${Math.PI * 2.};
+      vant.dir = random_float(cell.x + pIndex);
     }
     if(vant.pos.x >= ${WIDTH}){ 
       vant.pos.x = ${WIDTH} - 1.;
-      vant.dir = random_float(cell.x + pIndex) * ${Math.PI * 2.};
+      vant.dir = random_float(cell.x + pIndex);
     }
     if(vant.pos.y <= 0.){ 
       vant.pos.y = 0. + 1.;
-      vant.dir = random_float(cell.x + pIndex) * ${Math.PI * 2.};
+      vant.dir = random_float(cell.x + pIndex);
     }
     if(vant.pos.y >= ${HEIGHT}){ 
       vant.pos.y = ${HEIGHT} - 1.;
-      vant.dir = random_float(cell.x + pIndex) * ${Math.PI * 2.};
+      vant.dir = random_float(cell.x + pIndex);
     }
+
+    removeFood(vant.pos, foodCount);
 
     vants[cell.x] = vant;
     render[pIndex] = vant.flag;
@@ -155,62 +235,189 @@ fn cs(@builtin(global_invocation_id) cell: vec3u) {
     if(ind >= arrayLength(&pheromones)){ // https://www.w3.org/TR/WGSL/#arrayLength-builtin
         return;
     }
-    let decayAmt = 0.0025;
+    let decayAmt = 0.0005;
     let decayThreshold = 0.9;
-    let decayPercent = 0.9825;
+    let decayPercent = 0.99;
     pheromones[ind] = max(0., 
     select(pheromones[ind] * decayPercent, pheromones[ind] - decayAmt, pheromones[ind] > decayThreshold)); // decay the pheromone
 }
 `
 
+const blur_shader = gulls.constants.vertex + `
+@group(0) @binding(0) var currentTexture: texture_2d<f32>;
+@group(0) @binding(1) var currentSampler: sampler;
+@group(0) @binding(2) var <uniform> res: vec2f;
+@fragment
+fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
+  let uv = pos.xy / res; // normalized texture coords
+  let pixel = 1.0 / res; // one pixel step in texture space
+
+  var color = vec3f(0.0);
+
+  color += textureSample( currentTexture,  currentSampler, uv ).rgb * 2.0; // weight the center of the trail double
+
+  color += textureSample(currentTexture, currentSampler, uv + pixel * vec2f(-2.0, 0.0)).rgb; // color to the left
+  color += textureSample(currentTexture, currentSampler, uv + pixel * vec2f(2.0, 0.0)).rgb; // color to the right
+  color += textureSample(currentTexture, currentSampler, uv + pixel * vec2f(0.0, 2.0)).rgb; // color up
+  color += textureSample(currentTexture, currentSampler, uv + pixel * vec2f(0.0, -2.0)).rgb; // color down
+
+
+  let blurred = color / 8.0;
+  let output = mix(color, blurred, 0.75);
+
+  return vec4f(output, 1.0);
+}
+`
+
+function flattenArray(array) {
+  if (array.length === 0) return new Float32Array([0, 0]);
+
+  const flat = new Float32Array(array.length * 2);
+  for(let i = 0; i < array.length; i++){
+    flat[i * 2] = array[i][0] / GRID_SIZE;
+    flat[i * 2 + 1] = array[i][1] / GRID_SIZE;
+  }
+  return flat;
+}
+
+const sg = await gulls.init();
+const res_u   = sg.uniform([ sg.width, sg.height ])
+
+
 const NUM_PROPS = 4;
-const pheromones = new Float32Array(WIDTH * HEIGHT); // array to store pheromone values
-const vants_render = new Float32Array(WIDTH * HEIGHT); // array to store vant values
-const vants_data = new Float32Array(PARAMS.numAgents * NUM_PROPS); // array to store vant data
+let pheromones = new Float32Array(WIDTH * HEIGHT); // array to store pheromone values
+let vants_render = new Float32Array(WIDTH * HEIGHT); // array to store vant values
+let vants_data = new Float32Array(PARAMS.numAgents * NUM_PROPS); // array to store vant data
+
+const MAX_FOODS = 64;
+const foodData = new Float32Array((MAX_FOODS + 1) * 2).fill(-9999.0);
+foodData[0] = 0;
+let foodCount = 0;
+
+let copy_texture = sg.texture(new Float32Array( gulls.width * gulls.height * 4 ))
+
+let pheromones_b; 
+let vants_render_b;
+let vants_data_b;
+let targetFoods_b;
+let u_frame;
+let render_pass;
+let compute_pass;
+let decay_pass;
+let blur_pass;
+
+window.addEventListener("click", async (e) => {
+  if (e.target.closest(".tp-dfwv")) return;
+  
+  if (foodCount >= MAX_FOODS) return;
+
+  foodCount++;
+  foodData[0] = foodCount;
+
+  const slot = foodCount;
+
+  const newFood = new Float32Array([
+    Math.floor(e.clientX / GRID_SIZE),
+    Math.floor(e.clientY / GRID_SIZE),
+  ]);
+
+  foodData[slot * 2] = newFood[0];
+  foodData[slot * 2 + 1] = newFood[1];
+
+  if (targetFoods_b?.write) {
+    targetFoods_b.write(new Float32Array([foodCount]), 0);
+    targetFoods_b.write(newFood, slot * 2 * 4);
+  }
+});
+
+let isRunning = false;
+
+function startSimulation(){
+  if(!isRunning){
+    isRunning = true;
+    sg.run(decay_pass, compute_pass, render_pass, blur_pass);
+  }
+}
+
+function resetSimulation(){
+  pheromones = new Float32Array(WIDTH * HEIGHT); // array to store pheromone values
+  vants_render = new Float32Array(WIDTH * HEIGHT); // array to store vant values
+  vants_data = new Float32Array(PARAMS.numAgents * NUM_PROPS); // array to store vant data
+}
+
+function fillVantsData(){
+  const offset = .5 - PARAMS.startingArea / 2;
+  for (let i = 0; i < PARAMS.numAgents * NUM_PROPS; i += NUM_PROPS) {
+    vants_data[i] = Math.floor((offset + Math.random() * PARAMS.startingArea) * WIDTH);
+    vants_data[i + 1] = Math.floor((offset + Math.random() * PARAMS.startingArea) * HEIGHT);
+    vants_data[i + 2] = Math.random();
+    vants_data[i + 3] = Math.round(Math.random() * 2 + 1.);
+  }
+}
+
+function respawnVants(){
+  resetSimulation();
+  fillVantsData();
+
+  pheromones_b.write(pheromones);
+  vants_render_b.write(vants_render);
+  vants_data_b.write(vants_data);
+}
 
 async function runSimulation(){
-  const offset = .5 - PARAMS.startingArea / 2;
-  for(let i = 0; i < PARAMS.numAgents * NUM_PROPS; i+=NUM_PROPS){
-      vants_data[i] = Math.floor( (offset + Math.random()*PARAMS.startingArea) * WIDTH); // random x position
-      vants_data[i + 1] = Math.floor( (offset + Math.random()*PARAMS.startingArea) * HEIGHT); // random y position
-      vants_data[i + 2] = Math.random() * 2 * Math.PI; // random direction
-      vants_data[i + 3] = Math.round(Math.random() * 2 + 1.); // random behavior type (1 or 2 or 3)
-  }
-  
-  const sg = await gulls.init();
-  const pheromones_b = sg.buffer(pheromones, "pheromones");
-  const vants_render_b = sg.buffer(vants_render, "vants_render");
-  const vants_data_b = sg.buffer(vants_data, "vants_data");
+  resetSimulation();
+  fillVantsData();
 
-  const render = await sg.render({
+  pheromones_b = sg.buffer(pheromones, "pheromones");
+  vants_render_b = sg.buffer(vants_render, "vants_render");
+  vants_data_b = sg.buffer(vants_data, "vants_data");
+  targetFoods_b = sg.buffer(foodData, "targetFoods");
+  u_frame = sg.uniform(0);
+
+
+  render_pass = await sg.render({
       shader: render_shader,
       data: [
           pheromones_b,
           vants_render_b,
-      ]
+          targetFoods_b,
+      ],
+      copy: copy_texture,
   });
 
-  const decay = await sg.compute({
+  decay_pass = await sg.compute({
     shader: decay_shader,
     data: [pheromones_b],
-    dispatchCount: [Math.ceil((WIDTH * HEIGHT) / WORKGROUP_SIZE), 1, 1],
+    dispatchCount: [Math.ceil((WIDTH * HEIGHT) / WORKGROUP_SIZE), 1, 1], // dispatch count needs to be calculated based on the number of cells in the grid
   });
 
-const compute = await sg.compute({
+  compute_pass = await sg.compute({
     shader: compute_shader,
     data: [
         vants_data_b,
         pheromones_b,
         vants_render_b,
+        targetFoods_b,
+        u_frame,
     ],
     onframe() {
         vants_render_b.clear();
+        u_frame.value++;
     },
-    dispatchCount: DISPATH_COUNT,
+    dispatchCount: DISPATCH_COUNT, // dispatch count needs to be calculated based on the number of agents
 });
 
+  blur_pass = await sg.render({
+    shader: blur_shader,
+    data: [
+      copy_texture,
+      sg.sampler(),
+      res_u,
+    ]
+  })
 
-
-  sg.run(compute, render, decay);
+  startSimulation();
 }
+
+runSimulation();
 

@@ -699,14 +699,8 @@ const CONSTANTS = {
           )
         }
   
-        buffer.write = ( buffer, readStart=0, writeStart=0, length=-1 ) => {
-          this.device.queue.writeBuffer(
-            __buffer, 
-            readStart, 
-            __buffer, 
-            writeStart 
-            //length === -1 ? __buffer.length * mult : length
-          )
+        buffer.write = (data = v, offset = 0) => {
+          this.device.queue.writeBuffer(__buffer, offset, data);
         }
   
         buffer.read = async ( size=null, offset=0 ) => {
