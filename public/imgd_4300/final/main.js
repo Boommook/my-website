@@ -54,8 +54,21 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
     
     let pidx = gridPos.y * ${WIDTH} + gridPos.x; // convert 2d grid position to 1d index
     let p = pheromones[u32(pidx)]; // get the pheromone value at the grid position
-    let v = render[u32(pidx)]; // get the render value at the grid position 
     let foodCount = u32(clamp(targetFoods[0].x, 0.0, 64.0));
+
+    var v = 0.0;
+
+    for(var dy: i32 = -1; dy <= 1; dy = dy + 1){
+      for(var dx: i32 = -1; dx <= 1; dx = dx + 1){
+        let curr_x = i32(gridPos.x) + dx;
+        let curr_y = i32(gridPos.y) + dy;
+
+        if(curr_x >= 0 && curr_x < ${WIDTH} && curr_y >= 0 && curr_y < ${HEIGHT} ){
+          let indexed = curr_y * ${WIDTH} + curr_x;
+          v = max(v, render[u32(indexed)]);
+        }
+      }
+    }
 
     for (var i: u32 = 1u; i <= foodCount; i = i + 1u) {
       let food = targetFoods[i];

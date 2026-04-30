@@ -1,0 +1,19 @@
+## Final Project: Hungry Vants
+
+My final project builds on the Langston's Ant (vants) simulation from assignment six, implemented entirely on the GPU using the gulls.js WebGPU helper library. The foundation of the system is a simulation where each pixel represents both the environment (pheromone trails and food) and vant agents. A compute shader update pass drives the vant behavior.
+
+The initial implementation (what I built assignment six off of) had a baseline vant system: agents move around a grid, read states of pixels, and update direction based on simple rules. For assignment six, I extended the simulation by adding more agent behaviors. You can read more on these behaviors in the docs for assignment six. Note that for my final project, I removed the agent behavior that caused vants to move straight until encountering pheromones.
+
+The first major extension that I introduced for this project was pheromone decay. In the original system, pheromone trails were permanent except for agent intervention, leading to discrete, repetitive patterns. I used a compute pass to gradually decay the trails, allowing for new patterns to emerge. Agents only perceive pheromones with a strength greater than two as pheromones, so gaps between vants became more abundant. Implementing this decay required finetuning of decay rates to ensure that the behavior of agents affected eachother, but not as much as originally. Too fast, and trails disappeared before influencing vant behavior. Too slow, and the system maintained its original static look.
+
+The large change I wanted to make to the starting system was adding user interaction with food. The vision was for vants to have a bias to move towards active foods. Implementing this vision required keeping a representation for food in the GPU data and functions for spawning and consuming foods. Users can spawn food by clicking on the display. One of the most significant technical challenges I encountered came when I needed to keep the food count consistent between the shader and the JavaScript code. Because the GPU operates independently, dynamically tracking food counts in both was unreliable. I resolved this by tracking the absolute maximum food count (the count if no foods were consumed) in the first slot of the food array. Inactive slots are marked with a placeholder value of -9999.0, enabling for the GPU to skip them. This allowed for the CPU and GPU to stay in sync.
+
+After I had the agents aware of the food, I had to design how they would respond. I experimented with multiple approaches before settling on behavior where agents have a 65% chance of moving towards the closest food, and falling back on their underlying turning rules. This preserved the interesting patterns of the vants, while still ensuring that they had a life-like response to the food. Additionally, this required tuning the decay further to ensure that neither the food nor the decay dominated the simulation.
+
+From a technical view, my goal was to transform a discrete, rule-based simulation into something that feels continuous, reactive, and alive. Achieving this required combining multiple systems: movement rules, decay, and influence of food.
+
+After finalizing how the simulation was driven, I proceeded to polishing it aesthetically. My aim was to move away from the discrete, grid-like appearance of the Langston's Ant simulation. I had already implemented the decay, which contributed to making the display less rigid, but I wanted to soften the visual output further. I completed this by adding a post-processing blur render pass that samples nearby pixels and blends them for the final display. This made trails smoother and more organic. Finally, I used color to differentiate vant types based on behavior and to highlight food, making the visual more engaging.
+
+TO DO:
+Make food glow or be softer at least
+Make vants larger?
