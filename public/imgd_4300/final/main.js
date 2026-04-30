@@ -201,11 +201,7 @@ fn cs(@builtin(global_invocation_id) cell: vec3u) {
         pheromones[pIndex] = 0.;
       }
       else{
-        if(vant.flag == 2. && random_float(cell.x + pIndex) > 0.5){
-          vant.dir += 0.0;
-        } else {
-          vant.dir += select(-turnAmt, turnAmt, vant.flag == 1.);
-        }
+        vant.dir += select(-turnAmt, turnAmt, vant.flag == 1.);
         pheromones[pIndex] = min(1., pheromone + 0.75);
       }
    }
