@@ -1,9 +1,13 @@
 import gulls from "../gulls.js";
 import { Pane } from "https://esm.sh/tweakpane@4.0.5";
 
+const GRID_SIZE = 2;
+const WIDTH = Math.round(window.innerWidth / GRID_SIZE);
+const HEIGHT = Math.round(window.innerHeight / GRID_SIZE);
+
 const PARAMS = {
     startingArea: 0.3,
-    numAgents: 256,
+    numAgents: 128,
 }
   
 const pane = new Pane({
@@ -35,19 +39,15 @@ clearBtn.on('click', async () => {
   }
 });
 
-const WORKGROUP_SIZE = 64,
-    DISPATCH_COUNT = [Math.ceil(PARAMS.numAgents / WORKGROUP_SIZE), 1, 1],
-        GRID_SIZE = 2;
-
-const WIDTH = Math.round(window.innerWidth / GRID_SIZE),
-    HEIGHT = Math.round(window.innerHeight / GRID_SIZE);
+const WORKGROUP_SIZE = 64;
+const DISPATCH_COUNT = [Math.ceil(PARAMS.numAgents / WORKGROUP_SIZE), 1, 1];
 
 const render_shader = gulls.constants.vertex + `
 @group(0) @binding(0) var<storage> pheromones: array<f32>;
 @group(0) @binding(1) var<storage> render: array<f32>;
 
 @group(0) @binding(2) var<storage> targetFoods: array<vec2f>;
-
+@group(0) @binding(3) var<uniform> time: f32;
 @fragment
 fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
     let gridPos = floor(pos.xy / ${GRID_SIZE});
@@ -72,8 +72,14 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
 
     for (var i: u32 = 1u; i <= foodCount; i = i + 1u) {
       let food = targetFoods[i];
-      if (distance(food, gridPos) < 2.5) {
-        return vec4f(1., 1., 0., 1.);
+      let dist = distance(food, gridPos);
+      
+      let pulse = 3.5 + 0.5 * sin(time * 0.05);
+      let glow = smoothstep(pulse, 0.0, dist);
+
+      if (glow > 0.01) {
+        let color = vec3f(1.0, 1.0, 0.2) * glow;
+        return vec4f(color, 1.0);
       }
     }
 
@@ -90,8 +96,11 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
     else if(v == 3.){
         return vec4f(vec3(0., 0.,1.), 1.); // blue
     }
+    else if(v == 4.){
+        return vec4f(vec3(1., 0.,1.), 1.); // purple
+    }
     else{
-        return vec4f(vec3(1., 0.,1.), 1.); // purple  
+        return vec4f(vec3(0., 1.,1.), 1.); // cyan  
     }
 
 }`;
@@ -180,7 +189,7 @@ fn cs(@builtin(global_invocation_id) cell: vec3u) {
       let toClosest = closest - vant.pos;
 
       if(pheromone > 0.2){
-          vant.dir += select(turnAmt, -turnAmt, vant.flag == 1.);
+          vant.dir += select(turnAmt, -turnAmt, vant.flag == 1. || vant.flag == 4.);
           pheromones[pIndex] = 0.;
       }
 
@@ -197,16 +206,16 @@ fn cs(@builtin(global_invocation_id) cell: vec3u) {
     }
     else { // if there is no food available, move randomly
       if(pheromone > 0.2){
-        vant.dir += select(turnAmt, -turnAmt, vant.flag == 1.);
+        vant.dir += select(turnAmt, -turnAmt, vant.flag == 1. || vant.flag == 4.);
         pheromones[pIndex] = 0.;
       }
       else{
-        vant.dir += select(-turnAmt, turnAmt, vant.flag == 1.);
+        vant.dir += select(-turnAmt, turnAmt, vant.flag == 1. || vant.flag == 4.);
         pheromones[pIndex] = min(1., pheromone + 0.75);
       }
    }
 
-    let move_speed = select(1., 2., vant.flag == 3.); // move speed based on vant type
+    let move_speed = select(1., 2., vant.flag == 3. || vant.flag == 4.); // move speed based on vant type
 
     let dir = vec2f(sin(vant.dir * pi2), cos(vant.dir * pi2)); // convert angle to direction vector
     
@@ -278,19 +287,9 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
 }
 `
 
-function flattenArray(array) {
-  if (array.length === 0) return new Float32Array([0, 0]);
-
-  const flat = new Float32Array(array.length * 2);
-  for(let i = 0; i < array.length; i++){
-    flat[i * 2] = array[i][0] / GRID_SIZE;
-    flat[i * 2 + 1] = array[i][1] / GRID_SIZE;
-  }
-  return flat;
-}
-
 const sg = await gulls.init();
 const res_u   = sg.uniform([ sg.width, sg.height ])
+let time_u = sg.uniform(0);
 
 
 const NUM_PROPS = 4;
@@ -309,7 +308,7 @@ let pheromones_b;
 let vants_render_b;
 let vants_data_b;
 let targetFoods_b;
-let u_frame;
+let frame_u;
 let render_pass;
 let compute_pass;
 let decay_pass;
@@ -360,7 +359,7 @@ function fillVantsData(){
     vants_data[i] = Math.floor((offset + Math.random() * PARAMS.startingArea) * WIDTH);
     vants_data[i + 1] = Math.floor((offset + Math.random() * PARAMS.startingArea) * HEIGHT);
     vants_data[i + 2] = Math.random();
-    vants_data[i + 3] = Math.round(Math.random() * 2 + 1.);
+    vants_data[i + 3] = Math.round(Math.random() * 3 + 1.);
   }
 }
 
@@ -381,7 +380,7 @@ async function runSimulation(){
   vants_render_b = sg.buffer(vants_render, "vants_render");
   vants_data_b = sg.buffer(vants_data, "vants_data");
   targetFoods_b = sg.buffer(foodData, "targetFoods");
-  u_frame = sg.uniform(0);
+  frame_u = sg.uniform(0);
 
 
   render_pass = await sg.render({
@@ -390,6 +389,7 @@ async function runSimulation(){
           pheromones_b,
           vants_render_b,
           targetFoods_b,
+          time_u,
       ],
       copy: copy_texture,
   });
@@ -407,11 +407,12 @@ async function runSimulation(){
         pheromones_b,
         vants_render_b,
         targetFoods_b,
-        u_frame,
+        frame_u,
     ],
     onframe() {
         vants_render_b.clear();
-        u_frame.value++;
+        frame_u.value++;
+        time_u.value = frame_u.value;
     },
     dispatchCount: DISPATCH_COUNT, // dispatch count needs to be calculated based on the number of agents
 });

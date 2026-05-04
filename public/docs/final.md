@@ -14,6 +14,7 @@ From a technical view, my goal was to transform a discrete, rule-based simulatio
 
 After finalizing how the simulation was driven, I proceeded to polishing it aesthetically. My aim was to move away from the discrete, grid-like appearance of the Langston's Ant simulation. I had already implemented the decay, which contributed to making the display less rigid, but I wanted to soften the visual output further. I completed this by adding a post-processing blur render pass that samples nearby pixels and blends them for the final display. This made trails smoother and more organic. Finally, I used color to differentiate vant types based on behavior and to highlight food, making the visual more engaging.
 
-TO DO:
-Make food glow or be softer at least
-Make vants larger?
+Vant Key:
+
+- red (v == 1) and green (v == 2) have basic vant movement with opposite reactions
+- blue (v == 3) and purple (v == 4) are twice as fast with opposite reactions

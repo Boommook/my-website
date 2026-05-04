@@ -63,7 +63,10 @@ const Route: FC = () => {
                 </div>
             </div>
             {openDocTitle && (
-                <AssignmentDocs openDocTitle={openDocTitle} openDocDate={openDocDate} openDocText={openDocText} isDocLoading={isDocLoading} closeDocumentation={closeDocumentation} />
+                <div >
+                    <div className=" z-20 bg-gray/45 backdrop-blur-sm fixed top-0 left-0 bottom-0 w-full h-full overflow-y-auto"></div>
+                    <AssignmentDocs openDocTitle={openDocTitle} openDocDate={openDocDate} openDocText={openDocText} isDocLoading={isDocLoading} closeDocumentation={closeDocumentation} />
+                </div>
             )}
         </div>
     )

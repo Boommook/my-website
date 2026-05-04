@@ -51,7 +51,7 @@ export const Assignments: AssignmentsType = {
         image: "/images/imgd_4300/a6.jpg",
     },
     "Final": {
-        title: "Final: XXXX",
+        title: "Final: Hungry Vants",
         documentation: "/docs/final.md",
         code: "/imgd_4300/final/main.js",
         demo: "/imgd_4300/final",

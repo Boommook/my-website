@@ -9,20 +9,20 @@ export type AssignmentDocsProps = {
 export const AssignmentDocs = ({ openDocTitle, openDocDate, openDocText, isDocLoading, closeDocumentation }: AssignmentDocsProps) => {
     return (
         <div
-            className="fixed top-14 bottom-50 right-0 left-0 z-40 bg-gray/45 backdrop-blur-sm p-4"
+            className="fixed top-14 bottom-50 right-0 left-0 z-40  p-10"
             onClick={closeDocumentation}>
             <div
-                className="mx-auto h-full w-full max-w-4xl rounded-2xl border-2 border-tangerine/50 bg-gray/95 shadow-2xl"
+                className="mx-auto h-full w-full max-w-4xl rounded-2xl border-2 border-tangerine/50  backdrop-blur-sm shadow-2xl"
                 onClick={(event) => event.stopPropagation()}>
-                <div className="flex items-center justify-between border-b border-tangerine/40 px-4 py-3">
-                    <h2 className="text-lg font-semibold text-silver">{openDocTitle} - {openDocDate}</h2>
+                <div className="flex items-center justify-between border-b border-tangerine/40 px-4 py-3 bg-gray/95 backdrop-blur-sm rounded-t-xl">
+                    <h2 className="text-lg font-semibold text-silver ">{openDocTitle} - {openDocDate}</h2>
                     <button
                         onClick={closeDocumentation}
                         className="rounded-md bg-cyan px-3 py-1 text-silver hover:cursor-pointer hover:bg-tangerine">
                         Close
                     </button>
                 </div>
-                <div className="h-[calc(100%-3.25rem)] overflow-y-auto px-4 py-3">
+                <div className="h-[calc(100%-3.5rem)] overflow-y-auto px-4 py-3 bg-gray/80 rounded-b-2xl ">
                     {isDocLoading ? (
                         <p className="text-silver">Loading documentation...</p>
                     ) : (

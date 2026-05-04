@@ -33,11 +33,11 @@ export const NavBar = () => {
 
     return (
         <NavigationMenu className="bg-gray backdrop-blur-md fixed top-0 left-0 right-0 z-50 w-screen max-w-none justify-start border-b border-tangerine/30">
-          <NavigationMenuList className="flex justify-between items-center w-screen px-4">
+          <NavigationMenuList className="flex justify-between items-center w-screen px-4 ">
             <NavigationMenuItem className={`hover:cursor-default transition-all duration-400 text-lg sm:text-xl md:text-2xl font-bold text-cyan ${
-              visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
+              visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12 "
             }`}>
-              <div className="flex flex-row gap-4 items-center py-1">
+              <div className="flex flex-row gap-4 items-center">
               <Image
                   src="/images/boommook-cyan.png"
                   width={80}
@@ -45,7 +45,7 @@ export const NavBar = () => {
                   alt="Picture of the author"
                   className="hidden md:flex"
                 />
-                <h1 className="text-cyan">Cole Bennett</h1>
+                <h1 className="text-cyan ">Cole Bennett</h1>
                 
               </div>
                 
@@ -56,7 +56,7 @@ export const NavBar = () => {
               <NavigationMenuItem>
                 <Link href="/" className={`${navigationMenuTriggerStyle()} 
                 ${pathname === "/" ? "bg-cyan/40 shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)] !font-semibold text-tangerine"
-                 : "text-cyan/90 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
+                 : "text-cyan/90 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"} h-full`}>
                   Home
                 </Link>
               </NavigationMenuItem>
