@@ -27,7 +27,7 @@ export const AssignmentCard = ({ title, documentation, code, demo, video, date, 
                 <img
                 src={image}
                 alt={title}
-                className="relative h-full w-full object-cover rounded-t-2xl hover:cursor-pointer"
+                className="relative h-full w-full object-cover rounded-t-xl hover:cursor-pointer"
                 onClick={() => onClickCover(demo, video)}
                 />
             </div>
