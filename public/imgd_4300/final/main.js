@@ -5,6 +5,10 @@ const GRID_SIZE = 2;
 const WIDTH = Math.round(window.innerWidth / GRID_SIZE);
 const HEIGHT = Math.round(window.innerHeight / GRID_SIZE);
 
+const VANT_LIFETIME_SEC = 100;
+const MAX_VANTS = 4096;
+const SPAWN_ON_EAT = 5;
+
 const PARAMS = {
     startingArea: 0.3,
     numAgents: 128,
@@ -40,7 +44,7 @@ clearBtn.on('click', async () => {
 });
 
 const WORKGROUP_SIZE = 64;
-const DISPATCH_COUNT = [Math.ceil(PARAMS.numAgents / WORKGROUP_SIZE), 1, 1];
+const DISPATCH_COUNT = [Math.ceil(MAX_VANTS / WORKGROUP_SIZE), 1, 1];
 
 const render_shader = gulls.constants.vertex + `
 @group(0) @binding(0) var<storage> pheromones: array<f32>;
@@ -109,7 +113,7 @@ const compute_shader = `
 struct Vant {
     pos: vec2f,
     dir: f32,
-    flag: f32
+    flag: f32,
 }
 
 @group(0) @binding(0) var<storage, read_write> vants: array<Vant>;

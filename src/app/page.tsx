@@ -21,9 +21,10 @@ const Route: FC = () => {
         <p className={`mt-8 text-xl text-gray/80`}>Welcome to my portfolio website!<br/>
             I'm Cole Bennett, a CS+IMGD major at WPI who dreams of applying my skills in computer science to design. Whether you're a potential employer, friend, family member, or a total stranger, please feel free to explore my site!</p>
       </div>
+      
       <div className="flex flex-col justify-center items-center !bg-gray/5 py-12">
         <div className="m-4 flex justify-center">
-          <div className="justify-center items-center grid grid-cols-1 md:grid-cols-3 gap-10 mb-4" style={{ marginLeft: mx, marginRight: mx }}>
+          <div className="w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
             {Object.keys(Projects).slice(0, 3).map((project) => (
               <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
             ))}

@@ -194,6 +194,16 @@
 }
 }
 
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 100%;
+  }
+  
+  to {
+    -webkit-mask-position: 0%;
+  }
+}
+
 @keyframes pulse-scale {
   0%,
   100% {
@@ -210,4 +220,9 @@
   .animate-pulse-scale {
     animation: pulse-scale 1s ease-in-out infinite;
 }
+}
+
+.shine{
+  background: radial-gradient(circle at center, 
+    rgb(67, 78, 90), #303841, #1f252c),100% ;
 }

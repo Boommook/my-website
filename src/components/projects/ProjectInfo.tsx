@@ -10,7 +10,7 @@ export type ProjectInfoProps = {
 
 export const ProjectInfo = ({ role, teamSize, duration, reason, description, flipped, setFlipped }: ProjectInfoProps) => {
     return (
-        <div onClick={() => setFlipped(!flipped)} className="h-full min-h-0 w-full min-w-0 overflow-auto text-xs lg:text-sm text-start 
+        <div onClick={() => setFlipped(!flipped)} className="h-full min-h-0 w-full overflow-auto text-xs lg:text-sm text-start 
         rounded-t-xl !bg-silver/80 p-4 text-gray pt-3">
             <div className="flex gap-x-1"><h3 className="font-semibold">Role: </h3> <p>{role}</p></div>
             <div className="flex gap-x-1"><h3 className="font-semibold">Team Size: </h3> <p>{teamSize}</p></div>

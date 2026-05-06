@@ -7,6 +7,6 @@ export const metadata: Metadata = {
 
 export default function FinalPage() {
   return (
-    <AssignmentPage title="Final: XXXX" src="/imgd_4300/final/index.html" />
+    <AssignmentPage title="Final: Hungry Vants" src="/imgd_4300/final/index.html" />
   )
 }

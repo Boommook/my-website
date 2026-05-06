@@ -32,7 +32,7 @@ export const NavBar = () => {
     };
 
     return (
-        <NavigationMenu className="bg-gray backdrop-blur-md fixed top-0 left-0 right-0 z-50 w-screen max-w-none justify-start border-b border-tangerine/30">
+        <NavigationMenu className="shine backdrop-blur-sm fixed top-0 left-0 right-0 z-50 w-screen max-w-none justify-start border-b border-tangerine/30">
           <NavigationMenuList className="flex justify-between items-center w-screen px-4 ">
             <NavigationMenuItem className={`hover:cursor-default transition-all duration-400 text-lg sm:text-xl md:text-2xl font-bold text-cyan ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12 "

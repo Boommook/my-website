@@ -85,7 +85,7 @@ export const Project = ({
           ))}
         </div>
       ) : (
-        <div className="h-48 w-full min-w-0 overflow-hidden rounded-t-xl sm:h-56 lg:h-64">
+        <div className="h-48 w-full overflow-hidden rounded-t-xl sm:h-56 lg:h-64">
           <ProjectInfo
             role={role}
             teamSize={teamSize}
