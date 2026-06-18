@@ -30,7 +30,7 @@ export const ProjectInfo = ({ role, teamSize, duration, reason, description, fli
                     )`,
                 }}
             >
-                <p className="text-xs lg:text-sm leading-[1.7em] m-0 ">{description}</p>
+                <p className="break-words text-xs lg:text-sm leading-[1.7em] m-0">{description}</p>
             </div>
         </div>
     )

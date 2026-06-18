@@ -8,7 +8,7 @@ function WPIEducationCard(){
                     <h2 className="text-md md:text-xl font-semibold text-gray">Worcester Polytechnic Institute</h2>
                     <h3 className="text-sm md:text-md font-semibold text-gray/85">BS, Computer Science and Interactive Media & Game Development 2027/</h3>
                     <h3 className="text-sm md:text-md font-semibold text-gray/85">MS, Computer Science 2028</h3>
-                    <h4 className="text-gray/70 text-sm mb-4">GPA: 3.94/4.0</h4>
+                    <h4 className="text-gray/70 text-sm mb-4">GPA: 3.95/4.0</h4>
                 </div>
             </div>
             <div className="space-y-[2%] flex flex-col">
@@ -18,7 +18,7 @@ function WPIEducationCard(){
                         <hr className="border-cyan border-2 w-[110%] mb-2 rounded-2xl"/>
                     </div>
                     <p className="text-gray/80">Software Engineering, Object-Oriented Design, Technical Game Development,
-                    Intro to AI, Linear Algebra, Operating Systems, Discrete Math, Systems</p>
+                    Intro to AI, Linear Algebra, Operating Systems, Discrete Math, Systems Engineering, HCI, Webware, Machine Learning, Database Systems</p>
                 </div>
                 <div className="flex justify-between gap-[4%]">
                     <div className="w-1/2">

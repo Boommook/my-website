@@ -21,9 +21,9 @@ import {
 import { Projects } from "@/components/projects/Projects"
 
 const LANGUAGES = ["C#", "C++", "C", "TypeScript", "JavaScript", "Python", "Java", "SQL", "HTML", "CSS", "Git"]
-const SKILLS = ["Game Development", "Leadership", "3D Modeling", "3D Painting"]
+const SKILLS = ["Game Development", "Leadership", "3D Modeling", "3D Painting", "Web Development"]
 const SOFTWARE = ["Unreal Engine", "Unity", "Maya", "Blender", "ZBrush", "Solidworks"]
-const FRAMEWORKS = ["React", "Node.js"]
+const FRAMEWORKS = ["React", "Node.js", "Next.js"]
 const DATABASES = ["MySQL", "PostgreSQL"]
 
 const Route: FC = () => {

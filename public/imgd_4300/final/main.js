@@ -5,9 +5,7 @@ const GRID_SIZE = 2;
 const WIDTH = Math.round(window.innerWidth / GRID_SIZE);
 const HEIGHT = Math.round(window.innerHeight / GRID_SIZE);
 
-const VANT_LIFETIME_SEC = 100;
 const MAX_VANTS = 4096;
-const SPAWN_ON_EAT = 5;
 
 const PARAMS = {
     startingArea: 0.3,

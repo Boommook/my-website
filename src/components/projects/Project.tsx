@@ -40,7 +40,7 @@ export const Project = ({
 
   return (
     <div
-      className="flex w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-gray shadow-md shadow-gray-600 transition-transform hover:scale-105 hover:shadow-lg"
+      className="flex min-w-0 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-gray shadow-md shadow-gray-600 transition-transform hover:scale-105 hover:shadow-lg"
       onClick={() => setFlipped(!flipped)}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}

@@ -51,6 +51,7 @@ export const OtherTechLabels = () => {
                         <TechLabel title="Express" link="https://expressjs.com/" width={width} />
                         <TechLabel title="PostgreSQL" link="https://www.postgresql.org/" width={width} />
                         <TechLabel title="MySQL" link="https://www.mysql.com/" width={width} />
+                        <TechLabel title="ROS 2" link="https://www.ros.org/" width={width} />
                     </div>
                 </div>
                 <TechLabel title="Linux" link="https://www.linux.org/" width={width} />

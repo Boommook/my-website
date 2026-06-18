@@ -5,28 +5,30 @@ import { ProjectProps } from "./Project"
 export type ProjectsType = Record<string, ProjectProps>
 
 export const Projects: ProjectsType = {
-    "Memory of Nations Interactive Map": {
-        image: "/images/projects/MoN_Map.png",
-        title: "Memory of Nations Interactive Map",
+    "BrewBuddy": {
+        image: "/images/projects/brewbuddy.jpg",
+        title: "BrewBuddy",
         labels: [
+            <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
             <ProjectLabel title="TypeScript" color="bg-label-language"/>,
             <ProjectLabel title="React" color="bg-label-framework"/>,
-            <ProjectLabel title="MySQL" color="bg-label-database"/>
+            <ProjectLabel title="PostgreSQL" color="bg-label-database"/>,
+            <ProjectLabel title="Next.js" color="bg-label-framework"/>,
         ],
-        filters: ["TypeScript", "React", "MySQL", "Git", "Node.js"],
-        link: "https://github.com/Jakefoley88/PostBellum_InteractiveMap.git",
-        role: "Lead Front-End Developer",
-        teamSize: 4,
-        duration: "2 months",
-        reason: "Third Year Capstone Project (IQP)",
-        fill: true,
-        description: "Developed an interactive map that improves engagement and connection with historical testimonies from the 20th and 21st centuries outside of the Czech Republic, collected and preserved by Post Bellum. The map will be integrated into the Memory of Nations website once Post Bellum addresses internal technical issues."
+        filters: ["TypeScript", "React", "PostgreSQL", "Next.js", "Git", "Web Development"],
+        link: "https://brewbuddy-ashen.vercel.app/",
+        role: "Lead Developer",
+        teamSize: 1,
+        duration: "3 months",
+        reason: "HCI Course & Personal Project",
+        description: "BrewBuddy is a web application that allows users to track and manage their homebrewing process. I created the application for my graduate HCI course, however I have continued to work on it as a personal project and for personal use. The application was created with React, PostgreSQL, and Node.js.",
+        fill: true
     },
     "Covid Chase": {
         image: "/images/projects/covidchasegame.jpg",
         title: "Covid Chase",
         labels: [
-            <ProjectLabel title="Game Development" color="bg-label-skill"/>,
+            <ProjectLabel title="Game Dev" color="bg-label-skill"/>,
             <ProjectLabel title="C#" color="bg-label-language"/>,
             <ProjectLabel title="Unity" color="bg-label-software"/>
         ],
@@ -43,12 +45,13 @@ export const Projects: ProjectsType = {
         image: "/images/projects/mgbsite.jpg",
         title: "Mass General Brigham Application",
         labels: [
+            <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
             <ProjectLabel title="Leadership" color="bg-label-skill"/>,
             <ProjectLabel title="TypeScript" color="bg-label-language"/>,
             <ProjectLabel title="React" color="bg-label-framework"/>,
             <ProjectLabel title="PostgreSQL" color="bg-label-database"/>
         ],
-        filters: ["Leadership", "TypeScript", "React", "PostgreSQL", "Node.js", "Git"],
+        filters: ["Leadership", "TypeScript", "React", "PostgreSQL", "Node.js", "Git", "Web Development"],
         link: "https://www.massgeneralbrigham.co/",
         role: "Senior Lead Front-End Developer",
         teamSize: 10,
@@ -57,11 +60,29 @@ export const Projects: ProjectsType = {
         description: "Developed an application for the Mass General Brigham Hospital. The application featured hospital pathfinding, service request components, an employee forum, and calendar. The application was created with React, Express, PostgreSQL.",
         fill: true
     },
+    "Memory of Nations Interactive Map": {
+        image: "/images/projects/MoN_Map.png",
+        title: "Memory of Nations Interactive Map",
+        labels: [
+            <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
+            <ProjectLabel title="TypeScript" color="bg-label-language"/>,
+            <ProjectLabel title="React" color="bg-label-framework"/>,
+            <ProjectLabel title="MySQL" color="bg-label-database"/>
+        ],
+        filters: ["TypeScript", "React", "MySQL", "Git", "Node.js", "Web Development"],
+        link: "https://github.com/Jakefoley88/PostBellum_InteractiveMap.git",
+        role: "Lead Front-End Developer",
+        teamSize: 4,
+        duration: "2 months",
+        reason: "Third Year Capstone Project (IQP)",
+        fill: true,
+        description: "Developed an interactive map that improves engagement and connection with historical testimonies from the 20th and 21st centuries outside of the Czech Republic, collected and preserved by Post Bellum. The map will be integrated into the Memory of Nations website once Post Bellum addresses internal technical issues."
+    },
     "23 Dover Street": {
         image: "/images/projects/23DoverHome.jpg",
         title: "23 Dover Street",
         labels: [
-            <ProjectLabel title="Game Development" color="bg-label-skill"/>,
+            <ProjectLabel title="Game Dev" color="bg-label-skill"/>,
             <ProjectLabel title="C++" color="bg-label-language"/>,
             <ProjectLabel title="SFML" color="bg-label-software"/>
         ],
@@ -78,7 +99,7 @@ export const Projects: ProjectsType = {
         image: "/images/projects/daydreamsofchange.png",
         title: "Daydreams of Change",
         labels: [
-            <ProjectLabel title="Game Development" color="bg-label-skill"/>,
+            <ProjectLabel title="Game Dev" color="bg-label-skill"/>,
             <ProjectLabel title="Unreal Engine" color="bg-label-software"/>
         ],
         filters: ["Game Development", "Unreal Engine", "Git"],
@@ -110,11 +131,12 @@ export const Projects: ProjectsType = {
         image: "/images/projects/osprey.jpg",
         title: "School Benchmarking Application",
         labels: [
+            <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
             <ProjectLabel title="PostgreSQL" color="bg-label-database"/>,
             <ProjectLabel title="TypeScript" color="bg-label-language"/>,
             <ProjectLabel title="React" color="bg-label-framework"/>,
         ],
-        filters: ["TypeScript", "React", "PostgreSQL", "Node.js", "Git"],
+        filters: ["TypeScript", "React", "PostgreSQL", "Node.js", "Git", "Web Development"],
         link: "https://github.com/romdotdog/cs4241-team-a",
         role: "Software Engineer",
         teamSize: 6,
@@ -126,6 +148,7 @@ export const Projects: ProjectsType = {
         image: "/images/projects/spreadsheet.jpg",
         title: "Spreadsheet",
         labels: [
+            <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
             <ProjectLabel title="Java" color="bg-label-language"/>,
             <ProjectLabel title="React" color="bg-label-framework"/>,
         ],
