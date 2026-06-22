@@ -32,7 +32,8 @@ export const NavBar = () => {
     };
 
     return (
-        <NavigationMenu className="shine backdrop-blur-sm fixed top-0 left-0 right-0 z-50 w-screen max-w-none justify-start border-b border-tangerine/30">
+        <NavigationMenu className="shine backdrop-blur-sm fixed top-0 left-0 right-0 z-50 w-screen max-w-none justify-start border-b border-tangerine/30"
+        style={{ boxShadow: "0px 4px 4px #999" }}>
           <NavigationMenuList className="flex justify-between items-center w-screen px-4 ">
             <NavigationMenuItem className={`hover:cursor-default transition-all duration-400 text-lg sm:text-xl md:text-2xl font-bold text-cyan ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12 "
@@ -42,7 +43,7 @@ export const NavBar = () => {
                   src="/images/boommook-cyan.png"
                   width={80}
                   height={80}
-                  alt="Picture of the author"
+                  alt="Boommook Logo"
                   className="hidden md:flex"
                 />
                 <h1 className="text-cyan ">Cole Bennett</h1>

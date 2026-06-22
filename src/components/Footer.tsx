@@ -27,10 +27,13 @@ export const Footer = () => {
     }, [])
     return (
         <footer style={{boxShadow: "0px -4px 4px #999"}}
-        className="relative h-full bottom-0 w-full z-50 flex flex-col justify-center items-center bg-gray backdrop-blur-md py-6 overflow-hidden">
+        className="relative bottom-0 w-full shrink-0 z-50 flex flex-col justify-center items-center bg-gray backdrop-blur-md py-6 overflow-hidden">
             <FooterHexagonBG />
-            <h1 className="pt-2 mb-3 text-cyan">Contact</h1>
-            <hr className="border-tangerine border-3 mb-4 w-60 rounded-2xl mx-auto"/>
+            <div className="flex flex-col justify-center items-center gap-1">
+                <h1 className="pt-2 text-cyan">Contact</h1>
+                <hr className="border-tangerine border-3 mb-4 w-full rounded-2xl mx-auto"/>
+            </div>
+            
             <p className="text-xl mb-8 text-silver">Want to get in touch with me?</p>
             <div ref={windowRef} 
                 className={`flex gap-8 w-full justify-center items-center mb-6 transition-all duration-500 

@@ -16,7 +16,7 @@ const Route: FC = () => {
 
                 I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
                 <br/><br/>
-                This past summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern. 
+                Last summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern. 
                 In this role, I used React and Websockets to create a robot fleet dashboard that tracks the status and location of Black-I's robotic arms.
                 The dashboard features authorization control for administrators. 
                 I utilized MongoDB Atlas to track activity, errors, and other such data from not only the dashboard, but also the robotic arm control panels.

@@ -36,12 +36,12 @@
         console.log("direction:", direction);
 
         return (
-            < >
+            <div className="flex min-h-dvh flex-1 flex-col overflow-hidden">
                 <NavBar/>
                 <AnimatePresence mode="wait">
                     <motion.main
                         key={currPath}
-                        className="flex-grow mt-14 flex-1"
+                        className="flex min-h-0 flex-1 flex-col pt-14"
                         initial="initial"
                         animate="animate"
                         variants={variants}
@@ -50,6 +50,6 @@
                     </motion.main>
                 </AnimatePresence>
                 <Footer />
-            </>
+            </div>
         )
     }

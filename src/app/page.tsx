@@ -24,14 +24,14 @@ const Route: FC = () => {
       
       <div className="flex w-full flex-col justify-center items-stretch !bg-gray/5 py-12">
         <div className="m-4 flex w-full justify-center">
-          <div className="w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
+          <div className="min-w-0 w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
             {Object.keys(Projects).slice(0, 3).map((project) => (
               <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
             ))}
           </div>
         </div>
         <Link href={"/projects"} className="self-center mt-4 text-silver animate-pulse-scale bg-cyan text-3xl p-3 px-4 rounded-3xl
-         hover:bg-tangerine/75 font-semibold hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition-colors">View More Projects</Link>
+         hover:bg-tangerine/75 font-semibold hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition duration-300">View More Projects</Link>
       </div>
     </div>
   );

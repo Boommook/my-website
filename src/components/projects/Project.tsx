@@ -85,7 +85,7 @@ export const Project = ({
           ))}
         </div>
       ) : (
-        <div className="h-48 w-full overflow-hidden rounded-t-xl sm:h-56 lg:h-64">
+        <div className="h-48 min-w-0 w-full overflow-hidden rounded-t-xl sm:h-56 lg:h-64">
           <ProjectInfo
             role={role}
             teamSize={teamSize}
@@ -98,8 +98,8 @@ export const Project = ({
         </div>
       )}
 
-      <div className="w-full rounded-b-xl border-t-2 border-tangerine bg-gradient-to-r from-gray/85 via-gray to-gray/85 p-2">
-        <h2 className="justify-center py-2 pb-2 text-center text-2xl font-semibold text-silver">
+      <div className="min-w-0 w-full rounded-b-xl border-t-2 border-tangerine bg-gradient-to-r from-gray/85 via-gray to-gray/85 p-2">
+        <h2 className="break-words justify-center py-2 pb-2 text-center text-2xl font-semibold text-silver">
           {title}
         </h2>
 

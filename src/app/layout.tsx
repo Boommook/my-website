@@ -31,9 +31,10 @@ export default function RootLayout({
     
     <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-dvh flex-col`}
       >
-        <div > <ParticleBG
+        <div className="relative flex min-h-0 flex-1 flex-col">
+          <ParticleBG
             density={22000}
             color="#dcc681"
             linkDist={110}
