@@ -27,12 +27,12 @@ const Route: FC = () => {
                 <br/><br/>
                 If you have any further questions, feel free to reach out!</p>
             </div>
-            <div className="flex flex-col justify-center items-center !bg-gray/5 gap-4 py-4 pb-8">
+            <div className="flex flex-col justify-center items-center !bg-gray/5 gap-4 py-4 pb-8 ">
 
-                <div className="flex flex-col justify-center items-center">
-                    <div className="flex flex-col justify-center items-center w-fit">
-                        <h1 className="mt-6 mb-2 text-4xl font-semibold text-gray">My Skills</h1>
-                        <hr className="border-cyan border-3 mb-6 w-full rounded-2xl mx-auto"/>
+                <div className="flex flex-col justify-center items-center gap-4 mt-4">
+                    <div className="flex flex-col justify-center items-center w-fit gap-1">
+                        <h1 className="text-4xl font-semibold text-gray">My Skills</h1>
+                        <hr className="border-cyan border-3 w-full rounded-2xl mx-auto"/>
                     </div>
                     <div className="flex justify-center items-center gap-4 mb-2 md:gap-8">
                         <img src="/images/skills/unrealenginelogo.png" alt="UE Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://www.unrealengine.com/en-US", "_blank")}/>
@@ -41,10 +41,10 @@ const Route: FC = () => {
                     </div>
                 </div>
                 
-                <div className="flex flex-col justify-center items-center">
-                    <div className="flex flex-col justify-center items-center w-fit">
-                        <h1 className="text-2xl font-semibold mb-2">Programming Languages</h1>
-                        <hr className="border-cyan border-3 mb-6 w-full rounded-2xl mx-auto"/>
+                <div className="flex flex-col justify-center items-center gap-4">
+                    <div className="flex flex-col justify-center items-center w-fit gap-1">
+                        <h1 className="text-2xl font-semibold">Programming Languages</h1>
+                        <hr className="border-cyan border-3 w-full rounded-2xl mx-auto"/>
                     </div>
                     <div className="flex justify-center items-center flex-col md:flex-row gap-8">
                         <div className="flex flex-row gap-12 w-fit justify-center md:justify-end">
@@ -63,10 +63,10 @@ const Route: FC = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col justify-center items-center">
-                    <div className="flex flex-col justify-center items-center w-fit">
-                        <h1 className="text-2xl font-semibold mb-2">Other Technologies</h1>
-                        <hr className="border-cyan border-3 mb-6 w-full rounded-2xl mx-auto"/>
+                <div className="flex flex-col justify-center items-center gap-4">
+                    <div className="flex flex-col justify-center items-center w-fit gap-1">
+                        <h1 className="text-2xl font-semibold">Other Technologies</h1>
+                        <hr className="border-cyan border-3 w-full rounded-2xl mx-auto"/>
                     </div>
                     <OtherTechLabels />
                 </div>

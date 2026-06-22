@@ -3,16 +3,16 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 type SkillLogoProps = {
     src: string;
     alt: string;
-    widthPerc: number;
-    heightPerc: number;
+    widthPerc?: number;
+    heightPerc?: number;
     onClick: () => void;
 }
 
-export const SkillLogo = ({ src, alt, widthPerc, heightPerc, onClick }: SkillLogoProps) => {
+export const SkillLogo = ({ src, alt, widthPerc=5, heightPerc=5, onClick }: SkillLogoProps) => {
     return (
         <HoverCard openDelay={10} closeDelay={100}>
             <HoverCardTrigger asChild>
-            <img src={src} alt={alt} onClick={onClick} className={`mb-4 w-[${widthPerc}%] h-[${heightPerc}%] hover:cursor-pointer`} />
+            <img src={src} alt={alt} onClick={onClick} className="mb-4 hover:cursor-pointer" style={{ width: `${widthPerc}%`, height: `${heightPerc}%` }} />
             </HoverCardTrigger>
             <HoverCardContent className="flex w-fit flex-col items-center justify-center gap-0.5 shadow-lg border-2 border-tangerine/30 rounded-xl p-2">
                 <div className="font-bold">{alt}</div>
