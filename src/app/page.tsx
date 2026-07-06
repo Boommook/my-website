@@ -2,6 +2,7 @@
 import { FC, useState, useEffect } from "react";
 import { Project } from "@/components/projects/Project";
 import Link from "next/link";
+import { RevealText } from "@/components/RevealText";
 
 import { Projects } from "@/components/projects/Projects";
 
@@ -18,8 +19,11 @@ const Route: FC = () => {
       <div className="!text-left mt-12 sm:mt-8 mb-8 flex flex-col gap-2" style={{ marginLeft: mx, marginRight: mx }}>
         <h1 className="!text-left !text-6xl font-semibold text-gray">Cole Bennett</h1>
         <h2 className="!text-left !text-2xl text-gray/90">Computer Science and Interactive Media and Game Development Student</h2>
-        <p className={`mt-8 text-xl text-gray/80`}>Welcome to my portfolio website!<br/>
-            I'm Cole Bennett, a CS+IMGD major at WPI who dreams of applying my skills in computer science to design. Whether you're a potential employer, friend, family member, or a total stranger, please feel free to explore my site!</p>
+        <RevealText className="mt-8 text-xl text-gray/80" delay={0.2}>
+          Welcome to my portfolio website!
+          <br />
+          I&apos;m Cole Bennett, a CS+IMGD major at WPI who dreams of applying my skills in computer science to design. Whether you&apos;re a potential employer, friend, family member, or a total stranger, please feel free to explore my site!
+        </RevealText>
       </div>
       
       <div className="flex w-full flex-col justify-center items-stretch !bg-gray/5 py-12">

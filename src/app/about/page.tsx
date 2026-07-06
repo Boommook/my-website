@@ -6,24 +6,27 @@ import WPIEducationCard from "@/components/WPIEducationCard";
 import { ExperienceCard } from "@/components/ExperienceCard";
 import { OtherTechLabels } from "@/components/OtherTechLabels";
 import { SkillLogo } from "@/components/SkillLogo";
+import { RevealText } from "@/components/RevealText";
 
 const Route: FC = () => {
     return(
         <div>
             <div className="flex justify-center items-center flex-col md:flex-row mx-10 md:mx-30 gap-2 md:gap-8">
                 <img src="/images/cole_portrait.jpg" alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-cyan"/>
-                <p className="mb-4 md:mb-0">Hello! I am Nicholas "Cole" Bennett!<br/><br/>
-
-                I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
-                <br/><br/>
-                Last summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern. 
-                In this role, I used React and Websockets to create a robot fleet dashboard that tracks the status and location of Black-I's robotic arms.
-                <br/><br/>
-                I have created this website as an online portfolio to showcase my projects and share important details about me for potential employers. If you are interested in further details regarding my work experience and academics, I suggest you take a look at my resume!
-                <br/><br/>
-                In my free time I enjoy playing ultimate frisbee, playing and creating videogames, brewing mead, working out, and more.
-                <br/><br/>
-                If you have any further questions, feel free to reach out!</p>
+                <RevealText className="mb-4 md:mb-0 text-dark-turquoise" delay={0.15}>
+                  Hello! I am Nicholas &quot;Cole&quot; Bennett!
+                  <br /><br />
+                  I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
+                  <br /><br />
+                  Last summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern.
+                  In this role, I used React and Websockets to create a robot fleet dashboard that tracks the status and location of Black-I&apos;s robotic arms.
+                  <br /><br />
+                  I have created this website as an online portfolio to showcase my projects and share important details about me for potential employers. If you are interested in further details regarding my work experience and academics, I suggest you take a look at my resume!
+                  <br /><br />
+                  In my free time I enjoy playing ultimate frisbee, playing and creating videogames, brewing mead, working out, and more.
+                  <br /><br />
+                  If you have any further questions, feel free to reach out!
+                </RevealText>
             </div>
             <div className="flex flex-col justify-center items-center !bg-gray/5 gap-4 py-4 pb-8 ">
 

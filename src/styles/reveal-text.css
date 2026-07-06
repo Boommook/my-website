@@ -1,0 +1,187 @@
+/* https://codepen.io/jh3y/pen/zxYQagX as reference */
+@layer reveal-motion {
+  @property --progress {
+    initial-value: 0;
+    syntax: "<number>";
+    inherits: true;
+  }
+
+  .reveal-text-block {
+    --start-mask: -70;
+    --end-mask: 0;
+    --start-bg: 132;
+    --end-bg: 16;
+    --duration: 1.8;
+    --color: hsl(183 100% 36% / 0.45);
+    position: relative;
+    font-family: "Inter", var(--font-inter), sans-serif;
+    font-size: inherit;
+    line-height: 1.5;
+  }
+
+  .reveal-text-block[data-debug="false"] .dupe--hide,
+  .reveal-text-block[data-debug="false"] .dupe--reveal {
+    animation: reveal-text-reveal calc(var(--duration) * 1s) calc(var(--delay) * 1s)
+        ease-in both,
+      reveal-text-compress calc(var(--duration) * 0.5s)
+        calc((var(--delay) * 1s) + (var(--duration) * 0.44s)) ease-in-out both;
+  }
+
+  .reveal-text-block[data-debug="false"] .dupe--reveal {
+    --movement: 0.15lh;
+    --compression: 1.55;
+    line-height: 1.46;
+  }
+
+  .reveal-text-block[data-debug="false"] .dupe--reveal .dupe__content {
+    mask-image: radial-gradient(
+      180cqmax 180cqmax at 50%
+        calc(
+          (var(--start-mask) * 1cqmax) +
+            ((var(--progress) - 1) * (var(--start-mask) * -1cqmax))
+        ),
+      #fff 38%,
+      #0000 40%
+    );
+    mask-composite: exclude;
+  }
+
+  .reveal-text-block[data-debug="false"] .dupe--hide {
+    --compression: 1.4;
+  }
+
+  .reveal-text-block[data-debug="false"] .dupe--hide .dupe__content {
+    filter: blur(calc(var(--blur, 0) * 1px));
+    background: radial-gradient(
+        180cqmax 180cqmax at 50%
+          calc(
+            (var(--start-bg) * 1cqmax) -
+              (
+                clamp(0, var(--progress), 1) *
+                  ((var(--start-bg) - var(--end-bg)) * 1cqmax)
+              )
+          ),
+        var(--color) 25%,
+        canvasText,
+        #0000
+      )
+      50% 50% / 100% 100% no-repeat;
+    color: #0000;
+    background-clip: text;
+    mask-image: radial-gradient(
+        180cqmax 180cqmax at 50%
+          calc(
+            (var(--start-mask) * 1cqmax) +
+              ((var(--progress) - 1) * (var(--start-mask) * -1cqmax))
+          ),
+        #fff 43%,
+        #0000 45%
+      ),
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  @keyframes reveal-text-reveal {
+    0% {
+      --progress: 0;
+      animation-timing-function: ease-in;
+    }
+    40% {
+      --progress: 1;
+      animation-timing-function: ease-out;
+    }
+    90%,
+    100% {
+      --progress: 2;
+    }
+  }
+
+  @keyframes reveal-text-compress {
+    40% {
+      transform: translateY(var(--movement, 0));
+    }
+    50% {
+      line-height: var(--compression, 1.5);
+    }
+    75% {
+      transform: translateY(0);
+    }
+    100% {
+      line-height: 1.5;
+    }
+  }
+}
+
+@layer reveal-demo {
+  .reveal-text-block .dupe {
+    position: absolute;
+    container-type: inline-size;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    font-weight: 300;
+    display: grid;
+    place-items: end;
+  }
+
+  .reveal-text-block .dupe .dupe__content {
+    padding: 0;
+  }
+
+  .reveal-text-block .dupe a {
+    color: inherit;
+    font-weight: 700;
+  }
+
+  .reveal-text-block .dupe--reveal {
+    place-items: start;
+  }
+
+  .reveal-text-block .dupe--reveal .dupe__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .reveal-text-block .text-container {
+    position: relative;
+  }
+
+  .reveal-text-block .text {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    font-weight: 300;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .reveal-text-block .dupe,
+  .reveal-text-block .text {
+    color: color-mix(in hsl, currentColor, #000 30%);
+  }
+
+  .reveal-text-block .dupe a {
+    text-underline-offset: 4px;
+  }
+
+  .reveal-text-block .dupe:not(.dupe--hide) a,
+  .reveal-text-block .dupe:not(.dupe--hide) strong {
+    color: canvasText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-text-block .dupe {
+    display: none;
+  }
+
+  .reveal-text-block .text {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

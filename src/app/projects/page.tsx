@@ -3,6 +3,7 @@ import { FC, useState, useEffect } from "react"
 import {Project} from "@/components/projects/Project"
 import { ProjectLabel } from "@/components/projects/ProjectLabel";
 import {Funnel, Check} from "lucide-react"
+import { AnimatePresence, motion } from "framer-motion"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -123,9 +124,27 @@ const Route: FC = () => {
         </div>
         <div className="m-0 md:m-2 pb-4 flex flex-1 w-full justify-center">
             <div className="min-w-0 w-full flex-1 content-center justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-12" style={{ marginLeft: mx, marginRight: mx }}>
-                {filteredProjects.length > 0 && filteredProjects.map((project) => (
-                    <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
+                <AnimatePresence mode="popLayout">
+                {filteredProjects.length > 0 && filteredProjects.map((project, index) => (
+                    <motion.div
+                        key={project}
+                        layout
+                        initial={{ opacity: 0, y: 80 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 40, scale: 0.96 }}
+                        transition={{
+                            delay: index * 0.08,
+                            type: "spring",
+                            stiffness: 320,
+                            damping: 26,
+                            mass: 0.9,
+                        }}
+                        className="min-w-0 w-full"
+                    >
+                    <Project image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
+                    </motion.div>
                 ))}
+                </AnimatePresence>
                 {filteredProjects.length === 0 && <h2 className="col-span-1 md:col-span-2 lg:col-span-3 mx-auto text-gray text-lg text-center">
                     No projects with the  <span className="font-semibold">{singleFilter}</span> filter have been added to my portfolio yet.
                     </h2>}
