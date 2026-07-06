@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { useEffect, useRef, useState } from "react";
 import Image from 'next/image'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
 
 
 export const NavBar = () => {
@@ -39,13 +40,22 @@ export const NavBar = () => {
               visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12 "
             }`}>
               <div className="flex flex-row gap-4 items-center">
-              <Image
-                  src="/images/boommook-cyan.png"
-                  width={80}
-                  height={80}
-                  alt="Boommook Logo"
-                  className="hidden md:flex"
-                />
+              
+                <HoverCard openDelay={10} closeDelay={100}>
+                  <HoverCardTrigger asChild>
+                    <Image
+                    src="/images/boommook-cyan.png"
+                    width={80}
+                    height={80}
+                    alt="Boommook Logo"
+                    className="hidden md:block h-auto w-20"
+                  />                  
+                  </HoverCardTrigger>
+                  <HoverCardContent className="flex flex-col items-start justify-center transition-all duration-400 ml-1 gap-0.5 shadow-lg border-2 border-tangerine/30 rounded-xl p-2">
+                    <h1 className="font-bold text-sm">Boommook</h1>
+                    <p className="text-xs">This is my logo for my username and gamertag Boommook. I have used it since I created my first Minecraft account in 2012.</p>
+                  </HoverCardContent>
+              </HoverCard>
                 <h1 className="text-cyan ">Cole Bennett</h1>
                 
               </div>
@@ -57,28 +67,28 @@ export const NavBar = () => {
               <NavigationMenuItem>
                 <Link href="/" className={`${navigationMenuTriggerStyle()} 
                 ${pathname === "/" ? "bg-cyan/40 shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)] !font-semibold text-tangerine"
-                 : "text-cyan/90 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"} h-full`}>
+                 : "text-cyan/90 transition-all duration-400 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"} h-full`}>
                   Home
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/about" className={`${navigationMenuTriggerStyle()} 
                 ${pathname === "/about" ? " bg-cyan/40 shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)] !font-semibold text-tangerine"
-                 : "text-cyan/90 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
+                 : "text-cyan/90 transition-all duration-400 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
                   About
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/projects" className={`${navigationMenuTriggerStyle()} 
                 ${pathname === "/projects" ? "bg-cyan/40 shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)] !font-semibold text-tangerine"
-                 : "text-cyan/90 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
+                 : "text-cyan/90 transition-all duration-400 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
                   Projects
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/imgd_4300" className={`${navigationMenuTriggerStyle()} 
                 ${pathname === "/imgd_4300" ? "bg-cyan/40 shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)] !font-semibold text-tangerine"
-                 : "text-cyan/90 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
+                 : "text-cyan/90 transition-all duration-400 hover:bg-silver/10 hover:shadow-[inset_2px_0_4px_rgba(0,0,0,0.2),inset_-2px_0_4px_rgba(0,0,0,0.2)]"}`}>
                   IMGD 4300
                 </Link>
               </NavigationMenuItem>

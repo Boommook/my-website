@@ -20,9 +20,11 @@ export const ExperienceCard = ({ company, position, location, responsibilities, 
                 </div>
             </div>
                 <p className="mb-2 text-sm md:text-[16px] list-disc pl-5 text-gray/80"> 
-                    {responsibilities.map((responsibility) => (
-                        <li key={responsibility}>{responsibility}</li>
-                    ))}
+                <ul>
+                        {responsibilities.map((responsibility) => (
+                            <li key={responsibility}>{responsibility}</li>
+                        ))}
+                    </ul>
                 </p>
         </div>
     )

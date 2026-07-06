@@ -4,13 +4,11 @@ export type ProjectInfoProps = {
     duration: string;
     reason: string;
     description: string;
-    flipped: boolean;
-    setFlipped: (flipped: boolean) => void;
 }
 
-export const ProjectInfo = ({ role, teamSize, duration, reason, description, flipped, setFlipped }: ProjectInfoProps) => {
+export const ProjectInfo = ({ role, teamSize, duration, reason, description }: ProjectInfoProps) => {
     return (
-        <div onClick={() => setFlipped(!flipped)} className="h-full min-h-0 min-w-0 w-full overflow-auto text-xs lg:text-sm text-start 
+        <div className="h-full min-h-0 min-w-0 w-full overflow-auto text-xs lg:text-sm text-start 
         rounded-t-xl !bg-silver/80 p-4 text-gray pt-3">
             <div className="flex min-w-0 gap-x-1"><h3 className="shrink-0 font-semibold">Role: </h3> <p className="min-w-0 break-words">{role}</p></div>
             <div className="flex min-w-0 gap-x-1"><h3 className="shrink-0 font-semibold">Team Size: </h3> <p className="min-w-0 break-words">{teamSize}</p></div>

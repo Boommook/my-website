@@ -10,12 +10,12 @@ const Route: FC = () => {
 
   useEffect(() => {
     const documentWidth = typeof document !== "undefined" ? document.documentElement.clientWidth : 1024;
-    setMx(documentWidth < 2000 ? documentWidth < 1000 ? "2vw" : "4vw" : "20vw");
+    setMx(documentWidth < 2000 ? documentWidth < 1000 ? "4vw" : "4vw" : "20vw");
   }, []);
   
   return (
     <div className="h-full flex flex-col">
-      <div className="!text-left mt-12 mb-8 flex flex-col gap-2" style={{ marginLeft: mx, marginRight: mx }}>
+      <div className="!text-left mt-12 sm:mt-8 mb-8 flex flex-col gap-2" style={{ marginLeft: mx, marginRight: mx }}>
         <h1 className="!text-left !text-6xl font-semibold text-gray">Cole Bennett</h1>
         <h2 className="!text-left !text-2xl text-gray/90">Computer Science and Interactive Media and Game Development Student</h2>
         <p className={`mt-8 text-xl text-gray/80`}>Welcome to my portfolio website!<br/>
@@ -23,7 +23,7 @@ const Route: FC = () => {
       </div>
       
       <div className="flex w-full flex-col justify-center items-stretch !bg-gray/5 py-12">
-        <div className="m-4 flex w-full justify-center">
+        <div className="m-0 md:m-2 pb-4 flex flex-1 w-full justify-center">
           <div className="min-w-0 w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
             {Object.keys(Projects).slice(0, 3).map((project) => (
               <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />

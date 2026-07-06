@@ -18,12 +18,10 @@ const Route: FC = () => {
                 <br/><br/>
                 Last summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern. 
                 In this role, I used React and Websockets to create a robot fleet dashboard that tracks the status and location of Black-I's robotic arms.
-                The dashboard features authorization control for administrators. 
-                I utilized MongoDB Atlas to track activity, errors, and other such data from not only the dashboard, but also the robotic arm control panels.
                 <br/><br/>
                 I have created this website as an online portfolio to showcase my projects and share important details about me for potential employers. If you are interested in further details regarding my work experience and academics, I suggest you take a look at my resume!
                 <br/><br/>
-                In my free time I enjoy playing ultimate frisbee, playing and creating videogames, brewing mead, rock climbing, hiking, and much more!
+                In my free time I enjoy playing ultimate frisbee, playing and creating videogames, brewing mead, working out, and more.
                 <br/><br/>
                 If you have any further questions, feel free to reach out!</p>
             </div>

@@ -124,7 +124,7 @@ const Route: FC = () => {
         <div className="m-0 md:m-2 pb-4 flex flex-1 w-full justify-center">
             <div className="min-w-0 w-full flex-1 content-center justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-12" style={{ marginLeft: mx, marginRight: mx }}>
                 {filteredProjects.length > 0 && filteredProjects.map((project) => (
-                        <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
+                    <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
                 ))}
                 {filteredProjects.length === 0 && <h2 className="col-span-1 md:col-span-2 lg:col-span-3 mx-auto text-gray text-lg text-center">
                     No projects with the  <span className="font-semibold">{singleFilter}</span> filter have been added to my portfolio yet.

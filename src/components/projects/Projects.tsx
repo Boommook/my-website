@@ -92,6 +92,7 @@ export const Projects: ProjectsType = {
         teamSize: 2,
         duration: "2 months",
         reason: "Technical Game Development Course",
+        video: "https://youtu.be/U44Oi179s4c?si=bmhccmt7mINZBykS",
         description: "Followed the professor’s textbook to create his 2D game engine, Dragonfly, with C++ and SFML. Afterwards, I worked with a partner to use the engine to develop a tower defense game based on the mouse infestation of an apartment. The game features sprites made from text, a variety of traps, currency, and ramping intensity.",
         fill: true
     },
