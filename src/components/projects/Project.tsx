@@ -4,6 +4,7 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import { ProjectInfo } from "./ProjectInfo";
 import { DriveVideoEmbed, isYoutubeUrl, YoutubeVideoEmbed } from "./VideoEmbed";
 import { ProjectLabels } from "./ProjectLabels";
+import { withBasePath } from "@/lib/paths";
 export type ProjectProps = {
   image: string;
   title: string;
@@ -47,6 +48,7 @@ function ProjectCardFrontMedia({
   fill,
 }: Pick<ProjectProps, "image" | "title" | "video" | "fill">) {
   const hasVideo = video !== undefined;
+  const imageSrc = withBasePath(image);
 
   return (
     <div className={`relative ${mediaHeight} overflow-hidden rounded-t-xl bg-gray/30`}>
@@ -64,21 +66,21 @@ function ProjectCardFrontMedia({
         )
       ) : fill ? (
         <img
-          src={image}
+          src={imageSrc}
           alt={title}
           className="absolute inset-0 h-full w-full rounded-t-2xl object-cover"
         />
       ) : (
         <>
           <img
-            src={image}
+            src={imageSrc}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 h-full w-full scale-110 object-cover opacity-60 blur-sm"
           />
           <div className="relative z-10 flex h-full w-full items-center justify-center">
             <img
-              src={image}
+              src={imageSrc}
               alt={title}
               className="max-h-full max-w-full rounded-t-2xl object-contain"
             />

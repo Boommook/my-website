@@ -1,0 +1,4 @@
+Options -Indexes
+DirectoryIndex index.html
+
+ErrorDocument 404 /~boommook/out/404.html

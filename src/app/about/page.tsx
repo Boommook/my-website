@@ -7,12 +7,13 @@ import { ExperienceCard } from "@/components/ExperienceCard";
 import { OtherTechLabels } from "@/components/OtherTechLabels";
 import { SkillLogo } from "@/components/SkillLogo";
 import { RevealText } from "@/components/RevealText";
+import { withBasePath } from "@/lib/paths";
 
 const Route: FC = () => {
     return(
         <div>
             <div className="flex justify-center items-center flex-col md:flex-row mx-10 md:mx-30 gap-2 md:gap-8">
-                <img src="/images/cole_portrait.jpg" alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-cyan"/>
+                <img src={withBasePath("/images/cole_portrait.jpg")} alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-cyan"/>
                 <RevealText className="mb-4 md:mb-0 text-dark-turquoise" delay={0.15}>
                   Hello! I am Nicholas &quot;Cole&quot; Bennett!
                   <br /><br />
@@ -36,9 +37,9 @@ const Route: FC = () => {
                         <hr className="border-cyan border-3 w-full rounded-2xl mx-auto"/>
                     </div>
                     <div className="flex justify-center items-center gap-4 mb-2 md:gap-8">
-                        <img src="/images/skills/unrealenginelogo.png" alt="UE Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://www.unrealengine.com/en-US", "_blank")}/>
-                        <img src="/images/skills/unitylogo.svg" alt="Unity Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://unity.com/", "_blank")}/>
-                        <img src="/images/skills/reactlogo.svg" alt="React Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://react.dev/", "_blank")}/>
+                        <img src={withBasePath("/images/skills/unrealenginelogo.png")} alt="UE Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://www.unrealengine.com/en-US", "_blank")}/>
+                        <img src={withBasePath("/images/skills/unitylogo.svg")} alt="Unity Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://unity.com/", "_blank")}/>
+                        <img src={withBasePath("/images/skills/reactlogo.svg")} alt="React Logo" className="mb-4 w-[25%] hover:cursor-pointer" onClick={() => window.open("https://react.dev/", "_blank")}/>
                     </div>
                 </div>
                 
@@ -49,17 +50,17 @@ const Route: FC = () => {
                     </div>
                     <div className="flex justify-center items-center flex-col md:flex-row gap-8">
                         <div className="flex flex-row gap-12 w-fit justify-center md:justify-end">
-                            <SkillLogo src="/images/skills/clogo.png" alt="C" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C_(programming_language)", "_blank")}/>
-                            <SkillLogo src="/images/skills/c++logo.png" alt="C++" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C%2B%2B", "_blank")}/>
-                            <SkillLogo src="/images/skills/csharplogo.png" alt="C#" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C_Sharp_(programming_language)", "_blank")}/>
-                            <SkillLogo src="/images/skills/javalogo.png" alt="Java" widthPerc={10} heightPerc={10} onClick={() => window.open("https://www.java.com/en/", "_blank")}/>
-                            <SkillLogo src="/images/skills/pythonlogo.png" alt="python" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.python.org/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/clogo.png")} alt="C" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C_(programming_language)", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/c++logo.png")} alt="C++" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C%2B%2B", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/csharplogo.png")} alt="C#" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C_Sharp_(programming_language)", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/javalogo.png")} alt="Java" widthPerc={10} heightPerc={10} onClick={() => window.open("https://www.java.com/en/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/pythonlogo.png")} alt="python" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.python.org/", "_blank")}/>
                         </div>
                         <div className="flex flex-row gap-12 w-fit justify-center items-center md:justify-start">
-                            <SkillLogo src="/images/skills/typescriptlogo.png" alt="TypeScript" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.typescriptlang.org/", "_blank")}/>
-                            <SkillLogo src="/images/skills/javascriptlogo.jpg" alt="JavaScript" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.javascript.com/", "_blank")}/>
-                            <SkillLogo src="/images/skills/racketlogo.png" alt="Racket" widthPerc={5} heightPerc={5} onClick={() => window.open("https://racket-lang.org/", "_blank")}/>
-                            <SkillLogo src="/images/skills/latexlogo.png" alt="LaTex" widthPerc={10} heightPerc={10} onClick={() => window.open("https://www.latex-project.org/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/typescriptlogo.png")} alt="TypeScript" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.typescriptlang.org/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/javascriptlogo.jpg")} alt="JavaScript" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.javascript.com/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/racketlogo.png")} alt="Racket" widthPerc={5} heightPerc={5} onClick={() => window.open("https://racket-lang.org/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/latexlogo.png")} alt="LaTex" widthPerc={10} heightPerc={10} onClick={() => window.open("https://www.latex-project.org/", "_blank")}/>
                         </div>
                     </div>
                 </div>

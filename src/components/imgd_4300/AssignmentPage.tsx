@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
 import {ArrowBigLeft} from "lucide-react";
 import Link from "next/link";
-import { AssignmentCardProps } from "./AssignmentCard";
+import { withBasePath } from "@/lib/paths";
 
 type AssignmentPageProps = {
   title: string;
@@ -33,7 +32,7 @@ export default function AssignmentPage({ title,
         >
           <iframe
             title={`IMGD 4300 ${title}`}
-            src={src}
+            src={withBasePath(src)}
             className="h-full w-full"
             allow="camera; microphone; autoplay; fullscreen"
           />

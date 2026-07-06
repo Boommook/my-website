@@ -15,6 +15,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import Image from 'next/image'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
+import { withBasePath } from "@/lib/paths"
 
 
 export const NavBar = () => {
@@ -44,7 +45,7 @@ export const NavBar = () => {
                 <HoverCard openDelay={10} closeDelay={100}>
                   <HoverCardTrigger asChild>
                     <Image
-                    src="/images/boommook-cyan.png"
+                    src={withBasePath("/images/boommook-cyan.png")}
                     width={80}
                     height={80}
                     alt="Boommook Logo"
@@ -94,7 +95,7 @@ export const NavBar = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <button 
-                  onClick={() => {window.open("/pdf/bennett_cole_resume.pdf", '_blank')}} 
+                  onClick={() => {window.open(withBasePath("/pdf/bennett_cole_resume.pdf"), '_blank')}} 
                   className={`${navigationMenuTriggerStyle()} hover:cursor-pointer`}
                 >
                   Resume
@@ -139,7 +140,7 @@ export const NavBar = () => {
                 </Link>
                 <button 
                   onClick={() => {
-                    window.open("/pdf/bennett_cole_resume.pdf", '_blank');
+                    window.open(withBasePath("/pdf/bennett_cole_resume.pdf"), '_blank');
                     setMobileMenuOpen(false);
                   }} 
                   className="text-lg font-medium text-gray hover:text-tangerine hover:cursor-pointer hover:font-semibold hover:bg-cyan/70 py-2 px-3 rounded transition-colors text-left"
