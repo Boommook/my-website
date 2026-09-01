@@ -19,12 +19,22 @@
     line-height: 1.5;
   }
 
-  .reveal-text-block[data-debug="false"] .dupe--hide,
-  .reveal-text-block[data-debug="false"] .dupe--reveal {
+  .reveal-text-block[data-debug="false"]:not(.is-complete) .dupe--hide,
+  .reveal-text-block[data-debug="false"]:not(.is-complete) .dupe--reveal {
     animation: reveal-text-reveal calc(var(--duration) * 1s) calc(var(--delay) * 1s)
         ease-in both,
       reveal-text-compress calc(var(--duration) * 0.5s)
         calc((var(--delay) * 1s) + (var(--duration) * 0.44s)) ease-in-out both;
+  }
+
+  .reveal-text-block[data-debug="false"]:not(.is-complete) .dupe--hide .dupe__content {
+    animation: reveal-text-clear-hide calc(var(--duration) * 1s) calc(var(--delay) * 1s)
+      ease-in both;
+  }
+
+  .reveal-text-block[data-debug="false"]:not(.is-complete) .dupe--reveal .dupe__content {
+    animation: reveal-text-clear-reveal calc(var(--duration) * 1s) calc(var(--delay) * 1s)
+      ease-in both;
   }
 
   .reveal-text-block[data-debug="false"] .dupe--reveal {
@@ -33,16 +43,32 @@
     line-height: 1.46;
   }
 
+  /*
+    Size the wipe from the text box itself (not cqmax/width). On mobile the
+    about copy is much taller than it is wide, so a width-based circle never
+    reaches the last lines and leaves cyan / clipped glyphs behind.
+    280% vertical radius * 38% color stop ≈ 106% of the block height.
+  */
   .reveal-text-block[data-debug="false"] .dupe--reveal .dupe__content {
-    mask-image: radial-gradient(
-      180cqmax 180cqmax at 50%
+    -webkit-mask-image: radial-gradient(
+      180% 280% at 50%
         calc(
-          (var(--start-mask) * 1cqmax) +
-            ((var(--progress) - 1) * (var(--start-mask) * -1cqmax))
+          (var(--start-mask) * 1%) +
+            ((var(--progress) - 1) * (var(--start-mask) * -1%))
         ),
       #fff 38%,
       #0000 40%
     );
+    mask-image: radial-gradient(
+      180% 280% at 50%
+        calc(
+          (var(--start-mask) * 1%) +
+            ((var(--progress) - 1) * (var(--start-mask) * -1%))
+        ),
+      #fff 38%,
+      #0000 40%
+    );
+    -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
 
@@ -53,12 +79,12 @@
   .reveal-text-block[data-debug="false"] .dupe--hide .dupe__content {
     filter: blur(calc(var(--blur, 0) * 1px));
     background: radial-gradient(
-        180cqmax 180cqmax at 50%
+        180% 280% at 50%
           calc(
-            (var(--start-bg) * 1cqmax) -
+            (var(--start-bg) * 1%) -
               (
                 clamp(0, var(--progress), 1) *
-                  ((var(--start-bg) - var(--end-bg)) * 1cqmax)
+                  ((var(--start-bg) - var(--end-bg)) * 1%)
               )
           ),
         var(--color) 25%,
@@ -68,16 +94,28 @@
       50% 50% / 100% 100% no-repeat;
     color: #0000;
     background-clip: text;
-    mask-image: radial-gradient(
-        180cqmax 180cqmax at 50%
+    -webkit-background-clip: text;
+    -webkit-mask-image: radial-gradient(
+        180% 280% at 50%
           calc(
-            (var(--start-mask) * 1cqmax) +
-              ((var(--progress) - 1) * (var(--start-mask) * -1cqmax))
+            (var(--start-mask) * 1%) +
+              ((var(--progress) - 1) * (var(--start-mask) * -1%))
           ),
         #fff 43%,
         #0000 45%
       ),
       linear-gradient(#fff 0 0);
+    mask-image: radial-gradient(
+        180% 280% at 50%
+          calc(
+            (var(--start-mask) * 1%) +
+              ((var(--progress) - 1) * (var(--start-mask) * -1%))
+          ),
+        #fff 43%,
+        #0000 45%
+      ),
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
 
@@ -110,25 +148,46 @@
       line-height: 1.5;
     }
   }
+
+  @keyframes reveal-text-clear-hide {
+    0%,
+    82% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes reveal-text-clear-reveal {
+    100% {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
 }
 
 @layer reveal-demo {
+  .reveal-text-block {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
   .reveal-text-block .dupe {
     position: absolute;
-    container-type: inline-size;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    min-height: 100%;
+    inset: 0;
     width: 100%;
     max-width: 100%;
     font-weight: 300;
     display: grid;
-    place-items: end;
+    place-items: start;
+    overflow: visible;
   }
 
   .reveal-text-block .dupe .dupe__content {
     padding: 0;
+    width: 100%;
   }
 
   .reveal-text-block .dupe a {
@@ -136,15 +195,9 @@
     font-weight: 700;
   }
 
-  .reveal-text-block .dupe--reveal {
-    place-items: start;
-  }
-
   .reveal-text-block .dupe--reveal .dupe__content {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
   }
 
   .reveal-text-block .text-container {
@@ -158,6 +211,15 @@
     font-weight: 300;
     opacity: 0;
     pointer-events: none;
+  }
+
+  .reveal-text-block.is-complete .dupe {
+    display: none;
+  }
+
+  .reveal-text-block.is-complete .text {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .reveal-text-block .dupe,

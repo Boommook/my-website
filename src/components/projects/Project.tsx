@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { KeyboardEvent, ReactNode, useId, useState } from "react";
 import { SquareArrowOutUpRight } from "lucide-react";
 import { ProjectInfo } from "./ProjectInfo";
 import { DriveVideoEmbed, isYoutubeUrl, YoutubeVideoEmbed } from "./VideoEmbed";
@@ -21,7 +21,7 @@ export type ProjectProps = {
 };
 
 const cardShell =
-  "flex min-w-0 w-full flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-gray bg-[#ada38b]/15 shadow-md shadow-gray-600";
+  "project-card-face flex min-w-0 w-full flex-col items-center justify-start overflow-hidden rounded-2xl border-2 border-gray bg-gray shadow-md shadow-gray-600";
 const mediaHeight = "h-48 w-full sm:h-56 lg:h-64";
 
 function ProjectCardFooter({
@@ -32,7 +32,7 @@ function ProjectCardFooter({
   children: ReactNode;
 }) {
   return (
-    <div className="min-w-0 w-full rounded-b-xl border-t-2 border-tangerine bg-gradient-to-r from-gray/85 via-gray to-gray/85 p-2">
+    <div className="project-card-footer min-w-0 w-full border-t-2 border-tangerine p-2">
       <h2 className="break-words justify-center py-2 pb-2 text-center text-2xl font-semibold text-silver">
         {title}
       </h2>
@@ -51,24 +51,26 @@ function ProjectCardFrontMedia({
   const imageSrc = withBasePath(image);
 
   return (
-    <div className={`relative ${mediaHeight} overflow-hidden rounded-t-xl bg-gray/30`}>
+    <div className={`relative ${mediaHeight} overflow-hidden bg-gray/30`}>
       {hasVideo ? (
         isYoutubeUrl(video) ? (
           <YoutubeVideoEmbed
             link={video}
-            className="absolute inset-0 h-full w-full rounded-t-2xl"
+            className="absolute inset-0 h-full w-full"
           />
         ) : (
           <DriveVideoEmbed
             url={video}
-            className="absolute inset-0 h-full w-full rounded-t-2xl"
+            className="absolute inset-0 h-full w-full"
           />
         )
       ) : fill ? (
         <img
           src={imageSrc}
           alt={title}
-          className="absolute inset-0 h-full w-full rounded-t-2xl object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
         />
       ) : (
         <>
@@ -76,13 +78,17 @@ function ProjectCardFrontMedia({
             src={imageSrc}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full scale-110 object-cover opacity-60 blur-sm"
+            className="project-card-blur-bg absolute inset-0 h-full w-full object-cover opacity-60 blur-sm"
+            loading="lazy"
+            decoding="async"
           />
           <div className="relative z-10 flex h-full w-full items-center justify-center">
             <img
               src={imageSrc}
               alt={title}
-              className="max-h-full max-w-full rounded-t-2xl object-contain"
+              className="max-h-full max-w-full object-contain"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </>
@@ -106,28 +112,39 @@ export const Project = ({
   fill,
 }: ProjectProps) => {
   const [flipped, setFlipped] = useState(false);
+  const detailsId = useId();
+  const toggle = () => setFlipped((value) => !value);
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggle();
+    }
+  };
 
   return (
     <div
-      className="group min-w-0 w-full cursor-pointer bg-[#ada38b]/10 perspective-[1200px] transition-transform duration-400 "
-      onClick={() => setFlipped((f) => !f)}
+      className="project-card-scene group min-w-0 w-full cursor-pointer bg-[#ada38b]/10 transition-transform duration-400 hover:scale-102"
+      role="group"
+      tabIndex={0}
+      aria-controls={detailsId}
+      aria-label={`${title} project card. ${flipped ? "Details shown" : "Press Enter or Space to show details"}.`}
+      onClick={toggle}
+      onKeyDown={onKeyDown}
     >
       <div
-        className={`relative w-full hover:scale-102 hover:shadow-lg transition-transform duration-700 ease-in-out [transform-style:preserve-3d] ${
-          flipped ? "[transform:rotateY(180deg)]" : ""
+        className={`project-card-flip relative w-full hover:shadow-lg transition-transform duration-700 ease-in-out ${
+          flipped ? "is-flipped" : ""
         }`}
       >
-        <div className={`${cardShell} [backface-visibility:hidden]`}>
+        <div className={cardShell}>
           <ProjectCardFrontMedia image={image} title={title} video={video} fill={fill} />
           <ProjectCardFooter title={title}>
             <ProjectLabels labels={labels} />
           </ProjectCardFooter>
         </div>
 
-        <div
-          className={`${cardShell} absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]`}
-        >
-          <div className={`${mediaHeight} min-w-0 overflow-hidden rounded-t-xl`}>
+        <div id={detailsId} aria-hidden={!flipped} className={`${cardShell} project-card-face-back absolute inset-0`}>
+          <div className={`${mediaHeight} min-w-0 overflow-hidden`}>
             <ProjectInfo
               role={role ?? ""}
               teamSize={teamSize ?? 0}
@@ -138,11 +155,14 @@ export const Project = ({
           </div>
           <ProjectCardFooter title={title}>
             <a
-              href={link}
+              href={link ?? "#"}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="mx-1.5 flex w-fit items-center justify-center gap-2 rounded-md bg-cyan px-2 py-1 text-lg font-semibold text-silver transition-all duration-400 hover:bg-tangerine"
+              onClick={(event) => event.stopPropagation()}
+              onKeyDown={(event) => event.stopPropagation()}
+              tabIndex={flipped && link ? 0 : -1}
+              aria-label={`Open ${title} project in a new tab`}
+              className="mx-1.5 flex w-fit items-center justify-center gap-2 rounded-md bg-cyan px-2 py-1 text-lg font-semibold text-silver transition-all duration-400 hover:bg-tangerine focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-tangerine"
             >
               <SquareArrowOutUpRight className="w-5 text-gray" />
               <p className="mb-0.5 flex items-center justify-center text-center text-silver">

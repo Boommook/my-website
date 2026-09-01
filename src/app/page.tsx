@@ -1,24 +1,15 @@
-"use client"
-import { FC, useState, useEffect } from "react";
 import { Project } from "@/components/projects/Project";
 import Link from "next/link";
 import { RevealText } from "@/components/RevealText";
 
 import { Projects } from "@/components/projects/Projects";
 
-const Route: FC = () => {
-  const [mx, setMx] = useState<string>("6vw");
-
-  useEffect(() => {
-    const documentWidth = typeof document !== "undefined" ? document.documentElement.clientWidth : 1024;
-    setMx(documentWidth < 2000 ? documentWidth < 1000 ? "4vw" : "4vw" : "20vw");
-  }, []);
-  
+const Route = () => {
   return (
     <div className="h-full flex flex-col">
-      <div className="!text-left mt-12 sm:mt-8 mb-8 flex flex-col gap-2" style={{ marginLeft: mx, marginRight: mx }}>
-        <h1 className="!text-left !text-6xl font-semibold text-gray">Cole Bennett</h1>
-        <h2 className="!text-left !text-2xl text-gray/90">Computer Science and Interactive Media and Game Development Student</h2>
+      <div className="mx-auto mt-10 mb-8 flex w-full max-w-7xl flex-col gap-2 px-4 sm:px-6 lg:px-8">
+        <h1 className="!text-left text-5xl font-semibold text-gray sm:text-6xl">Cole Bennett</h1>
+        <h2 className="!text-left text-xl text-gray/90 sm:text-2xl">Computer Science and Interactive Media and Game Development Student</h2>
         <RevealText className="mt-8 text-xl text-gray/80" delay={0.2}>
           Welcome to my portfolio website!
           <br />
@@ -27,15 +18,14 @@ const Route: FC = () => {
       </div>
       
       <div className="flex w-full flex-col justify-center items-stretch !bg-gray/5 py-12">
-        <div className="m-0 md:m-2 pb-4 flex flex-1 w-full justify-center">
-          <div className="min-w-0 w-full flex-1 justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" style={{ marginLeft: mx, marginRight: mx }}>
+        <div className="mx-auto flex w-full max-w-7xl flex-1 justify-center px-4 pb-4 sm:px-6 lg:px-8">
+          <div className="grid min-w-0 w-full grid-cols-1 items-center justify-center gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
             {Object.keys(Projects).slice(0, 3).map((project) => (
               <Project key={project} image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
             ))}
           </div>
         </div>
-        <Link href={"/projects"} className="self-center mt-4 text-silver animate-pulse-scale bg-cyan text-3xl p-3 px-4 rounded-3xl
-         hover:bg-tangerine/75 font-semibold hover:scale-105 shadow-md shadow-black/50 font-ubuntu transition duration-300">View More Projects</Link>
+        <Link href="/projects" className="animate-pulse-scale mt-4 self-center rounded-3xl bg-cyan px-4 py-3 font-ubuntu text-2xl font-semibold text-silver shadow-md shadow-black/50 transition duration-300 hover:scale-105 hover:bg-tangerine/75 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-tangerine sm:text-3xl">View More Projects</Link>
       </div>
     </div>
   );

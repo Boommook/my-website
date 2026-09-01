@@ -14,15 +14,18 @@ export const ExperienceCard = ({ company, position, location, responsibilities, 
     return (
         <div className="shadow-lg w-[85%] md:w-150 h-fit border-2 rounded-xl border-tangerine/30 p-4 bg-lightgray">
             <div className="flex items-start">
-                <img src={withBasePath(image)} alt={company} className="w-20 mt-2 mb-4 mr-4 rounded-lg hover:cursor-pointer" onClick={() => window.open(link, "_blank")}/>
-                <div>
-                    <h2 className="text-md md:text-xl font-semibold text-gray">{company}</h2>
-                    <h3 className="text-sm md:text-lg font-semibold text-gray/90">{position}</h3>
-                    <h4 className="text-gray/50 text-sm mb-4">{duration} | {location}</h4>
+                <div className="flex items-center">
+                    <img src={withBasePath(image)} alt={company} className="w-20 mt-2 mb-4 mr-4 rounded-lg hover:cursor-pointer" onClick={() => window.open(link, "_blank")}/>
+                    <div>
+                        <h2 className="text-sm md:text-xl font-semibold text-gray">{position}</h2>
+                        <h3 className="text-md md:text-lg font-semibold text-gray/80">{company}</h3>
+                        <h4 className="text-gray/50 text-sm mb-4">{duration} | {location}</h4>
+                    </div>
                 </div>
+                
             </div>
-                <p className="mb-2 text-sm md:text-[16px] list-disc pl-5 text-gray/80"> 
-                <ul>
+                <p className="mb-2 text-sm md:text-[16px] list-disc text-gray/80"> 
+                <ul className="list-disc pl-5 text-gray/80 text-sm md:text-[16px]">
                         {responsibilities.map((responsibility) => (
                             <li key={responsibility}>{responsibility}</li>
                         ))}

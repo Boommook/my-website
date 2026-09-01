@@ -19,11 +19,7 @@ export const Footer = () => {
             observer.observe(windowRef.current);
         }
 
-        return () => {
-            if(windowRef.current){
-                observer.unobserve(windowRef.current);
-            }
-        }
+        return () => observer.disconnect();
     }, [])
     return (
         <footer style={{boxShadow: "0px -4px 4px #999"}}
@@ -39,23 +35,20 @@ export const Footer = () => {
                 className={`flex gap-8 w-full justify-center items-center mb-6 transition-all duration-500 
                     ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   }`}>
-                <button 
-                onClick={() => {window.location.href = 'mailto:nmbennett@wpi.edu'}}
-                className="hover:scale-110 hover:cursor-pointer text-cyan hover:text-tangerine">
+                <a href="mailto:nmbennett@wpi.edu" aria-label="Email Cole Bennett"
+                className="text-cyan transition-transform hover:scale-110 hover:text-tangerine focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-tangerine">
                     <Mail className="w-10 scale-200"/>
-                </button>
+                </a>
 
-                <button 
-                onClick={() => {window.location.href = 'https://www.linkedin.com/in/nicholascolebennett'}}
-                className="hover:scale-110 hover:cursor-pointer text-cyan hover:text-tangerine">
+                <a href="https://www.linkedin.com/in/nicholascolebennett" target="_blank" rel="noopener noreferrer" aria-label="Cole Bennett on LinkedIn"
+                className="text-cyan transition-transform hover:scale-110 hover:text-tangerine focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-tangerine">
                     <Linkedin className="w-10 scale-200"/>
-                </button>
+                </a>
 
-                <button 
-                onClick={() => {window.location.href = 'https://github.com/Boommook'}}
-                className="hover:scale-110 hover:cursor-pointer text-cyan hover:text-tangerine">
+                <a href="https://github.com/Boommook" target="_blank" rel="noopener noreferrer" aria-label="Cole Bennett on GitHub"
+                className="text-cyan transition-transform hover:scale-110 hover:text-tangerine focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-tangerine">
                     <Github className="w-10 scale-200"/>
-                </button>
+                </a>
             </div>
         </footer>
     );

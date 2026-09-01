@@ -1,4 +1,6 @@
-import { CSSProperties, ReactNode } from "react";
+"use client";
+
+import { CSSProperties, ReactNode, useEffect, useState } from "react";
 
 type RevealTextProps = {
   children: ReactNode;
@@ -13,6 +15,20 @@ export function RevealText({
   delay = 0,
   duration = 1.8,
 }: RevealTextProps) {
+  const [complete, setComplete] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setComplete(true);
+      return;
+    }
+
+    const finish = () => setComplete(true);
+    const timeout = window.setTimeout(finish, (delay + duration) * 1000 + 80);
+
+    return () => window.clearTimeout(timeout);
+  }, [delay, duration]);
+
   const vars = {
     "--delay": delay,
     "--duration": duration,
@@ -20,12 +36,12 @@ export function RevealText({
 
   return (
     <div
-      className={`reveal-text-block ${className}`.trim()}
+      className={`reveal-text-block ${complete ? "is-complete" : ""} ${className}`.trim()}
       data-debug="false"
       style={vars}
     >
       <div className="text-container">
-        <div className="text" aria-hidden="true">
+        <div className="text" aria-hidden={!complete}>
           {children}
         </div>
         <div className="dupe dupe--hide" style={vars}>

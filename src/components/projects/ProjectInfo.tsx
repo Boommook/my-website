@@ -9,7 +9,7 @@ export type ProjectInfoProps = {
 export const ProjectInfo = ({ role, teamSize, duration, reason, description }: ProjectInfoProps) => {
     return (
         <div className="h-full min-h-0 min-w-0 w-full overflow-auto text-xs lg:text-sm text-start 
-        rounded-t-xl !bg-silver/80 p-4 text-gray pt-3">
+        bg-silver p-4 text-gray pt-3">
             <div className="flex min-w-0 gap-x-1"><h3 className="shrink-0 font-semibold">Role: </h3> <p className="min-w-0 break-words">{role}</p></div>
             <div className="flex min-w-0 gap-x-1"><h3 className="shrink-0 font-semibold">Team Size: </h3> <p className="min-w-0 break-words">{teamSize}</p></div>
             <div className="flex min-w-0 gap-x-1"><h3 className="shrink-0 font-semibold">Duration: </h3> <p className="min-w-0 break-words">{duration}</p></div>

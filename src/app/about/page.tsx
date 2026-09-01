@@ -14,13 +14,13 @@ const Route: FC = () => {
         <div>
             <div className="flex justify-center items-center flex-col md:flex-row mx-10 md:mx-30 gap-2 md:gap-8">
                 <img src={withBasePath("/images/cole_portrait.jpg")} alt="Cole Image" className="my-6 md:my-10 w-75 rounded-2xl border-4 border-cyan"/>
-                <RevealText className="mb-4 md:mb-0 text-dark-turquoise" delay={0.15}>
+                <RevealText className="mb-4 md:mb-0 w-full min-w-0 text-dark-turquoise" delay={0.15}>
                   Hello! I am Nicholas &quot;Cole&quot; Bennett!
                   <br /><br />
                   I am a student at Worcester Polytechnic Insitute studying Computer Science and Interactive Media and Game Design. My dream is to work in the game development industry utilizing both of my majors.
                   <br /><br />
-                  Last summer, I interned at Black-I Robotics, a robotics start-up, as a Software Engineering Intern.
-                  In this role, I used React and Websockets to create a robot fleet dashboard that tracks the status and location of Black-I&apos;s robotic arms.
+                  Last summer, I interned at NeuroSync, a neurotech startup, as a Web Design Associate.
+                  In this role, I developed responsive websites for NeuroSync and the Every Great Reason Foundation, while working closely with the CEO to implement his visions for the websites.
                   <br /><br />
                   I have created this website as an online portfolio to showcase my projects and share important details about me for potential employers. If you are interested in further details regarding my work experience and academics, I suggest you take a look at my resume!
                   <br /><br />
@@ -48,20 +48,16 @@ const Route: FC = () => {
                         <h1 className="text-2xl font-semibold">Programming Languages</h1>
                         <hr className="border-cyan border-3 w-full rounded-2xl mx-auto"/>
                     </div>
-                    <div className="flex justify-center items-center flex-col md:flex-row gap-8">
-                        <div className="flex flex-row gap-12 w-fit justify-center md:justify-end">
-                            <SkillLogo src={withBasePath("/images/skills/clogo.png")} alt="C" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C_(programming_language)", "_blank")}/>
-                            <SkillLogo src={withBasePath("/images/skills/c++logo.png")} alt="C++" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C%2B%2B", "_blank")}/>
-                            <SkillLogo src={withBasePath("/images/skills/csharplogo.png")} alt="C#" widthPerc={5} heightPerc={5} onClick={() => window.open("https://en.wikipedia.org/wiki/C_Sharp_(programming_language)", "_blank")}/>
-                            <SkillLogo src={withBasePath("/images/skills/javalogo.png")} alt="Java" widthPerc={10} heightPerc={10} onClick={() => window.open("https://www.java.com/en/", "_blank")}/>
-                            <SkillLogo src={withBasePath("/images/skills/pythonlogo.png")} alt="python" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.python.org/", "_blank")}/>
-                        </div>
-                        <div className="flex flex-row gap-12 w-fit justify-center items-center md:justify-start">
-                            <SkillLogo src={withBasePath("/images/skills/typescriptlogo.png")} alt="TypeScript" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.typescriptlang.org/", "_blank")}/>
-                            <SkillLogo src={withBasePath("/images/skills/javascriptlogo.jpg")} alt="JavaScript" widthPerc={5} heightPerc={5} onClick={() => window.open("https://www.javascript.com/", "_blank")}/>
-                            <SkillLogo src={withBasePath("/images/skills/racketlogo.png")} alt="Racket" widthPerc={5} heightPerc={5} onClick={() => window.open("https://racket-lang.org/", "_blank")}/>
-                            <SkillLogo src={withBasePath("/images/skills/latexlogo.png")} alt="LaTex" widthPerc={10} heightPerc={10} onClick={() => window.open("https://www.latex-project.org/", "_blank")}/>
-                        </div>
+                    <div className="flex flex-wrap justify-center items-center gap-5 md:gap-10 px-4 max-w-3xl">
+                            <SkillLogo src={withBasePath("/images/skills/clogo.png")} alt="C" onClick={() => window.open("https://en.wikipedia.org/wiki/C_(programming_language)", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/c++logo.png")} alt="C++" onClick={() => window.open("https://en.wikipedia.org/wiki/C%2B%2B", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/csharplogo.png")} alt="C#" onClick={() => window.open("https://en.wikipedia.org/wiki/C_Sharp_(programming_language)", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/javalogo.png")} alt="Java" large onClick={() => window.open("https://www.java.com/en/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/pythonlogo.png")} alt="python" onClick={() => window.open("https://www.python.org/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/typescriptlogo.png")} alt="TypeScript" onClick={() => window.open("https://www.typescriptlang.org/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/javascriptlogo.jpg")} alt="JavaScript" onClick={() => window.open("https://www.javascript.com/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/racketlogo.png")} alt="Racket" onClick={() => window.open("https://racket-lang.org/", "_blank")}/>
+                            <SkillLogo src={withBasePath("/images/skills/latexlogo.png")} alt="LaTex" large onClick={() => window.open("https://www.latex-project.org/", "_blank")}/>
                     </div>
                 </div>
 
@@ -92,6 +88,15 @@ const Route: FC = () => {
                         responsibilities={["Worked in a fast-paced environment to develop a dashboard to track the status and location of robots", "Revamped the control panel for Black-I's robotic arms", "Implemented data tracking with MongoDB Atlas and added logging for errors and activity"]}
                         image="/images/blacki.png"
                         link="https://www.blackirobotics.com/"
+                    />
+                    <ExperienceCard
+                        company="NeuroSync | Every Great Reason"
+                        position="Web Design Associate"
+                        location="Holliston, MA"
+                        duration="July - August 2026"
+                        responsibilities={["Developed responsive websites for NeuroSync and the Every Great Reason Foundation","Worked hand-in-hand with the CEO to implement his vision for the foundation's website", "Built custom HTML, CSS, and JavaScript components to improve usability and visual design"]}
+                        image="/images/egr.jpg"
+                        link="https://everygreatreason.org/"
                     />
                     <ExperienceCard
                         company="IndieCade"

@@ -1,4 +1,3 @@
-import { Project } from "./Project"
 import { ProjectLabel } from "./ProjectLabel"
 import { ProjectProps } from "./Project"
 
@@ -28,7 +27,7 @@ export const Projects: ProjectsType = {
         image: "/images/projects/covidchasegame.jpg",
         title: "Covid Chase",
         labels: [
-            <ProjectLabel title="Game Dev" color="bg-label-skill"/>,
+            <ProjectLabel title="Game Development" color="bg-label-skill"/>,
             <ProjectLabel title="C#" color="bg-label-language"/>,
             <ProjectLabel title="Unity" color="bg-label-software"/>
         ],
@@ -43,7 +42,7 @@ export const Projects: ProjectsType = {
     },
     "Mass General Brigham Application": {
         image: "/images/projects/mgbsite.jpg",
-        title: "Mass General Brigham Application",
+        title: "Mass General Brigham App",
         labels: [
             <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
             <ProjectLabel title="Leadership" color="bg-label-skill"/>,
@@ -61,8 +60,8 @@ export const Projects: ProjectsType = {
         fill: true
     },
     "Memory of Nations Interactive Map": {
-        image: "/images/projects/MoN_Map.png",
-        title: "Memory of Nations Interactive Map",
+        image: "/images/projects/MoN_Map.jpg",
+        title: "MoN Interactive Map",
         labels: [
             <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
             <ProjectLabel title="TypeScript" color="bg-label-language"/>,
@@ -82,7 +81,7 @@ export const Projects: ProjectsType = {
         image: "/images/projects/23DoverHome.jpg",
         title: "23 Dover Street",
         labels: [
-            <ProjectLabel title="Game Dev" color="bg-label-skill"/>,
+            <ProjectLabel title="Game Development" color="bg-label-skill"/>,
             <ProjectLabel title="C++" color="bg-label-language"/>,
             <ProjectLabel title="SFML" color="bg-label-software"/>
         ],
@@ -100,7 +99,7 @@ export const Projects: ProjectsType = {
         image: "/images/projects/daydreamsofchange.png",
         title: "Daydreams of Change",
         labels: [
-            <ProjectLabel title="Game Dev" color="bg-label-skill"/>,
+            <ProjectLabel title="Game Development" color="bg-label-skill"/>,
             <ProjectLabel title="Unreal Engine" color="bg-label-software"/>
         ],
         filters: ["Game Development", "Unreal Engine", "Git"],
@@ -130,7 +129,7 @@ export const Projects: ProjectsType = {
     },
     "Osprey App": {
         image: "/images/projects/osprey.jpg",
-        title: "School Benchmarking Application",
+        title: "School Benchmarking App",
         labels: [
             <ProjectLabel title="Web Dev" color="bg-label-skill"/>,
             <ProjectLabel title="PostgreSQL" color="bg-label-database"/>,
@@ -163,7 +162,7 @@ export const Projects: ProjectsType = {
         description: "Built upon provided code to develop a functional spreadsheet application with a focus on object-oriented design. The spreadsheet implements design patterns such as composition, observer, and factory. Explore my Github repository for the spreadsheet to learn more!"
     },
     "Thorkell 3D Model": {
-        image: "/images/projects/thorkellproject.png",
+        image: "/images/projects/thorkellproject.jpg",
         title: "Thorkell 3D Model",
         labels: [
             <ProjectLabel title="3D Modeling" color="bg-label-skill"/>,
@@ -174,13 +173,13 @@ export const Projects: ProjectsType = {
         link: "https://drive.google.com/drive/folders/11NZuhAcbMwbKFAJCDE1190WE-ew8qxQo?usp=sharing",
         role: "Modeler",
         teamSize: 1,
-        duration: "1 months",
+        duration: "1 month",
         reason: "3D Modeling Course",
         fill: true,
         description: "I used ZBrush to 3D model and paint the character, 'Thorkell', from Vinland Saga in an A-pose for 3D Modeling I or AR/IMGD 2101 at WPI. This was a fairly simple project that took just a few weeks, but it was a good benchmark of my growth in 3D modeling. If you'd like to see more views of my model, click the button below!"
     },
     "The Other Side": {
-        image: "/images/projects/theotherside.png",
+        image: "/images/projects/theotherside.jpg",
         title: "The Other Side",
         labels: [
             <ProjectLabel title="Game Development" color="bg-label-skill"/>,

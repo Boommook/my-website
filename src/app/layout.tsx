@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import ClientLayout from "@/components/ClientLayout";
-import { RouteProvider } from "@/context/routecontext";
 import ParticleBG from "@/components/ParticleBG";
 
 const geistSans = Geist({
@@ -42,9 +41,8 @@ export default function RootLayout({
             speed={0.25}
             alpha={0.8}
           />
-          <RouteProvider>
-            <ClientLayout>{children}</ClientLayout>
-          </RouteProvider></div>
+          <ClientLayout>{children}</ClientLayout>
+        </div>
         
       </body>
     </html>

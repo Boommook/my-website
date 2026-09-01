@@ -1,157 +1,73 @@
-"use client"
-import { FC, useState, useEffect } from "react"
-import {Project} from "@/components/projects/Project"
-import { ProjectLabel } from "@/components/projects/ProjectLabel";
-import {Funnel, Check} from "lucide-react"
-import { AnimatePresence, motion } from "framer-motion"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuPortal,
-    DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+"use client";
 
-import { Projects } from "@/components/projects/Projects"
-import { ProjectInfoPopup } from "@/components/ProjectInfoPopup"
+import { useMemo, useState } from "react";
+import { Check, Funnel } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Project } from "@/components/projects/Project";
+import { Projects } from "@/components/projects/Projects";
+import { ProjectInfoPopup } from "@/components/ProjectInfoPopup";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
-const LANGUAGES = ["C#", "C++", "C", "TypeScript", "JavaScript", "Python", "Java", "SQL", "HTML", "CSS", "Git"]
-const SKILLS = ["Game Development", "Leadership", "3D Modeling", "3D Painting", "Web Development"]
-const SOFTWARE = ["Unreal Engine", "Unity", "Maya", "Blender", "ZBrush", "Solidworks"]
-const FRAMEWORKS = ["React", "Node.js", "Next.js"]
-const DATABASES = ["MySQL", "PostgreSQL"]
+const FILTER_GROUPS = [
+  { label: "Languages", color: "bg-label-language", values: ["C#", "C++", "C", "TypeScript", "JavaScript", "Python", "Java", "SQL", "HTML", "CSS", "Git"] },
+  { label: "Skills", color: "bg-label-skill", values: ["Game Development", "Leadership", "3D Modeling", "3D Painting", "Web Development"] },
+  { label: "Software", color: "bg-label-software", values: ["Unreal Engine", "Unity", "Maya", "Blender", "ZBrush", "Solidworks"] },
+  { label: "Frameworks", color: "bg-label-framework", values: ["React", "Node.js", "Next.js"] },
+  { label: "Databases", color: "bg-label-database", values: ["MySQL", "PostgreSQL"] },
+] as const;
 
-const Route: FC = () => {
-    const [singleFilter, setSingleFilter] = useState<string>("");
-    const [filteredProjects, setFilteredProjects] = useState<string[]>(Object.keys(Projects))
-    const [mx, setMx] = useState<string>("4vw")
+export default function ProjectsPage() {
+  const [activeFilter, setActiveFilter] = useState("");
+  const reduceMotion = useReducedMotion();
+  const filteredProjects = useMemo(() => Object.keys(Projects).filter((key) => !activeFilter || Projects[key].filters.includes(activeFilter)), [activeFilter]);
 
-    useEffect(() => {
-        if (singleFilter === "") {
-            setFilteredProjects(Object.keys(Projects))
-        } else {
-            setFilteredProjects(
-                Object.keys(Projects).filter((key) =>
-                    Projects[key].filters.includes(singleFilter)
-                )
-            )
-        }
-    }, [singleFilter])
-
-    useEffect(() => {
-        const documentWidth = typeof document !== "undefined" ? document.documentElement.clientWidth : 1024
-        setMx(documentWidth < 2000 ? documentWidth < 1000 ? "2vw" : "4vw" : "20vw")
-    }, [])
-
-    return(
+  return (
     <div className="flex w-full flex-1 flex-col items-stretch">
-        <ProjectInfoPopup  />
-        <div className="self-center flex flex-col items-center justify-center gap-x-2 mt-6 gap-1">
-            <div className="flex flex-row justify-center items-center">
-                <h1 className=" text-gray items-center justify-center">Projects</h1>
-                
-                <DropdownMenu>
-                <DropdownMenuTrigger className="w-12 h-12 rounded-full hover:bg-cyan/5 focus:outline-none hover:scale-105 flex items-center justify-center p-3 hover:cursor-pointer">
-                    <Funnel className="w-8 h-8 text-cyan shrink-0" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuLabel className="font-semibold !py-1">Filter by: {singleFilter}</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuSub>
-                    <DropdownMenuSubTrigger className="!p-1"><h3 className="bg-label-language px-2 pb-1 pt-[0.5] rounded-md text-silver">Languages</h3></DropdownMenuSubTrigger>
-                    <DropdownMenuPortal>
+      <ProjectInfoPopup />
+      <div className="mt-6 flex flex-col items-center gap-1 self-center">
+        <div className="flex items-center justify-center gap-1">
+          <h1 className="text-gray">Projects</h1>
+          <DropdownMenu>
+            <DropdownMenuTrigger aria-label={activeFilter ? `Filter projects. Current filter: ${activeFilter}` : "Filter projects"} className="flex h-12 w-12 items-center justify-center rounded-full p-3 hover:cursor-pointer hover:bg-cyan/5 hover:scale-105 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-tangerine">
+              <Funnel className="h-8 w-8 shrink-0 text-cyan" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="max-h-[min(32rem,calc(100vh-6rem))] overflow-y-auto">
+              <DropdownMenuLabel className="py-1 font-semibold">{activeFilter ? `Filtered by: ${activeFilter}` : "Filter by category"}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {FILTER_GROUPS.map((group) => (
+                <DropdownMenuSub key={group.label}>
+                  <DropdownMenuSubTrigger className="p-1"><span className={`${group.color} rounded-md px-2 py-0.5 text-silver`}>{group.label}</span></DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
                     <DropdownMenuSubContent>
-                        {LANGUAGES.map((language) => (
-                            <DropdownMenuItem key={language} onClick={() => setSingleFilter(language)} className={`${singleFilter === language ? "bg-cyan/10 text-cyan" : ""}`}>{language} 
-                            {singleFilter === language && <Check className="w-4 h-4 text-cyan" />}</DropdownMenuItem>
-                        ))}
+                      {group.values.map((value) => (
+                        <DropdownMenuItem key={value} onSelect={() => setActiveFilter(value)} className={activeFilter === value ? "bg-cyan/10 text-cyan" : ""}>
+                          <span className="flex-1">{value}</span>{activeFilter === value && <Check aria-hidden className="h-4 w-4 text-cyan" />}
+                        </DropdownMenuItem>
+                      ))}
                     </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
+                  </DropdownMenuPortal>
                 </DropdownMenuSub>
-                <DropdownMenuSub>
-                    <DropdownMenuSubTrigger className="!p-1"><h3 className="bg-label-skill px-2 pb-1 pt-[0.5] rounded-md text-silver">Skills</h3></DropdownMenuSubTrigger>
-                    <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                        {SKILLS.map((skill) => (
-                            <DropdownMenuItem key={skill} onClick={() => setSingleFilter(skill)} className={`${singleFilter === skill ? "bg-cyan/10 text-cyan" : ""}`}>{skill} {singleFilter === skill && <Check className="w-4 h-4 text-cyan" />}</DropdownMenuItem>
-                        ))}
-                    </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                </DropdownMenuSub>
-                <DropdownMenuSub>
-                    <DropdownMenuSubTrigger className="!p-1"><h3 className="bg-label-software px-2 pb-1 pt-[0.5] rounded-md text-silver">Software</h3></DropdownMenuSubTrigger>
-                    <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                        {SOFTWARE.map((software) => (
-                            <DropdownMenuItem key={software} onClick={() => setSingleFilter(software)} className={`${singleFilter === software ? "bg-cyan/10 text-cyan" : ""}`}>{software} {singleFilter === software && <Check className="w-4 h-4 text-cyan" />}</DropdownMenuItem>
-                        ))}
-                    </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                </DropdownMenuSub>
-                <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="!p-1"><h3 className="bg-label-framework px-2 pb-1 pt-[0.5] rounded-md text-silver">Frameworks</h3></DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                        {FRAMEWORKS.map((framework) => (
-                            <DropdownMenuItem key={framework} onClick={() => setSingleFilter(framework)} className={`${singleFilter === framework ? "bg-cyan/10 text-cyan" : ""}`}>{framework} {singleFilter === framework && <Check className="w-4 h-4 text-cyan" />}</DropdownMenuItem>
-                        ))}
-                    </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                </DropdownMenuSub>
-                <DropdownMenuSub>
-                    <DropdownMenuSubTrigger className="!p-1"><h3 className="bg-label-database px-2 pb-1 pt-[0.5] rounded-md text-silver">Databases</h3></DropdownMenuSubTrigger>
-                    <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                        {DATABASES.map((database) => (
-                            <DropdownMenuItem key={database} onClick={() => setSingleFilter(database)} className={`${singleFilter === database ? "bg-cyan/10 text-cyan" : ""}`}>{database} {singleFilter === database && <Check className="w-4 h-4 text-cyan" />}</DropdownMenuItem>
-                        ))}
-                    </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                </DropdownMenuSub>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setSingleFilter("")} className="!p-1 hover:cursor-pointer">Clear Filter</DropdownMenuItem>
-                </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-            <hr className="self-center border-cyan border-3 mb-4 w-60 rounded-2xl"/>
+              ))}
+              <DropdownMenuSeparator />
+              <DropdownMenuItem disabled={!activeFilter} onSelect={() => setActiveFilter("")}>Clear Filter</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-        <div className="m-0 md:m-2 pb-4 flex flex-1 w-full justify-center">
-            <div className="min-w-0 w-full flex-1 content-center justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-12" style={{ marginLeft: mx, marginRight: mx }}>
-                <AnimatePresence mode="popLayout">
-                {filteredProjects.length > 0 && filteredProjects.map((project, index) => (
-                    <motion.div
-                        key={project}
-                        layout
-                        initial={{ opacity: 0, y: 80 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 40, scale: 0.96 }}
-                        transition={{
-                            delay: index * 0.08,
-                            type: "spring",
-                            stiffness: 320,
-                            damping: 26,
-                            mass: 0.9,
-                        }}
-                        className="min-w-0 w-full"
-                    >
-                    <Project image={Projects[project].image} title={Projects[project].title} labels={Projects[project].labels} filters={Projects[project].filters} link={Projects[project].link} description={Projects[project].description} role={Projects[project].role} teamSize={Projects[project].teamSize} duration={Projects[project].duration} reason={Projects[project].reason} fill={Projects[project].fill} video={Projects[project].video} />
-                    </motion.div>
-                ))}
-                </AnimatePresence>
-                {filteredProjects.length === 0 && <h2 className="col-span-1 md:col-span-2 lg:col-span-3 mx-auto text-gray text-lg text-center">
-                    No projects with the  <span className="font-semibold">{singleFilter}</span> filter have been added to my portfolio yet.
-                    </h2>}
-            </div>
+        {activeFilter && <p className="text-sm text-gray/80" aria-live="polite">Showing: <span className="font-semibold text-cyan">{activeFilter}</span></p>}
+        <hr className="mb-4 w-60 rounded-2xl border-3 border-cyan" />
+      </div>
+      <div className="mx-auto flex w-full max-w-7xl flex-1 justify-center px-4 pb-6 sm:px-6 lg:px-8">
+        <div className="grid min-w-0 w-full grid-cols-1 content-center items-center gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div key={project} layout={!reduceMotion} initial={{ opacity: 0, y: reduceMotion ? 0 : 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduceMotion ? 0 : 20, scale: reduceMotion ? 1 : 0.96 }} transition={reduceMotion ? { duration: 0.12 } : { delay: index * 0.05, type: "spring", stiffness: 320, damping: 26, mass: 0.9 }} className="min-w-0 w-full">
+                <Project {...Projects[project]} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          {filteredProjects.length === 0 && <h2 className="col-span-full mx-auto text-center text-lg text-gray">No projects with the <span className="font-semibold">{activeFilter}</span> filter have been added to my portfolio yet.</h2>}
         </div>
+      </div>
     </div>
-    );
+  );
 }
-
-export default Route;

@@ -1,6 +1,6 @@
 "use client"
 
-import {createContext, useContext, useLayoutEffect, useRef, useState} from "react";
+import {createContext, useContext, useLayoutEffect, useState} from "react";
 import {usePathname} from "next/navigation"
 
 type RouteContextType = {
@@ -15,7 +15,6 @@ const RouteContext = createContext<RouteContextType>({
 
 export const RouteProvider = ({children}: {children: React.ReactNode}) => {
     const pathname = usePathname();
-    const prevRef = useRef<string | null>(null);
     const [prevPath, setPrevPath] = useState<string | null>(null);
     const [currPath, setCurrPath] = useState(pathname);
 
@@ -24,7 +23,7 @@ export const RouteProvider = ({children}: {children: React.ReactNode}) => {
             setPrevPath(currPath);
             setCurrPath(pathname);
         }
-    }, [pathname]);
+    }, [pathname, currPath]);
 
     return <RouteContext.Provider value={{prevPath, currPath}}>{children}</RouteContext.Provider>
 }
