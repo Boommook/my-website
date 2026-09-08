@@ -3,8 +3,7 @@ const path = require("path");
 
 const root = path.join(__dirname, "..");
 
-process.env.NEXT_PUBLIC_BASE_PATH =
-  process.env.NEXT_PUBLIC_BASE_PATH || "/~boommook/out";
+process.env.NEXT_PUBLIC_DEPLOY_TARGET = "limey";
 
 const run = (command) => {
   execSync(command, {

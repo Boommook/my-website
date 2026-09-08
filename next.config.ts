@@ -1,17 +1,13 @@
 import type { NextConfig } from "next";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const isLimey = process.env.NEXT_PUBLIC_DEPLOY_TARGET === "limey";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath,
-  assetPrefix: basePath || undefined,
-  trailingSlash: true,
+  basePath: isLimey ? "/~boommook/out" : "",
+  assetPrefix: isLimey ? "/~boommook/out" : "",
   images: {
     unoptimized: true,
-  },
-  turbopack: {
-    root: process.cwd(),
   },
 };
 

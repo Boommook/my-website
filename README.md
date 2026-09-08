@@ -29,6 +29,20 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Static hosting
+
+For Netlify or local root hosting, leave `NEXT_PUBLIC_DEPLOY_TARGET` unset and
+run `npm run build`. Publish the generated `out` directory.
+
+For Limey, set `NEXT_PUBLIC_DEPLOY_TARGET=limey` when running `npm run build`.
+Upload the contents of `out` to `/~boommook/out` on Limey. Alternatively,
+`npm run build:apache` sets the Limey target and copies the export to
+`deploy/~boommook/out` for upload.
+
+Public asset URLs use `withBasePath` from `src/lib/paths.ts`. It adds
+`/~boommook/out` only for Limey builds. Keep normal Next navigation links
+unprefixed; Next handles their configured base path. Rebuild when switching targets.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
